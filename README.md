@@ -1,6 +1,6 @@
 # Fisio App
 ### Em construção
-Este app é destinado à disponização de testes clínicos em Fisioterpia para profissionais e estudantes da área. O objetivo é centralizar diversos tipos de conteúdos que possam auxiliar diagnósticos em Fisioterapia.
+Este App é destinado à disponização de testes clínicos em Fisioterpia para profissionais e estudantes da área. O objetivo é centralizar diversos tipos de conteúdos que possam auxiliar diagnósticos em Fisioterapia.
 
 O projeto ainda encontra-se em fase de construção.
  
