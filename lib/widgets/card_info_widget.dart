@@ -1,7 +1,8 @@
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/screens/category_screen.dart';
+import 'package:fisio_app/text_Styles/text_styles.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class CardInfo extends StatelessWidget {
   final DocumentSnapshot? data;
@@ -10,31 +11,43 @@ class CardInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
     return GestureDetector(
-      onTap: (){
-        Navigator.of(context).push(
-          MaterialPageRoute(builder: (context) => CategoryScreen(data))
-        );
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => CategoryScreen(data)));
       },
       child: Card(
+        color: primaryColor,
+        shadowColor: Colors.black87,
         elevation: 5,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20)
+        ),
+        child: Row(
           children: [
-            Container (
-              decoration: BoxDecoration(
-                  //borderRadius: BorderRadius.circular(30),
-                  image: DecorationImage(
-                      image: NetworkImage(data!['image']),
-                      fit: BoxFit.scaleDown
-                  )
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8,8,0,8),
+              child: Container(
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: NetworkImage(data!['image']),
+                        fit: BoxFit.scaleDown),
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8)
+                ),
+                width: 50,
+                height: 50,
               ),
-              width: 55,
-              height: 55,
             ),
-            Divider(),
-            Text(data!['name'], style: GoogleFonts.nunito(color: Colors.black, fontWeight: FontWeight.w600, fontSize: 14,), maxLines: 3, textAlign: TextAlign.center, overflow: TextOverflow.ellipsis,)
+            Expanded(
+              child: Text(
+                data!['name'],
+                style: TextStyles.t2,
+                maxLines: 3,
+                textAlign: TextAlign.center,
+                overflow: TextOverflow.ellipsis,
+              ),
+            )
           ],
         ),
       ),

@@ -39,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           Colors.white.withOpacity(0.0),
                           Colors.white.withOpacity(1),
                           Colors.white,
-
                         ]
                     )
                 ),
@@ -75,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Bem-vindo",
                   style: GoogleFonts.nunito(
                       color: primaryColor,
-                      fontSize: 36,
+                      fontSize: 38,
                       fontWeight: FontWeight.w800),
                   textAlign: TextAlign.center,
                 ),
@@ -83,19 +82,16 @@ class _LoginScreenState extends State<LoginScreen> {
                   "Acesse os melhores conteúdos de testes em Fisioterapia.",
                   style: GoogleFonts.nunito(
                       color: Colors.black87,
-                      fontSize: 13,
+                      fontSize: 14,
                       fontWeight: FontWeight.w700),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(
-                  height: 15,
-                  ),
+                SizedBox(height: 15),
                   Material(
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(30),
                     child: InkWell(
                       onTap: () {
-
                         showDialog(context: context, builder: (_) => DialogLogin(), barrierDismissible: false);
                       },
                       borderRadius: BorderRadius.circular(30),
@@ -114,13 +110,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-
-                  SizedBox(
-                    height: 10,
-                  ),
+                  SizedBox(height: 20),
                   GestureDetector(
                       onTap: (){
                         showDialog(context: context, builder: (_) => DialogSignout(), barrierDismissible: false);
@@ -153,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           )
     ]
-          )
+      )
     );
   }
 }

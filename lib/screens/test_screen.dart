@@ -47,57 +47,31 @@ class _TestScreenState extends State<TestScreen> {
     final primaryColor = Theme.of(context).primaryColor;
 
     return Scaffold(
-      backgroundColor: primaryColor,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: primaryColor,
+        backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
-        title: Text("Detalhes do teste", style: TextStyle(fontSize: 18, color: Colors.white),),
-        iconTheme: IconThemeData(
-          color: Colors.white
-        ),
-        actions: [
-          IconButton(icon: Icon(Icons.star), onPressed: () {}),
-          IconButton(icon: Icon(Icons.home), onPressed: () {
-          }),
-
-        ],
+        title: Text("Detalhes do teste", style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),),
+        iconTheme: IconThemeData(color: primaryColor),
+        actions: [IconButton(icon: Icon(Icons.home, color: primaryColor,), onPressed: () {}),],
       ),
       body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(left: 8, bottom: 10, right: 8),
-            child: Column(
-
-              children: [
-                //todo seletor de videos e imagens
-                list.isNotEmpty ?
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(30),
-                  child: AspectRatio(
-                    aspectRatio: 16/9,
-                    child:  Swiper(
-                      itemCount:list.length,
-                      itemBuilder: (BuildContext context,int index){
-                        return new Image.network(widget.data!["images"][index],fit: BoxFit.fill,);
-                      },
-                      pagination: new SwiperPagination(),
-
-                    ),
-                  ),
-                ) : Container(),
-              ],
-            )
-          ),
+          list.isNotEmpty ?
+          AspectRatio(
+            aspectRatio: 16/9,
+            child:  Swiper(
+              itemCount:list.length,
+              itemBuilder: (BuildContext context,int index){
+                return new Image.network(widget.data!["images"][index],fit: BoxFit.fill,);
+              },
+              pagination: new SwiperPagination(),
+            ),
+          ) : Container(),
           Expanded(
             child: Container(
-                padding: EdgeInsets.all(16),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30)),
-                ),
+              color: Colors.white,
               child: ListView(
                 physics: BouncingScrollPhysics(),
                 padding: EdgeInsets.all(16),
@@ -106,13 +80,12 @@ class _TestScreenState extends State<TestScreen> {
                       children: [
                         Expanded(
                           child: Text(widget.data!["name"], style: GoogleFonts.nunito(
-                            color: Colors.black87,
+                            color: primaryColor,
                             fontWeight:FontWeight.w600,
                             fontSize: 24
                           ),
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
-
                           ),
                         ),
                         IconButton(
@@ -120,29 +93,22 @@ class _TestScreenState extends State<TestScreen> {
                             icon: Icon(
                               Icons.star,
                               size: 24,
-                              color: primaryColor,
+                              color: Colors.yellow,
                             ),
                             onPressed: () {
-                              print("Oi");
                             })
                       ],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    ), SizedBox(height: 10),
                     Text(
                       "Descrição:",
-                      style: GoogleFonts.nunito(
+                        style: GoogleFonts.nunito(
                           fontSize: 18,
                           color: Colors.black.withOpacity(.7),
                           fontWeight: FontWeight.w800),
                       textAlign: TextAlign.start,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
-                    ),
-                    SizedBox(
-                      height: 5,
-                    ),
+                    ), SizedBox(height: 5),
                     Text(
                       widget.data!["resume"],
                       style: GoogleFonts.nunito(
@@ -151,10 +117,7 @@ class _TestScreenState extends State<TestScreen> {
                           fontWeight: FontWeight.w600),
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.fade,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
+                    ), SizedBox(height: 20),
                     Container(
                       height: 55,
                       child: ElevatedButton(
@@ -175,10 +138,7 @@ class _TestScreenState extends State<TestScreen> {
                           _urlOpen(widget.data!["test"]);
                         }),
                       ),
-                    ),
-                    SizedBox(
-                      height: 25,
-                    ),
+                    ), SizedBox(height: 25),
                     GestureDetector(
                       onTap: () => setState(() {
                            _urlOpen(widget.data!["other"]);
@@ -190,21 +150,13 @@ class _TestScreenState extends State<TestScreen> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-
-
+                    ), SizedBox(height: 10),
                   ],
               )
             ),
           )
         ],
       )
-
     );
   }
-
-
 }
