@@ -8,7 +8,6 @@ import 'package:fisio_app/widgets/title_t1_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
-import 'dart:math';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -54,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 15,),
             titleT1Widget("Meus Favoritos"),
             Container(
               height: 40,
@@ -68,16 +68,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   return Container(
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(10),
                       color: primaryColor,
+                      //border: Border.all(color: primaryColor, width: 2)
                     ),
                     width: 150,
-                    child: Text("Nome do teste", style: TextStyles.t2,),
+                    child: Text("Nome do teste", style: TextStyles.t3,),
                   );
                 },
                 itemCount: 10,
               ),
             ),
+            SizedBox(height: 15),
+            Divider(),
             titleT1Widget("Categorias"),
             Expanded(
               flex: 2,
@@ -101,9 +104,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    crossAxisSpacing: 2,
-                                    mainAxisSpacing: 2,
-                                    childAspectRatio: 2.5),
+                                    crossAxisSpacing: 5,
+                                    mainAxisSpacing: 5,
+                                    childAspectRatio: 1.8),
                             padding: EdgeInsets.only(
                                 top: 0, left: 10, bottom: 10, right: 10),
                             shrinkWrap: true,

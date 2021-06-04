@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/screens/test_screen.dart';
-import 'package:fisio_app/text_styles/text_styles.dart';
+import 'package:fisio_app/widgets/animation_rive_2_widget.dart';
+import 'package:fisio_app/widgets/card_test_widget.dart';
+import 'package:fisio_app/widgets/card_tile_category_screen.dart';
 import 'package:fisio_app/widgets/title_t1_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:rive/rive.dart';
 
 class CategoryScreen extends StatefulWidget {
   final DocumentSnapshot? data;
@@ -19,10 +23,27 @@ class _CategoryScreenState extends State<CategoryScreen> {
   int _selectedIndex = 999;
   String category = "";
   bool toogle = false;
+  Artboard? _riveArtboard;
+
+  RiveAnimationController? _controller;
+
+  @override
+  void initState() {
+    super.initState();
+
+    rootBundle.load('assets/anims/osso3.riv').then(
+      (data) async {
+        final file = RiveFile.import(data);
+        // Rive widget.
+        final artboard = file.mainArtboard;
+        artboard.addController(_controller = SimpleAnimation('Animation 1'));
+        setState(() => _riveArtboard = artboard);
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
         backgroundColor: Colors.white,
@@ -36,8 +57,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
           ),
           iconTheme: IconThemeData(color: primaryColor),
         ),
-        body: ListView(
-          shrinkWrap: true,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             titleT1Widget("Subcategorias"),
             Container(
@@ -58,130 +79,76 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         height: 40,
                         padding: EdgeInsets.symmetric(horizontal: 10),
                         child: ListView.separated(
+                          itemCount: docs.length,
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
-                          separatorBuilder: (context, index){
-                            return SizedBox(width: 10,);
+                          separatorBuilder: (context, index) {
+                            return SizedBox(width: 10);
                           },
                           scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index){
+                          itemBuilder: (context, index) {
                             return GestureDetector(
-                              onTap: (){
-                                setState(() {
-                                  category = docs[index].id;
-                                  _selectedIndex = index;
-                                  toogle = true;
-                                });
-                              },
-                              child: Container(
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(20),
-                                  color: _selectedIndex == index ? primaryColor.withOpacity(.8) : primaryColor,
-                                ),
-                                width: 150,
-                                child: Text(docs[index]["name"], style: TextStyles.t2,),
-                              ),
-                            );
+                                onTap: () {
+                                  setState(() {
+                                    category = docs[index].id;
+                                    _selectedIndex = index;
+                                    toogle = true;
+                                  });
+                                },
+                                child: cardTileCategoryScreen(
+                                    selectedIndex: _selectedIndex,
+                                    index: index,
+                                    color: primaryColor,
+                                    name: docs[index]["name"]));
                           },
-                          itemCount: docs.length,
                         ),
                       );
                   }
                 },
-                ),
               ),
-              toogle ? titleT1Widget("Testes") : Container(),
-              Container(
-               child: FutureBuilder<QuerySnapshot>(
-                future: category != "" ? FirebaseFirestore.instance
-                    .collection("categorias")
-                    .doc(widget.data!.id)
-                    .collection("subcategorias").doc(category).collection("tests")
-                    .get() : FirebaseFirestore.instance
-                    .collection("categorias")
-                    .doc(widget.data!.id)
-                    .collection("subcategorias").doc().collection("tests")
-                    .get() ,
-                builder: (context, snapshot) {
-                  switch (snapshot.connectionState) {
-                    case ConnectionState.none:
-                    case ConnectionState.waiting:
-                      return Container();
-                    default:
-                      List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-                      return ListView.separated(
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        separatorBuilder: (context, index) {return SizedBox(height: 8,);},
-                        itemCount: snapshot.data!.docs.length,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => TestScreen(docs[index])));
-                            },
-                            child: Card(
-                              shape: OutlineInputBorder(
-                                  borderSide: BorderSide.none,
-                                  borderRadius: BorderRadius.circular(20)),
-                              elevation: 5,
-                              color: primaryColor,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 8),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Expanded(
-                                          child: Text(
-                                            docs[index]["name"],
-                                            style: GoogleFonts.nunito(
-                                                color: Colors.white,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.w700),
-                                            textAlign: TextAlign.start,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                          ),
-                                        ),
-                                        IconButton(
-                                            padding: EdgeInsets.zero,
-                                            icon: Icon(
-                                              Icons.star,
-                                              size: 22,
-                                              color: Colors.yellow,
-                                            ),
-                                            onPressed: () {})
-                                      ],
-                                    ),
-                                    Divider( height: 5, color: Colors.white,),
-                                    SizedBox(height: 5,),
-                                    Text(
-                                      docs[index]["description"],
-                                      style: GoogleFonts.nunito(
-                                          color: Colors.white,
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.w500),
-                                      textAlign: TextAlign.start,
-                                      maxLines: 3,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
-                              ),
+            ),
+            toogle ? titleT1Widget("Testes") : Container(),
+            toogle ? FutureBuilder<QuerySnapshot>(
+                    future: FirebaseFirestore.instance
+                        .collection("categorias")
+                        .doc(widget.data!.id)
+                        .collection("subcategorias")
+                        .doc(category)
+                        .collection("tests")
+                        .get(),
+                    builder: (context, snapshot) {
+                      switch (snapshot.connectionState) {
+                        case ConnectionState.none:
+                        case ConnectionState.waiting:
+                          return Container();
+                        default:
+                          List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
+                          return Expanded(
+                            child: ListView.separated(
+                              physics: BouncingScrollPhysics(),
+                              padding: EdgeInsets.symmetric(horizontal: 10),
+                              shrinkWrap: true,
+                              separatorBuilder: (context, index) {
+                                return SizedBox(height: 8);
+                              },
+                              itemCount: snapshot.data!.docs.length,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TestScreen(docs[index])));
+                                  },
+                                  child: cardTestWidget(
+                                      name: docs[index]["name"],
+                                      description: docs[index]["description"],
+                                      color: primaryColor),
+                                );
+                              },
                             ),
                           );
-                        },
-                      );
-                  }
-                },
-            ),
-             ),
+                      }
+                    },
+                  )
+                : Align(alignment: Alignment.center, child: animationRive2(_riveArtboard)),
           ],
         ));
   }

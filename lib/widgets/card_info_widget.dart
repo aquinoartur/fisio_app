@@ -18,35 +18,33 @@ class CardInfo extends StatelessWidget {
       },
       child: Card(
         color: primaryColor,
-        shadowColor: Colors.black87,
-        elevation: 5,
+        elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20)
+          borderRadius: BorderRadius.circular(15),
+
         ),
-        child: Row(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8,8,0,8),
+              padding: const EdgeInsets.fromLTRB(8,8,8,8),
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(data!['image']),
                         fit: BoxFit.scaleDown),
-                  color: Colors.white,
                   borderRadius: BorderRadius.circular(8)
                 ),
                 width: 50,
                 height: 50,
               ),
             ),
-            Expanded(
-              child: Text(
-                data!['name'],
-                style: TextStyles.t2,
-                maxLines: 3,
-                textAlign: TextAlign.center,
-                overflow: TextOverflow.ellipsis,
-              ),
+            Text(
+              data!['name'],
+              style: TextStyles.t2,
+              maxLines: 3,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.ellipsis,
             )
           ],
         ),

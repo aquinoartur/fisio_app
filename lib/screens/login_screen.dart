@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:fisio_app/widgets/dialog_login_widget.dart';
 import 'package:fisio_app/widgets/dialog_signout.dart';
 import 'package:flutter/cupertino.dart';
@@ -115,12 +116,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       onTap: (){
                         showDialog(context: context, builder: (_) => DialogSignout(), barrierDismissible: false);
                       },
-                      child: Text(
-                          "Criar conta.",
-                          style:
-                          GoogleFonts.nunito(color: Colors.white, fontSize: 15, fontWeight: FontWeight.bold),
-                          textAlign: TextAlign.center,
-                    )),
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 100,
+                        height: 30,
+                        child: Text(
+                            "Criar conta.",
+                            style: TextStyles.t2,
+                            textAlign: TextAlign.center,
+                    ),
+                      )),
               ],
               )
             ),
@@ -129,11 +134,16 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Align(
                 alignment: Alignment.topRight/1.15,
                 child: GestureDetector(
-                    child: Text("Contatos",style: GoogleFonts.nunito(
-                        color: primaryColor,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w700),
-                      textAlign: TextAlign.center,),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: 100,
+                      height: 30,
+                      child: Text("Contatos",style: GoogleFonts.nunito(
+                          color: primaryColor,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700),
+                        textAlign: TextAlign.center,),
+                    ),
                   onTap: (){
                     Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) => AboutScreen())

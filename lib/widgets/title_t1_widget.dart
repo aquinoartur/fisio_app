@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 Widget titleT1Widget (String string){
   return Padding(
-    padding: EdgeInsets.fromLTRB(13, 30, 10, 15),
+    padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
     child: Text(
       string,
       textAlign: TextAlign.start,
