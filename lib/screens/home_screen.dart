@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/models/ad_state.dart';
-import 'package:fisio_app/text_Styles/text_styles.dart';
+import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:fisio_app/widgets/card_info_widget.dart';
 import 'package:fisio_app/widgets/custom_drawer_widget.dart';
 import 'package:fisio_app/widgets/text_title_appBar_widget.dart';
@@ -37,49 +37,69 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
-        backgroundColor: Colors.white,
         drawer: CustomDrawer(),
+        backgroundColor: Colors.white,
         appBar: AppBar(
+          leading: Builder(
+            builder: (context) => IconButton(
+              icon: Icon(Icons.menu_open, color: primaryColor, size: 30,),
+              onPressed: () => Scaffold.of(context).openDrawer(),
+            ),
+          ),
+          toolbarHeight: 80,
           backgroundColor: Colors.white,
           title: textTitleAppBar(primaryColor),
           centerTitle: true,
           elevation: 0,
           iconTheme: IconThemeData(color: primaryColor),
           actions: [
-            IconButton(icon: Icon(Icons.star), onPressed: () {})
+            IconButton(icon: Icon(Icons.star, size: 25,), onPressed: () {})
           ],
         ),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 15,),
-            titleT1Widget("Meus Favoritos"),
+            titleT1Widget("Meus favoritos", TextStyles.title1),
             Container(
-              height: 40,
-              padding: EdgeInsets.symmetric(horizontal: 10),
-              child: ListView.separated(
-                itemCount: 10,
-                physics: BouncingScrollPhysics(),
-                separatorBuilder: (context,index){return SizedBox(width:10);},
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index){
-                  return Container( // todo componentizar
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: primaryColor,
-                      //border: Border.all(color: primaryColor, width: 2)
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.symmetric(horizontal: 5),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20)
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+
+                  Container(
+                    height: 40,
+                    child: ListView.separated(
+                      itemCount: 10,
+                      physics: BouncingScrollPhysics(),
+                      separatorBuilder: (context,index){return SizedBox(width:10);},
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index){
+                        return Container( // todo componentizar
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.white,
+                            //border: Border.all(color: primaryColor, width: 2)
+                          ),
+                          width: 150,
+                          child: Text("Nome do teste", style: TextStyles.cardtitle3,),
+                        );
+                      },
                     ),
-                    width: 150,
-                    child: Text("Nome do teste", style: TextStyles.cardtitle2,),
-                  );
-                },
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 15),
-            Divider(),
-            titleT1Widget("Categorias"),
+            titleT1Widget("Categorias", TextStyles.title1),
             Expanded(
               flex: 2,
               child: ListView(

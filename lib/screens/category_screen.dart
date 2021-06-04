@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/screens/test_screen.dart';
+import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:fisio_app/widgets/animation_rive_2_widget.dart';
 import 'package:fisio_app/widgets/card_test_widget.dart';
 import 'package:fisio_app/widgets/card_tile_category_screen.dart';
@@ -57,7 +58,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            titleT1Widget("Subcategorias"),
+            SizedBox(height: 10),
+            titleT1Widget("Subcategorias", TextStyles.title1),
             Container(
               child: StreamBuilder<QuerySnapshot>(
                 stream:
@@ -103,7 +105,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 },
               ),
             ),
-            toogle ? titleT1Widget("Testes") : Container(),
+            SizedBox(height: 15),
+            toogle ? titleT1Widget("Testes", TextStyles.title1) : Container(),
             toogle ? FutureBuilder<QuerySnapshot>(
                     future: firebase
                         .collection("categorias")
