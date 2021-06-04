@@ -81,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             SizedBox(height: 15),
             Divider(),
+            SizedBox(height: 10),
             titleT1Widget("Categorias"),
             Expanded(
               flex: 2,
@@ -104,11 +105,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
-                                    crossAxisSpacing: 5,
-                                    mainAxisSpacing: 5,
-                                    childAspectRatio: 1.8),
-                            padding: EdgeInsets.only(
-                                top: 0, left: 10, bottom: 10, right: 10),
+                                    crossAxisSpacing: 1,
+                                    mainAxisSpacing: 1,
+                                    childAspectRatio: 1.8
+                                ),
+                            padding: EdgeInsets.fromLTRB(10,0,10,10),
                             shrinkWrap: true,
                             physics: BouncingScrollPhysics(),
                             itemCount: docs.length,
@@ -122,8 +123,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            if (bannerAd == null)
-              SizedBox()
+            if (bannerAd == null) SizedBox()
             else
               Padding(
                 padding: const EdgeInsets.all(8.0),
