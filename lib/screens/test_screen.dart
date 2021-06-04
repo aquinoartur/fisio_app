@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -79,11 +80,7 @@ class _TestScreenState extends State<TestScreen> {
                     Row(
                       children: [
                         Expanded(
-                          child: Text(widget.data!["name"], style: GoogleFonts.nunito(
-                            color: primaryColor,
-                            fontWeight:FontWeight.w600,
-                            fontSize: 24
-                          ),
+                          child: Text(widget.data!["name"], style: TextStyles.ts1,
                             maxLines: 3,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -101,20 +98,14 @@ class _TestScreenState extends State<TestScreen> {
                     ), SizedBox(height: 10),
                     Text(
                       "Descrição:",
-                        style: GoogleFonts.nunito(
-                          fontSize: 18,
-                          color: Colors.black.withOpacity(.7),
-                          fontWeight: FontWeight.w800),
+                        style: TextStyles.ts2,
                       textAlign: TextAlign.start,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
                     ), SizedBox(height: 5),
                     Text(
                       widget.data!["resume"],
-                      style: GoogleFonts.nunito(
-                          fontSize: 16,
-                          color: Colors.black.withOpacity(.7),
-                          fontWeight: FontWeight.w600),
+                      style: TextStyles.ts3,
                       textAlign: TextAlign.start,
                       overflow: TextOverflow.fade,
                     ), SizedBox(height: 20),
@@ -124,31 +115,30 @@ class _TestScreenState extends State<TestScreen> {
                         style: ElevatedButton.styleFrom(
                         primary: primaryColor,
                         shadowColor: Colors.black,
-                        elevation: 100,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                             )
                         ),
                         child:Text(
                           "Fazer teste",
-                          style: GoogleFonts.nunito(
-                              color: Colors.white, fontSize: 20),
+                          style: TextStyles.ts4,
                         ) ,
-                        onPressed:() => setState(() {
-                          _urlOpen(widget.data!["test"]);
-                        }),
+                      onPressed:() => setState(() {_urlOpen(widget.data!["test"]);}),
                       ),
-                    ), SizedBox(height: 25),
+                    ), SizedBox(height: 15),
                     GestureDetector(
-                      onTap: () => setState(() {
-                           _urlOpen(widget.data!["other"]);
-                          }),
-                      child: Text("Mais informações.",
-                        style: GoogleFonts.nunito(
-                            color: Colors.black87,
-                            fontSize: 15
+                      onTap: () => setState(() {_urlOpen(widget.data!["other"]);}),
+                      child: Container(
+                        height: 40, width: 100,
+                        alignment: Alignment.center,
+                        child: Text("Mais informações.",
+                          style: GoogleFonts.nunito(
+                              color: Colors.black87,
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold
+                          ),
+                          textAlign: TextAlign.center,
                         ),
-                        textAlign: TextAlign.center,
                       ),
                     ), SizedBox(height: 10),
                   ],

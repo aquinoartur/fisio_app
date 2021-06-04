@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
-
 import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -42,7 +41,11 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Container(
                 width: 125,
                 height: 125,
-                child: _riveArtboard == null  ? SizedBox() : Rive(artboard: _riveArtboard!),
+                child:
+                _riveArtboard == null  ?
+                SizedBox()
+                    :
+                Rive(artboard: _riveArtboard!),
               )
           ),
         ],

@@ -24,7 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Container(
               decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/images/login.jpg"), fit: BoxFit.fitHeight
+                      image: AssetImage("assets/images/login.jpg"),
+                      fit: BoxFit.fitHeight
                   )
               ),
             ),
@@ -63,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 width: MediaQuery.of(context).size.width,
                 height: MediaQuery.of(context).size.height/1.93,)
-              ),
+          ),
           Positioned.fill(
             top: MediaQuery.of(context).size.height/1.4,
             child: Align(
@@ -88,7 +89,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: 15),
-                  Material(
+                Material(
                     color: primaryColor,
                     borderRadius: BorderRadius.circular(30),
                     child: InkWell(
@@ -105,11 +106,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: GoogleFonts.nunito(
                             color: Colors.white,
                             fontSize: 18,
-                            fontWeight: FontWeight.bold),
+                            fontWeight: FontWeight.bold
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),
-                  ),
+                    ),
                   ),
                   SizedBox(height: 20),
                   GestureDetector(
@@ -122,10 +124,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         height: 30,
                         child: Text(
                             "Criar conta.",
-                            style: TextStyles.t2,
+                            style: TextStyles.cardtitle1,
                             textAlign: TextAlign.center,
                     ),
-                      )),
+                      )
+                  ),
               ],
               )
             ),
@@ -144,10 +147,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           fontWeight: FontWeight.w700),
                         textAlign: TextAlign.center,),
                     ),
-                  onTap: (){
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => AboutScreen())
-                    );
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutScreen()));
                   },
                 ),
             ),

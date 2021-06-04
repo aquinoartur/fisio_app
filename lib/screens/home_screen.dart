@@ -16,11 +16,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   BannerAd? bannerAd;
+  final FirebaseFirestore firebase = FirebaseFirestore.instance;
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-
     final adState = Provider.of<AdState>(context);
     adState.initialization.then((status) {
       setState(() {
@@ -59,13 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 40,
               padding: EdgeInsets.symmetric(horizontal: 10),
               child: ListView.separated(
+                itemCount: 10,
                 physics: BouncingScrollPhysics(),
-                separatorBuilder: (context, index){
-                  return SizedBox(width: 10,);
-                },
+                separatorBuilder: (context,index){return SizedBox(width:10);},
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index){
-                  return Container(
+                  return Container( // todo componentizar
                     alignment: Alignment.center,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
@@ -73,15 +72,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       //border: Border.all(color: primaryColor, width: 2)
                     ),
                     width: 150,
-                    child: Text("Nome do teste", style: TextStyles.t3,),
+                    child: Text("Nome do teste", style: TextStyles.cardtitle2,),
                   );
                 },
-                itemCount: 10,
               ),
             ),
             SizedBox(height: 15),
             Divider(),
-            SizedBox(height: 10),
             titleT1Widget("Categorias"),
             Expanded(
               flex: 2,
@@ -89,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 physics: BouncingScrollPhysics(),
                 children: [
                   StreamBuilder<QuerySnapshot>(
-                    stream: FirebaseFirestore.instance
+                    stream: firebase
                         .collection("categorias")
                         .snapshots(),
                     builder: (context, snapshot) {
@@ -97,10 +94,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         case ConnectionState.none:
                         case ConnectionState.waiting:
                           return Center(
-                            child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.white),));
+                            child: CircularProgressIndicator(valueColor:
+                            AlwaysStoppedAnimation<Color>(Colors.white),));
                         default:
-                          List<DocumentSnapshot> docs =
-                              snapshot.data!.docs.toList();
+                          List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
                           return GridView.builder(
                             gridDelegate:
                                 SliverGridDelegateWithFixedCrossAxisCount(
@@ -127,8 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
             else
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Container(
-                  height: 50, child: AdWidget( ad: bannerAd!,),),
+                child: Container(height:50, child: AdWidget( ad: bannerAd!,),),
               )
           ],
         ));

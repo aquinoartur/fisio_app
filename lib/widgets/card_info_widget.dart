@@ -41,7 +41,7 @@ class CardInfo extends StatelessWidget {
             ),
             Text(
               data!['name'],
-              style: TextStyles.t2,
+              style: TextStyles.cardtitle1,
               maxLines: 3,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,

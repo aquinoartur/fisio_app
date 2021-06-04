@@ -9,6 +9,6 @@ Widget cardTileCategoryScreen({required int selectedIndex, required int index, r
       color: selectedIndex == index ? color.withOpacity(.7) : color,
     ),
     width: 150,
-    child: Text(name, style: TextStyles.t3,),
+    child: Text(name, style: TextStyles.cardtitle2,),
   );
 }

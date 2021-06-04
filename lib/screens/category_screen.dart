@@ -12,29 +12,26 @@ import 'package:rive/rive.dart';
 
 class CategoryScreen extends StatefulWidget {
   final DocumentSnapshot? data;
-
   CategoryScreen(this.data);
-
   @override
   _CategoryScreenState createState() => _CategoryScreenState();
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+
   int _selectedIndex = 999;
   String category = "";
   bool toogle = false;
+  final FirebaseFirestore firebase = FirebaseFirestore.instance;
   Artboard? _riveArtboard;
-
   RiveAnimationController? _controller;
 
   @override
   void initState() {
     super.initState();
-
     rootBundle.load('assets/anims/osso3.riv').then(
       (data) async {
         final file = RiveFile.import(data);
-        // Rive widget.
         final artboard = file.mainArtboard;
         artboard.addController(_controller = SimpleAnimation('Animation 1'));
         setState(() => _riveArtboard = artboard);
@@ -63,8 +60,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
             titleT1Widget("Subcategorias"),
             Container(
               child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection("categorias")
+                stream:
+                    firebase.collection("categorias")
                     .doc(widget.data!.id)
                     .collection("subcategorias")
                     .snapshots(),
@@ -83,8 +80,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
                           separatorBuilder: (context, index) {
-                            return SizedBox(width: 10);
-                          },
+                            return SizedBox(width: 10);},
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return GestureDetector(
@@ -109,7 +105,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             toogle ? titleT1Widget("Testes") : Container(),
             toogle ? FutureBuilder<QuerySnapshot>(
-                    future: FirebaseFirestore.instance
+                    future: firebase
                         .collection("categorias")
                         .doc(widget.data!.id)
                         .collection("subcategorias")
@@ -134,9 +130,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               itemCount: snapshot.data!.docs.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
-                                  onTap: () {
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => TestScreen(docs[index])));
-                                  },
+                                  onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => TestScreen(docs[index])));},
                                   child: cardTestWidget(
                                       name: docs[index]["name"],
                                       description: docs[index]["description"],

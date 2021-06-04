@@ -7,7 +7,7 @@ Widget titleT1Widget (String string){
     child: Text(
       string,
       textAlign: TextAlign.start,
-      style: TextStyles.t1,
+      style: TextStyles.title1,
     ),
   );
 }
