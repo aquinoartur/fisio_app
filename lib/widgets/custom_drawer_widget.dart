@@ -21,7 +21,7 @@ class CustomDrawer extends StatelessWidget {
             physics: NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: [
-              InkWell(
+              GestureDetector(
                 onTap: (){},
                 child: ListTile(
                   leading: Icon(Icons.person, size: 20, color: primaryColor,),
@@ -29,7 +29,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Divider(),
-              InkWell(
+              GestureDetector(
                 onTap: (){},
                 child: ListTile(
                   title: Text("Favoritos", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
@@ -37,7 +37,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Divider(),
-              InkWell(
+              GestureDetector(
                 onTap: (){},
                 child: ListTile(
                   title: Text("Sobre o app", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
@@ -45,7 +45,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Divider(),
-              InkWell(
+              GestureDetector(
                 onTap: (){},
                 child: ListTile(
                   title: Text("Referências", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
@@ -53,7 +53,7 @@ class CustomDrawer extends StatelessWidget {
                 ),
               ),
               Divider(),
-              InkWell(
+              GestureDetector(
                 onTap: (){
                   Navigator.of(context).pop();
                 },
@@ -65,8 +65,6 @@ class CustomDrawer extends StatelessWidget {
               Divider(),
             ],
           )
-
-
         ],
       ),
 

@@ -39,6 +39,7 @@ dependencies:
   url_launcher: ^6.0.4
   google_mobile_ads: ^0.13.0
   provider: ^5.0.0
+  bloc_pattern: ^3.0.0
 
 dev_dependencies:
   flutter_test:
