@@ -1,4 +1,6 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/blocs/home_screen_bloc.dart';
 import 'package:fisio_app/models/ad_state.dart';
 import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:fisio_app/widgets/card_info_widget.dart';
@@ -17,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   BannerAd? bannerAd;
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
+  final bloc = BlocProvider.getBloc<HomeScreenBloc>();
 
   @override
   void didChangeDependencies() {
@@ -105,36 +108,32 @@ class _HomeScreenState extends State<HomeScreen> {
               child: ListView(
                 physics: BouncingScrollPhysics(),
                 children: [
-                  StreamBuilder<QuerySnapshot>(
-                    stream: firebase
-                        .collection("categorias")
-                        .snapshots(),
+                  StreamBuilder<List<DocumentSnapshot>>(
+                    stream: bloc.outList,
                     builder: (context, snapshot) {
-                      switch (snapshot.connectionState) {
-                        case ConnectionState.none:
-                        case ConnectionState.waiting:
-                          return Center(
-                            child: CircularProgressIndicator(valueColor:
-                            AlwaysStoppedAnimation<Color>(Colors.white),));
-                        default:
-                          List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-                          return GridView.builder(
-                            gridDelegate:
-                                SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 2,
-                                    crossAxisSpacing: 1,
-                                    mainAxisSpacing: 1,
-                                    childAspectRatio: 1.8
-                                ),
-                            padding: EdgeInsets.fromLTRB(10,0,10,10),
-                            shrinkWrap: true,
-                            physics: BouncingScrollPhysics(),
-                            itemCount: docs.length,
-                            itemBuilder: (context, index) {
-                              return CardInfo(docs[index]);
-                            },
-                          );
+                      if (snapshot.hasData) {
+                        return GridView.builder(
+                          gridDelegate:
+                          SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              crossAxisSpacing: 1,
+                              mainAxisSpacing: 1,
+                              childAspectRatio: 1.8
+                          ),
+                          padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                          shrinkWrap: true,
+                          physics: BouncingScrollPhysics(),
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return CardInfo(snapshot.data![index]);
+                          },
+                        );
                       }
+                      else return Center(
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation(primaryColor),
+                          )
+                      );
                     },
                   ),
                 ],

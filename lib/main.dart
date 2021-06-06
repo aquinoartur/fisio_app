@@ -1,4 +1,6 @@
+import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:fisio_app/blocs/home_screen_bloc.dart';
 import 'package:fisio_app/models/ad_state.dart';
 import 'package:flutter/material.dart';
 import 'package:fisio_app/screens/splash_screen.dart';
@@ -13,6 +15,7 @@ Future<void> main() async {
   final initFuture = MobileAds.instance.initialize();
   final adState = AdState(initFuture);
 
+
   runApp(
     Provider.value(
       value: adState,
@@ -24,64 +27,70 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: SplashScreen(),
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-              backwardsCompatibility: false,
-              systemOverlayStyle: SystemUiOverlayStyle(
-                  statusBarIconBrightness: Brightness.light,
-                  systemNavigationBarIconBrightness: Brightness.light
-        )
-        ),
-        primaryColor: Color.fromARGB(255, 74,20,140),
-        backgroundColor:  Color.fromARGB(255, 74,20,140),
-        accentColor:  Color.fromARGB(255, 74,20,140).withAlpha(28),
-        scaffoldBackgroundColor:  Colors.white,
-        textSelectionTheme: TextSelectionThemeData(
-            cursorColor: Color.fromARGB(255, 74,20,140),
-            selectionColor: Color.fromARGB(255, 74,20,140),
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-          hintStyle: GoogleFonts.nunito(),
-          disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-              color: Color.fromARGB(255, 74,20,140),
+    return BlocProvider(
+      blocs: [
+        Bloc((i) => HomeScreenBloc()),
+      ],
+      dependencies: [],
+      child: MaterialApp(
+        home: SplashScreen(),
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(
+                backwardsCompatibility: false,
+                systemOverlayStyle: SystemUiOverlayStyle(
+                    statusBarIconBrightness: Brightness.light,
+                    systemNavigationBarIconBrightness: Brightness.light
           )
           ),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
+          primaryColor: Color.fromARGB(255, 74,20,140),
+          backgroundColor:  Color.fromARGB(255, 74,20,140),
+          accentColor:  Color.fromARGB(255, 74,20,140).withAlpha(28),
+          scaffoldBackgroundColor:  Colors.white,
+          textSelectionTheme: TextSelectionThemeData(
+              cursorColor: Color.fromARGB(255, 74,20,140),
+              selectionColor: Color.fromARGB(255, 74,20,140),
+          ),
+          inputDecorationTheme: InputDecorationTheme(
+            hintStyle: GoogleFonts.nunito(),
+            disabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(
                 color: Color.fromARGB(255, 74,20,140),
-              )
-          ),
-          focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-                color: Color.fromARGB(255, 74,20,140),
-              )
-          ),
-          enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-                color: Colors.grey,
-              )
-          ),
-          errorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-                color: Colors.red,
-              )
-          ),
-          focusedErrorBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(30),
-              borderSide: BorderSide(
-                color: Colors.red,
-              )
-          ),
-        )
+            )
+            ),
+            border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(
+                  color: Color.fromARGB(255, 74,20,140),
+                )
+            ),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(
+                  color: Color.fromARGB(255, 74,20,140),
+                )
+            ),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(
+                  color: Colors.grey,
+                )
+            ),
+            errorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(
+                  color: Colors.red,
+                )
+            ),
+            focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(30),
+                borderSide: BorderSide(
+                  color: Colors.red,
+                )
+            ),
+          )
+        ),
       ),
     );
   }

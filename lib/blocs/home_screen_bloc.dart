@@ -9,18 +9,20 @@ class HomeScreenBloc implements BlocBase {
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
 
 
-  final StreamController _listCategory = StreamController();
-  Stream get outList => _listCategory.stream;
+  final _listCategory = StreamController<List<DocumentSnapshot>>();
+  Stream<List<DocumentSnapshot>> get outList => _listCategory.stream;
   Sink get inputList => _listCategory.sink;
 
+  List<DocumentSnapshot>? docs;
 
-  List<DocumentSnapshot> docs = [];
-
+  HomeScreenBloc(){
+    _toList();
+  }
 
   void _toList() async {
-      QuerySnapshot<Map<String, dynamic>> snapshot = await FirebaseFirestore.instance.collection("categorias").get();
+      QuerySnapshot<Map<String, dynamic>> snapshot = await firebase.collection("categorias").get();
       docs = snapshot.docs.toList();
-      print(docs);
+      inputList.add(docs);
   }
 
   @override
@@ -28,6 +30,7 @@ class HomeScreenBloc implements BlocBase {
     _listCategory.close();
   }
 
+  //todo changes
   @override
   void addListener(VoidCallback listener) {}
   @override
