@@ -2,8 +2,14 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:fisio_app/blocs/home_screen_bloc.dart';
 import 'package:fisio_app/models/ad_state.dart';
+import 'package:fisio_app/screens/drawer/about_app_screen.dart';
+import 'package:fisio_app/screens/drawer/favorites_screen.dart';
+import 'package:fisio_app/screens/drawer/my_data_screen.dart';
+import 'package:fisio_app/screens/drawer/references_screen.dart';
+import 'package:fisio_app/screens/main/home_screen.dart';
+import 'package:fisio_app/screens/main/login_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:fisio_app/screens/splash_screen.dart';
+import 'screens/others/splash_screen.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
@@ -35,6 +41,20 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         home: SplashScreen(),
         debugShowCheckedModeBanner: false,
+        onGenerateRoute: (settings){
+          switch(settings.name){
+            case '/login':
+              return MaterialPageRoute(builder: (_) => LoginScreen());
+            case '/my_data':
+              return MaterialPageRoute(builder: (_) => MyDataScreen());
+            case '/favorites':
+              return MaterialPageRoute(builder: (_) => FavoritesScreen());
+            case '/about_app':
+              return MaterialPageRoute(builder: (_) => AboutAppScreen());
+            case '/references':
+              return MaterialPageRoute(builder: (_) => ReferencesScreen());
+          }
+        },
         theme: ThemeData(
           appBarTheme: AppBarTheme(
                 backwardsCompatibility: false,

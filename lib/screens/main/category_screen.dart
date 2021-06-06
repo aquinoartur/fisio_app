@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/screens/test_screen.dart';
+import 'package:fisio_app/screens/main/test_screen.dart';
 import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:fisio_app/widgets/animation_rive_2_widget.dart';
 import 'package:fisio_app/widgets/card_test_widget.dart';

@@ -55,7 +55,13 @@ class _TestScreenState extends State<TestScreen> {
         elevation: 0,
         title: Text("Detalhes do teste", style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),),
         iconTheme: IconThemeData(color: primaryColor),
-        actions: [IconButton(icon: Icon(Icons.home, color: primaryColor,), onPressed: () {}),],
+        actions: [
+          IconButton(
+              icon: Icon(Icons.home, color: primaryColor,),
+              onPressed: () {
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+              }),],
       ),
       body: Column(
         children: [

@@ -1,4 +1,4 @@
-import 'package:fisio_app/screens/home_screen.dart';
+import '../screens/main/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 

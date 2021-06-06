@@ -1,6 +1,6 @@
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/screens/category_screen.dart';
+import 'package:fisio_app/screens/main/category_screen.dart';
 import 'package:fisio_app/text_Styles/text_styles.dart';
 import 'package:flutter/material.dart';
 

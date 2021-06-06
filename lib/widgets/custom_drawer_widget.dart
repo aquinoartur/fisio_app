@@ -1,3 +1,4 @@
+import 'package:fisio_app/widgets/tile_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,12 +10,18 @@ class CustomDrawer extends StatelessWidget {
       child: Column(
         children: [
           UserAccountsDrawerHeader(
-              accountName: Text("Nome do Usuário", style: GoogleFonts.nunito(),),
-              accountEmail: Text("teste@email.com", style: GoogleFonts.nunito(),),
-              currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage("assets/images/person.png"),
-                backgroundColor: Colors.white,
-              ),
+            accountName: Text(
+              "Nome do Usuário",
+              style: GoogleFonts.nunito(),
+            ),
+            accountEmail: Text(
+              "teste@email.com",
+              style: GoogleFonts.nunito(),
+            ),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage("assets/images/person.png"),
+              backgroundColor: Colors.white,
+            ),
           ),
           ListView(
             padding: EdgeInsets.zero,
@@ -22,52 +29,63 @@ class CustomDrawer extends StatelessWidget {
             shrinkWrap: true,
             children: [
               GestureDetector(
-                onTap: (){},
-                child: ListTile(
-                  leading: Icon(Icons.person, size: 20, color: primaryColor,),
-                  title: Text("Meus dados", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
+                onTap: () {
+                  Navigator.of(context).pushNamed("/my_data");
+                },
+                child: tileDrawer(
+                    color: primaryColor,
+                    string: "Meus dados",
+                    icon: Icons.person
                 ),
               ),
-              Divider(),
+              SizedBox(height: 10),
               GestureDetector(
-                onTap: (){},
-                child: ListTile(
-                  title: Text("Favoritos", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
-                  leading: Icon(Icons.star, size: 20, color: primaryColor,),
+                onTap: () {
+                  Navigator.of(context).pushNamed("/favorites");
+                },
+                child: tileDrawer(
+                    color: primaryColor,
+                    string: "Meus favoritos",
+                    icon: Icons.star
                 ),
               ),
-              Divider(),
+              SizedBox(height: 10),
               GestureDetector(
-                onTap: (){},
-                child: ListTile(
-                  title: Text("Sobre o app", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
-                  leading: Icon(Icons.info, size: 20, color: primaryColor,),
+                onTap: () {
+                  Navigator.of(context).pushNamed("/about_app");
+                },
+                child: tileDrawer(
+                    color: primaryColor,
+                    string: "Sobre o app",
+                    icon: Icons.info
                 ),
               ),
-              Divider(),
+              SizedBox(height: 10),
               GestureDetector(
-                onTap: (){},
-                child: ListTile(
-                  title: Text("Referências", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
-                  leading: Icon(Icons.collections_bookmark, size: 20, color: primaryColor,),
+                onTap: () {
+                  Navigator.of(context).pushNamed("/references");
+                },
+                child: tileDrawer(
+                    color: primaryColor,
+                    string: "Referências",
+                    icon: Icons.collections_bookmark
                 ),
               ),
-              Divider(),
+              SizedBox(height: 10),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   Navigator.of(context).pop();
                 },
-                child: ListTile(
-                  title: Text("Entrar/Sair", style: GoogleFonts.nunito(color:primaryColor, fontSize: 16, fontWeight: FontWeight.w600),),
-                  leading: Icon(Icons.power_settings_new_outlined, size: 20, color: primaryColor,),
+                child: tileDrawer(
+                    color: primaryColor,
+                    string: "Entrar/Sair",
+                    icon: Icons.power_settings_new_outlined
                 ),
               ),
-              Divider(),
             ],
           )
         ],
       ),
-
     );
   }
 }

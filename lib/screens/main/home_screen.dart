@@ -58,7 +58,9 @@ class _HomeScreenState extends State<HomeScreen> {
           elevation: 0,
           iconTheme: IconThemeData(color: primaryColor),
           actions: [
-            IconButton(icon: Icon(Icons.star, size: 25,), onPressed: () {})
+            IconButton(
+                icon: Icon(Icons.star, size: 25,),
+                onPressed: () {Navigator.of(context).pushNamed('/references');})
           ],
         ),
         body: Column(
@@ -76,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-
                   Container(
                     height: 40,
                     child: ListView.separated(
@@ -101,7 +102,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 15),
+            SizedBox(height: 20),
             titleT1Widget("Categorias", TextStyles.title1),
             Expanded(
               flex: 2,
@@ -111,8 +112,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   StreamBuilder<List<DocumentSnapshot>>(
                     stream: bloc.outList,
                     builder: (context, snapshot) {
-                      if (snapshot.hasData) {
-                        return GridView.builder(
+                      if (snapshot.hasData)
+                       return GridView.builder(
                           gridDelegate:
                           SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
@@ -128,8 +129,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             return CardInfo(snapshot.data![index]);
                           },
                         );
-                      }
-                      else return Center(
+                      else
+                        return Center(
                           child: CircularProgressIndicator(
                             valueColor: AlwaysStoppedAnimation(primaryColor),
                           )

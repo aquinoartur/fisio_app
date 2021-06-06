@@ -5,7 +5,7 @@ import 'package:fisio_app/widgets/dialog_signout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'about_screen.dart';
+import '../others/about_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
-import 'login_screen.dart';
+import 'package:fisio_app/screens//main/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
