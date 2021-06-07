@@ -126,7 +126,7 @@ class _TestScreenState extends State<TestScreen> {
                             )
                         ),
                         child:Text(
-                          "Fazer teste",
+                          "Obter teste",
                           style: TextStyles.ts4,
                         ) ,
                       onPressed:() => setState(() {_urlOpen(widget.data!["test"]);}),
