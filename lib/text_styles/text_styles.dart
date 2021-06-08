@@ -6,7 +6,7 @@ class TextStyles {
 
   static final TextStyle title1 = GoogleFonts.nunito(
     color: Colors.black87.withOpacity(.7),
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: FontWeight.bold,
   );
 
@@ -18,8 +18,8 @@ class TextStyles {
 
   static final TextStyle cardtitle1 = GoogleFonts.nunito(
     color: Colors.white,
-    fontWeight: FontWeight.w700,
-    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    fontSize: 14,
   );
 
   static final TextStyle cardtitle2 = GoogleFonts.nunito(

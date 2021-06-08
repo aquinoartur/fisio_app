@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class MyDataScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
+    return Center(
+        child: Text("Meus dados")
     );
   }
 }

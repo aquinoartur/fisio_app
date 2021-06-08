@@ -2,13 +2,19 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/blocs/home_screen_bloc.dart';
 import 'package:fisio_app/models/ad_state.dart';
+import 'package:fisio_app/screens/drawer/favorites_screen.dart';
+import 'package:fisio_app/screens/drawer/my_data_screen.dart';
+import 'package:fisio_app/screens/drawer/references_screen.dart';
 import 'package:fisio_app/text_styles/text_styles.dart';
+import 'package:fisio_app/widgets/ad_mob_widget.dart';
 import 'package:fisio_app/widgets/card_info_widget.dart';
-import 'package:fisio_app/widgets/custom_drawer_widget.dart';
+import 'package:fisio_app/widgets/header_favorites.dart';
 import 'package:fisio_app/widgets/text_title_appBar_widget.dart';
 import 'package:fisio_app/widgets/title_t1_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -37,116 +43,115 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
+  int _selectedIndex = 0;
+  static const TextStyle optionStyle =
+  TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
+
+  List<Widget> _widgetOptions = <Widget>[
+    Container(),
+    FavoritesScreen(),
+    ReferencesScreen(),
+    MyDataScreen(),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
-
     return Scaffold(
-        drawer: CustomDrawer(),
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        toolbarHeight: 60,
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          leading: Builder(
-            builder: (context) => IconButton(
-              icon: Icon(Icons.menu_open, color: primaryColor, size: 30,),
-              onPressed: () => Scaffold.of(context).openDrawer(),
-            ),
-          ),
-          toolbarHeight: 80,
-          backgroundColor: Colors.white,
-          title: textTitleAppBar(primaryColor),
-          centerTitle: true,
-          elevation: 0,
-          iconTheme: IconThemeData(color: primaryColor),
-          actions: [
-            IconButton(
-                icon: Icon(Icons.star, size: 25,),
-                onPressed: () {Navigator.of(context).pushNamed('/references');})
-          ],
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            titleT1Widget("Meus favoritos", TextStyles.title1),
-            Container(
-              padding: EdgeInsets.all(10),
-              margin: EdgeInsets.symmetric(horizontal: 5),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(20)
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    height: 40,
-                    child: ListView.separated(
-                      itemCount: 10,
-                      physics: BouncingScrollPhysics(),
-                      separatorBuilder: (context,index){return SizedBox(width:10);},
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index){
-                        return Container( // todo componentizar
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.white,
-                            //border: Border.all(color: primaryColor, width: 2)
-                          ),
-                          width: 150,
-                          child: Text("Nome do teste", style: TextStyles.cardtitle3,),
-                        );
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 20),
-            titleT1Widget("Categorias", TextStyles.title1),
-            Expanded(
-              flex: 2,
-              child: ListView(
-                physics: BouncingScrollPhysics(),
-                children: [
-                  StreamBuilder<List<DocumentSnapshot>>(
-                    stream: bloc.outList,
-                    builder: (context, snapshot) {
-                      if (snapshot.hasData)
-                       return GridView.builder(
-                          gridDelegate:
-                          SliverGridDelegateWithFixedCrossAxisCount(
+        title: textTitleAppBar(primaryColor),
+        centerTitle: true,
+        elevation: 0,
+        iconTheme: IconThemeData(color: primaryColor),
+      ),
+      body: _selectedIndex == 0 ? Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          titleT1Widget("Meus favoritos", TextStyles.title1),
+          headerFavorites(primaryColor),
+          SizedBox(height: 5),
+          bannerAd == null ? SizedBox() : adMob(bannerAd!),
+          SizedBox(height: 5),
+          titleT1Widget("Categorias", TextStyles.title1),
+          Expanded(
+            child: ListView(
+              physics: BouncingScrollPhysics(),
+              children: [
+                StreamBuilder<QuerySnapshot>(
+                  stream: firebase.collection("categorias").snapshots(),
+                  builder: (context, snapshot) {
+                    switch (snapshot.connectionState){
+                      case ConnectionState.none:
+                      case ConnectionState.waiting:
+                        return Center(
+                            child: CircularProgressIndicator(
+                              valueColor: AlwaysStoppedAnimation(primaryColor),
+                            ));
+                      default:
+                        List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
+                        return GridView.builder(
+                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              crossAxisSpacing: 1,
+                              crossAxisSpacing: 2,
                               mainAxisSpacing: 1,
-                              childAspectRatio: 1.8
-                          ),
-                          padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                              childAspectRatio: 2),
+                          padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
-                          itemCount: snapshot.data!.length,
+                          itemCount: docs.length,
                           itemBuilder: (context, index) {
-                            return CardInfo(snapshot.data![index]);
+                            return CardInfo(docs[index]);
                           },
                         );
-                      else
-                        return Center(
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation(primaryColor),
-                          )
-                      );
-                    },
-                  ),
-                ],
-              ),
+                    }
+                  },
+                ),
+              ],
             ),
-            if (bannerAd == null) SizedBox()
-            else
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Container(height:50, child: AdWidget( ad: bannerAd!,),),
-              )
+          ),
+          SizedBox(height: 20),
+        ],
+      ) : _widgetOptions.elementAt(_selectedIndex),
+      bottomNavigationBar: Container( //bottom nav bar
+        decoration: BoxDecoration(
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.2))
           ],
-        ));
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+            child: GNav(
+              rippleColor: Colors.grey[300]!,
+              hoverColor: Colors.grey[100]!,
+              gap: 8,
+              activeColor: Colors.white,
+              iconSize: 24,
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              duration: Duration(milliseconds: 400),
+              tabBackgroundColor: primaryColor,
+              color: Colors.black,
+              tabs: [
+                GButton(icon: LineIcons.home, text: 'Home'),
+                GButton(icon: LineIcons.heart, text: 'Favoritos'),
+                GButton(icon: LineIcons.book, text: 'Referências'),
+                GButton(icon: LineIcons.user, text: 'Meus dados'),
+              ],
+              selectedIndex: _selectedIndex,
+              onTabChange: (index) {
+                setState(() {
+                  _selectedIndex = index;
+                });
+              },
+            ),
+          ),
+        ),
+      )
+    );
   }
 }
+

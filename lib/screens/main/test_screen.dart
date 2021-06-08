@@ -55,14 +55,14 @@ class _TestScreenState extends State<TestScreen> {
         elevation: 0,
         title: Text("Detalhes do teste", style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),),
         iconTheme: IconThemeData(color: primaryColor),
-        actions: [
-          IconButton(
-              icon: Icon(Icons.home, color: primaryColor,),
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              }),],
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: primaryColor,
+        child: Icon(Icons.home, color: Colors.white,),
+        onPressed: (){
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
+        }),
       body: Column(
         children: [
           list.isNotEmpty ?
@@ -116,7 +116,9 @@ class _TestScreenState extends State<TestScreen> {
                       overflow: TextOverflow.fade,
                     ), SizedBox(height: 20),
                     Container(
+                      padding: EdgeInsets.symmetric(horizontal: 60),
                       height: 55,
+                      width: 300,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                         primary: primaryColor,

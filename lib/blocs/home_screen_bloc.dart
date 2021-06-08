@@ -15,15 +15,19 @@ class HomeScreenBloc implements BlocBase {
 
   List<DocumentSnapshot>? docs;
 
+  /*
   HomeScreenBloc(){
     _toList();
   }
+   */
 
+  /*
   void _toList() async {
-      QuerySnapshot<Map<String, dynamic>> snapshot = await firebase.collection("categorias").get();
+      QuerySnapshot<Map<String, dynamic>> snapshot = await firebase.collection("categorias").snapshots();
       docs = snapshot.docs.toList();
       inputList.add(docs);
   }
+   */
 
   @override
   void dispose() {

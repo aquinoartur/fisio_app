@@ -6,14 +6,14 @@ Widget textTitleAppBar (Color color){
       text: "Fisio",
       style: GoogleFonts.nunito(
           color: color,
-          fontSize: 22,
+          fontSize: 20,
           fontWeight: FontWeight.w700),
       children: [
         TextSpan(
             text: "Testes ",
             style: GoogleFonts.nunito(
                 color: Colors.black87,
-                fontSize: 22,
+                fontSize: 20,
                 fontWeight: FontWeight.w700)),
       ]));
 }
