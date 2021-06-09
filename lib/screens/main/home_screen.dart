@@ -39,9 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     });
   }
-
   int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -89,11 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                       );
                       else
-                      return Center(
-                      child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation(primaryColor),
-                      )
-                    );
+                      return Container();
                   },
                 ),
               ],
@@ -106,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
-            BoxShadow(blurRadius: 20, color: Colors.black.withOpacity(.2))
+            BoxShadow(blurRadius: 3, color: Colors.black.withOpacity(.2))
           ],
         ),
         child: SafeArea(
