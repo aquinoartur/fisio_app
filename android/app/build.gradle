@@ -31,12 +31,14 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "br.com.adelmoaquino.fisio_app"
-        minSdkVersion 23
+        minSdkVersion 21
         multiDexEnabled true
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
     }
+
+
 
     buildTypes {
         release {
@@ -45,6 +47,10 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+}
+
+dependencies {
+    implementation "androidx.multidex:multidex:2.0.1"
 }
 
 flutter {
