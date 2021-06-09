@@ -2,9 +2,6 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/blocs/home_screen_bloc.dart';
 import 'package:fisio_app/models/ad_state.dart';
-import 'package:fisio_app/screens/drawer/favorites_screen.dart';
-import 'package:fisio_app/screens/drawer/my_data_screen.dart';
-import 'package:fisio_app/screens/drawer/references_screen.dart';
 import 'package:fisio_app/text_styles/text_styles.dart';
 import 'package:fisio_app/widgets/ad_mob_widget.dart';
 import 'package:fisio_app/widgets/card_info_widget.dart';
@@ -44,15 +41,6 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.w600);
-
-  List<Widget> _widgetOptions = <Widget>[
-    Container(),
-    FavoritesScreen(),
-    ReferencesScreen(),
-    MyDataScreen(),
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -80,33 +68,32 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView(
               physics: BouncingScrollPhysics(),
               children: [
-                StreamBuilder<QuerySnapshot>(
-                  stream: firebase.collection("categorias").snapshots(),
+                StreamBuilder<List<DocumentSnapshot>>(
+                  stream: bloc.outList,
                   builder: (context, snapshot) {
-                    switch (snapshot.connectionState){
-                      case ConnectionState.none:
-                      case ConnectionState.waiting:
-                        return Center(
-                            child: CircularProgressIndicator(
-                              valueColor: AlwaysStoppedAnimation(primaryColor),
-                            ));
-                      default:
-                        List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-                        return GridView.builder(
-                          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: 2,
-                              mainAxisSpacing: 1,
-                              childAspectRatio: 2),
-                          padding: EdgeInsets.fromLTRB(16, 0, 16, 16),
-                          shrinkWrap: true,
-                          physics: BouncingScrollPhysics(),
-                          itemCount: docs.length,
-                          itemBuilder: (context, index) {
-                            return CardInfo(docs[index]);
-                          },
-                        );
-                    }
+                    if (snapshot.hasData)
+                      return GridView.builder(
+                        gridDelegate:
+                        SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 1,
+                            mainAxisSpacing: 1,
+                            childAspectRatio: 1.8
+                        ),
+                        padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                        shrinkWrap: true,
+                        physics: BouncingScrollPhysics(),
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) {
+                          return CardInfo(snapshot.data![index]);
+                        },
+                      );
+                      else
+                      return Center(
+                      child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(primaryColor),
+                      )
+                    );
                   },
                 ),
               ],
@@ -114,7 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SizedBox(height: 20),
         ],
-      ) : _widgetOptions.elementAt(_selectedIndex),
+      ) : bloc.toListWidgets().elementAt(_selectedIndex),
       bottomNavigationBar: Container( //bottom nav bar
         decoration: BoxDecoration(
           color: Colors.white,
@@ -139,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 GButton(icon: LineIcons.home, text: 'Home'),
                 GButton(icon: LineIcons.heart, text: 'Favoritos'),
                 GButton(icon: LineIcons.book, text: 'Referências'),
-                GButton(icon: LineIcons.user, text: 'Meus dados'),
+                GButton(icon: LineIcons.user, text: 'Perfil'),
               ],
               selectedIndex: _selectedIndex,
               onTabChange: (index) {
@@ -154,4 +141,3 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
-

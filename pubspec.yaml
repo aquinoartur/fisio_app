@@ -42,6 +42,7 @@ dependencies:
   bloc_pattern: ^3.0.0
   google_nav_bar: ^5.0.5
   line_icons: ^2.0.1
+  rxdart: ^0.27.1
 
 dev_dependencies:
   flutter_test:
