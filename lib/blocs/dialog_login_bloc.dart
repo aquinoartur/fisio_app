@@ -1,15 +1,17 @@
 import 'dart:async';
 import 'dart:ui';
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:rxdart/rxdart.dart';
 
 class DialogLoginBloc implements BlocBase {
 
-  final  _loadController = StreamController<bool>();
+  final  _loadController = BehaviorSubject<bool>();
   Stream<bool> get output => _loadController.stream;
   Sink<bool> get input => _loadController.sink;
+  bool isLoading = false;
 
   void isLoad () async {
-    bool isLoading = true;
+    isLoading = true;
     input.add(isLoading);
   }
 

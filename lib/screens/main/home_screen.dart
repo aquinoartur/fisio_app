@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
           titleT1Widget("Meus favoritos", TextStyles.title1),
           headerFavorites(primaryColor),
           SizedBox(height: 5),
-          bannerAd == null ? SizedBox() : adMob(bannerAd!),
+          bannerAd == null ? SizedBox(height: 5) : adMob(bannerAd!),
           SizedBox(height: 5),
           titleT1Widget("Categorias", TextStyles.title1),
           Expanded(
