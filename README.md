@@ -5,7 +5,7 @@ Este App é destinado à disponização de testes clínicos em Fisioterpia para 
 O projeto ainda encontra-se em fase de construção.
  
   <p align="center">
- <img  width="300" height="625" src="assets/to_readme/presentation.gif">
+ <img  width="300" height="625" src="assets/to_readme/present.gif">
  <p/>
 
  ## Desenvolvimento:
