@@ -19,7 +19,6 @@ O projeto ainda encontra-se em fase de construção.
  ## Aprendizado
 * Dart `null safety`. 
 * Utilização de `Dialogs`.
-* Utilização do Provider e `setState`.
 * Utilização de Animações com **Rive**.
 * Componentização.
 * Firebase.
