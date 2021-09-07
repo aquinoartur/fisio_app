@@ -1,4 +1,4 @@
-import 'package:fisio_app/widgets/tile_drawer_widget.dart';
+import 'package:fisio_app/app/widgets/tile_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -35,8 +35,7 @@ class CustomDrawer extends StatelessWidget {
                 child: tileDrawer(
                     color: primaryColor,
                     string: "Meus dados",
-                    icon: Icons.person
-                ),
+                    icon: Icons.person),
               ),
               SizedBox(height: 10),
               GestureDetector(
@@ -46,8 +45,7 @@ class CustomDrawer extends StatelessWidget {
                 child: tileDrawer(
                     color: primaryColor,
                     string: "Meus favoritos",
-                    icon: Icons.star
-                ),
+                    icon: Icons.star),
               ),
               SizedBox(height: 10),
               GestureDetector(
@@ -57,8 +55,7 @@ class CustomDrawer extends StatelessWidget {
                 child: tileDrawer(
                     color: primaryColor,
                     string: "Sobre o app",
-                    icon: Icons.info
-                ),
+                    icon: Icons.info),
               ),
               SizedBox(height: 10),
               GestureDetector(
@@ -68,8 +65,7 @@ class CustomDrawer extends StatelessWidget {
                 child: tileDrawer(
                     color: primaryColor,
                     string: "Referências",
-                    icon: Icons.collections_bookmark
-                ),
+                    icon: Icons.collections_bookmark),
               ),
               SizedBox(height: 10),
               GestureDetector(
@@ -79,8 +75,7 @@ class CustomDrawer extends StatelessWidget {
                 child: tileDrawer(
                     color: primaryColor,
                     string: "Entrar/Sair",
-                    icon: Icons.power_settings_new_outlined
-                ),
+                    icon: Icons.power_settings_new_outlined),
               ),
             ],
           )

@@ -1,15 +1,15 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:fisio_app/blocs/dialog_login_bloc.dart';
+import 'package:fisio_app/app/blocs/dialog_login_bloc.dart';
+import 'package:fisio_app/app/modules/home/pages/home_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fisio_app/screens//main/home_screen.dart';
 
 Widget buttonLoginGoogle(BuildContext context, String text) {
   return GestureDetector(
     onTap: () {
       Navigator.of(context).popUntil((route) => route.isFirst);
-      Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (context) => HomeScreen()));
+      Modular.to.pushReplacementNamed('/home');
     },
     child: Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -43,8 +43,7 @@ Widget buttonLogin(BuildContext context, String text) {
           bloc.isLoad(); //toggle
           Future.delayed(Duration(seconds: 3)).then((_) {
             Navigator.of(context).popUntil((route) => route.isFirst);
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => HomeScreen()));
+            Modular.to.pushReplacementNamed('/home');
           });
         },
         borderRadius: BorderRadius.circular(30),

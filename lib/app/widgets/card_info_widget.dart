@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/screens/main/category_screen.dart';
-import 'package:fisio_app/text_Styles/text_styles.dart';
+import 'package:fisio_app/app/modules/home/pages/category_screen.dart';
+import 'package:fisio_app/app/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CardInfo extends StatelessWidget {
@@ -14,27 +14,26 @@ class CardInfo extends StatelessWidget {
     final primaryColor = Theme.of(context).primaryColor;
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => CategoryScreen(data)));
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => CategoryScreen(data)));
       },
       child: Card(
         color: primaryColor,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
-
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8,8,8,8),
+              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(data!['image']),
                         fit: BoxFit.scaleDown),
-                  borderRadius: BorderRadius.circular(8)
-                ),
+                    borderRadius: BorderRadius.circular(8)),
                 width: 50,
                 height: 50,
               ),

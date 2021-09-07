@@ -1,8 +1,8 @@
-import 'package:fisio_app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-Widget animationRive2 (Artboard? artboard){
+Widget animationRive2(Artboard? artboard) {
   return Padding(
     padding: EdgeInsets.only(top: 200),
     child: Column(
@@ -12,10 +12,15 @@ Widget animationRive2 (Artboard? artboard){
         Container(
           width: 100,
           height: 100,
-          child: artboard == null  ? SizedBox() : Rive(artboard: artboard),
+          child: artboard == null ? SizedBox() : Rive(artboard: artboard),
         ),
-        SizedBox(height: 5,),
-        Text("Selecione uma subcategoria", style: TextStyles.t4,)
+        SizedBox(
+          height: 5,
+        ),
+        Text(
+          "Selecione uma subcategoria",
+          style: TextStyles.t4,
+        )
       ],
     ),
   );

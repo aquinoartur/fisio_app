@@ -1,21 +1,18 @@
 import 'dart:ui';
-import 'package:fisio_app/widgets/buttons_login_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class DialogLogin extends StatelessWidget {
+import 'buttons_login_widget.dart';
 
-
+class DialogSignout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30)
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
           padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           shrinkWrap: true,
@@ -30,7 +27,7 @@ class DialogLogin extends StatelessWidget {
                   alignment: Alignment.topRight,
                   child: IconButton(
                     icon: Icon(Icons.close),
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.of(context).pop();
                     },
                   ),
@@ -38,7 +35,7 @@ class DialogLogin extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
                   child: Text(
-                    "Entrar",
+                    "Criar conta",
                     style: GoogleFonts.nunito(
                         color: primaryColor,
                         fontSize: 22,
@@ -67,15 +64,20 @@ class DialogLogin extends StatelessWidget {
                     SizedBox(
                       height: 10,
                     ),
-                    buttonForget(context),
+                    TextFormField(
+                      decoration: InputDecoration(
+                        hintText: "Repetir senha",
+                      ),
+                      obscureText: true,
+                    ),
                     SizedBox(
                       height: 10,
                     ),
-                    buttonLogin(context, "Entrar"),
+                    buttonLogin(context, "Cadastar"),
                     SizedBox(
                       height: 10,
                     ),
-                    buttonLoginGoogle(context, "Entrar com o Google")
+                    buttonLoginGoogle(context, "Cadastrar com o Google")
                   ],
                 )
               ],

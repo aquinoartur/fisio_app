@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rive/rive.dart';
-import 'package:fisio_app/screens//main/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -9,15 +9,14 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-  Artboard? _riveArtboard ;
+  Artboard? _riveArtboard;
   RiveAnimationController? _controller;
   @override
   void initState() {
     super.initState();
 
     rootBundle.load('assets/anims/osso.riv').then(
-          (data) async {
+      (data) async {
         final file = RiveFile.import(data);
         // Rive widget.
         final artboard = file.mainArtboard;
@@ -27,7 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
     );
 
     Future.delayed(Duration(seconds: 4)).then((_) {
-      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginScreen()));
+      Modular.to.navigate('/login');
     });
   }
 
@@ -39,15 +38,12 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(
               child: Container(
-                width: 125,
-                height: 125,
-                child:
-                _riveArtboard == null  ?
-                SizedBox()
-                    :
-                Rive(artboard: _riveArtboard!),
-              )
-          ),
+            width: 125,
+            height: 125,
+            child: _riveArtboard == null
+                ? SizedBox()
+                : Rive(artboard: _riveArtboard!),
+          )),
         ],
       ),
     );

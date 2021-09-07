@@ -1,10 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/screens/main/test_screen.dart';
-import 'package:fisio_app/text_styles/text_styles.dart';
-import 'package:fisio_app/widgets/animation_rive_2_widget.dart';
-import 'package:fisio_app/widgets/card_test_widget.dart';
-import 'package:fisio_app/widgets/card_tile_category_screen.dart';
-import 'package:fisio_app/widgets/title_t1_widget.dart';
+import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
+import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/widgets/animation_rive_2_widget.dart';
+import 'package:fisio_app/app/widgets/card_test_widget.dart';
+import 'package:fisio_app/app/widgets/card_tile_category_screen.dart';
+import 'package:fisio_app/app/widgets/title_t1_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,7 +19,6 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-
   int _selectedIndex = 999;
   String category = "";
   bool toogle = false;
@@ -62,8 +61,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
             titleT1Widget("Subcategorias", TextStyles.title1),
             Container(
               child: StreamBuilder<QuerySnapshot>(
-                stream:
-                    firebase.collection("categorias")
+                stream: firebase
+                    .collection("categorias")
                     .doc(widget.data!.id)
                     .collection("subcategorias")
                     .snapshots(),
@@ -73,7 +72,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     case ConnectionState.waiting:
                       return Container();
                     default:
-                      List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
+                      List<DocumentSnapshot> docs =
+                          snapshot.data!.docs.toList();
                       return Container(
                         height: 40,
                         padding: EdgeInsets.symmetric(horizontal: 10),
@@ -82,7 +82,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           shrinkWrap: true,
                           physics: BouncingScrollPhysics(),
                           separatorBuilder: (context, index) {
-                            return SizedBox(width: 10);},
+                            return SizedBox(width: 10);
+                          },
                           scrollDirection: Axis.horizontal,
                           itemBuilder: (context, index) {
                             return GestureDetector(
@@ -107,7 +108,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
             ),
             SizedBox(height: 15),
             toogle ? titleT1Widget("Testes", TextStyles.title1) : Container(),
-            toogle ? FutureBuilder<QuerySnapshot>(
+            toogle
+                ? FutureBuilder<QuerySnapshot>(
                     future: firebase
                         .collection("categorias")
                         .doc(widget.data!.id)
@@ -121,7 +123,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         case ConnectionState.waiting:
                           return Container();
                         default:
-                          List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
+                          List<DocumentSnapshot> docs =
+                              snapshot.data!.docs.toList();
                           return Expanded(
                             child: ListView.separated(
                               physics: BouncingScrollPhysics(),
@@ -133,7 +136,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               itemCount: snapshot.data!.docs.length,
                               itemBuilder: (context, index) {
                                 return GestureDetector(
-                                  onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context) => TestScreen(docs[index])));},
+                                  onTap: () {
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                TestScreen(docs[index])));
+                                  },
                                   child: cardTestWidget(
                                       name: docs[index]["name"],
                                       description: docs[index]["description"],
@@ -145,7 +153,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                       }
                     },
                   )
-                : Align(alignment: Alignment.center, child: animationRive2(_riveArtboard)),
+                : Align(
+                    alignment: Alignment.center,
+                    child: animationRive2(_riveArtboard)),
           ],
         ));
   }
