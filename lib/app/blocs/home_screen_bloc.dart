@@ -32,7 +32,8 @@ class HomeScreenBloc implements BlocBase {
 
   void _toList() async {
     QuerySnapshot<Map<String, dynamic>> snapshot =
-        await firebase.collection("categorias").get();
+        await Future.delayed(Duration(seconds: 1))
+            .then((_) => firebase.collection("categorias").get());
     docs = snapshot.docs.toList();
     inputList.add(docs!);
   }

@@ -74,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     SizedBox(height: 15),
                     AnimatedOpacity(
-                      duration: const Duration(milliseconds: 800),
+                      duration: const Duration(seconds: 1),
                       opacity: isLoaded ? 1 : 0,
                       child: Material(
                         color: primaryColor,

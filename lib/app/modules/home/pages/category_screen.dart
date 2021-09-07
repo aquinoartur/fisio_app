@@ -11,7 +11,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:rive/rive.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -148,7 +147,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 )
               : Align(
                   alignment: Alignment.center,
-                  child: animationRive2(_riveArtboard)),
+                  child: animationRive2(_riveArtboard),
+                ),
         ],
       ),
     );

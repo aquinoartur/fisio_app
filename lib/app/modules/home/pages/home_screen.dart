@@ -8,18 +8,21 @@ import 'package:fisio_app/app/widgets/ad_mob_widget.dart';
 import 'package:fisio_app/app/widgets/card_info_widget.dart';
 import 'package:fisio_app/app/widgets/customs_app_bar.dart';
 import 'package:fisio_app/app/widgets/header_favorites.dart';
+import 'package:fisio_app/app/widgets/loading_indicator_widget.dart';
 import 'package:fisio_app/app/widgets/title_t1_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:shimmer/shimmer.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen>
+    with AutomaticKeepAliveClientMixin {
   int _selectedIndex = 0;
   BannerAd? bannerAd;
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
@@ -49,6 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       backgroundColor: Colors.white,
@@ -70,7 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       StreamBuilder<List<DocumentSnapshot>>(
                         stream: bloc.outList,
                         builder: (context, snapshot) {
-                          if (snapshot.hasData)
+                          if (!snapshot.hasData)
+                            return CustomShimmer();
+                          else
                             return GridView.builder(
                               gridDelegate: _controller.gridDelegate,
                               padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
@@ -81,8 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 return CardInfo(snapshot.data![index]);
                               },
                             );
-                          else
-                            return Container();
                         },
                       ),
                     ],
@@ -117,5 +121,51 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+}
+
+class CustomShimmer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+        baseColor: Colors.grey[300]!,
+        highlightColor: Colors.white,
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 1,
+            mainAxisSpacing: 1,
+            childAspectRatio: 1.8,
+          ),
+          padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+          shrinkWrap: true,
+          physics: BouncingScrollPhysics(),
+          itemCount: 8,
+          itemBuilder: (context, index) {
+            return Card(
+              color: Colors.grey,
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15)),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
+                    child: Container(
+                      decoration: BoxDecoration(color: Colors.grey),
+                      width: 50,
+                      height: 50,
+                    ),
+                  ),
+                  Text('text')
+                ],
+              ),
+            );
+          },
+        ));
   }
 }
