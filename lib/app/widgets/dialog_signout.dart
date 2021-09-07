@@ -26,7 +26,10 @@ class DialogSignout extends StatelessWidget {
                   heightFactor: .8,
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: Icon(Icons.close),
+                    icon: Icon(
+                      Icons.close,
+                      size: 18.0,
+                    ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },

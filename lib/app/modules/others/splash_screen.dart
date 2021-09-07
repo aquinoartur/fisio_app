@@ -11,23 +11,28 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Artboard? _riveArtboard;
   RiveAnimationController? _controller;
+
   @override
   void initState() {
     super.initState();
-
     rootBundle.load('assets/anims/osso.riv').then(
       (data) async {
         final file = RiveFile.import(data);
-        // Rive widget.
         final artboard = file.mainArtboard;
         artboard.addController(_controller = SimpleAnimation('Animation 1'));
         setState(() => _riveArtboard = artboard);
       },
     );
 
-    Future.delayed(Duration(seconds: 4)).then((_) {
-      Modular.to.navigate('/login');
-    });
+    Future.delayed(Duration(seconds: 4)).then(
+      (_) => Modular.to.navigate('/login'),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
   }
 
   @override

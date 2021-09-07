@@ -1,4 +1,5 @@
 import 'package:fisio_app/app/modules/home/pages/home_screen.dart';
+import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 import 'modules/login_screen.dart';
@@ -15,5 +16,6 @@ class AppModule extends Module {
     ChildRoute('/', child: (_, __) => SplashScreen()),
     ChildRoute('/login', child: (_, __) => LoginScreen()),
     ChildRoute('/home', child: (_, __) => HomeScreen()),
+    ChildRoute('/test', child: (_, args) => TestScreen(args.data)),
   ];
 }

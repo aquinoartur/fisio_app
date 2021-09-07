@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:ui';
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/modules/drawer/favorites_screen.dart';
-import 'package:fisio_app/app/modules/drawer/my_data_screen.dart';
-import 'package:fisio_app/app/modules/drawer/references_screen.dart';
+import 'package:fisio_app/app/modules/bottom_pages/favorites_screen.dart';
+import 'package:fisio_app/app/modules/bottom_pages/my_data_screen.dart';
+import 'package:fisio_app/app/modules/bottom_pages/references_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 

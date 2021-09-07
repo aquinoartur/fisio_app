@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/widgets/loading_indicator_widget.dart';
 import 'package:fisio_app/app/widgets/porfile_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,69 +22,66 @@ class _AboutScreenState extends State<AboutScreen> {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Idealizadores",
-            style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
-          ),
-          centerTitle: true,
-          iconTheme: IconThemeData(color: primaryColor),
-          backgroundColor: Colors.white,
-          elevation: 0,
+      appBar: AppBar(
+        title: Text(
+          "Idealizadores",
+          style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
         ),
-        body: FutureBuilder<QuerySnapshot>(
-          future: FirebaseFirestore.instance
-              .collection("contributors")
-              .orderBy("pos")
-              .get(),
-          builder: (context, snapshot) {
-            switch (snapshot.connectionState) {
-              case ConnectionState.none:
-              case ConnectionState.waiting:
-                return Center(
-                  child: CircularProgressIndicator(
-                    valueColor: AlwaysStoppedAnimation(primaryColor),
-                  ),
-                );
-              default:
-                List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-                docs.forEach((doc) {
+        centerTitle: true,
+        iconTheme: IconThemeData(color: primaryColor),
+        backgroundColor: Colors.white,
+        elevation: 0,
+      ),
+      body: FutureBuilder<QuerySnapshot>(
+        future: FirebaseFirestore.instance
+            .collection("contributors")
+            .orderBy("pos")
+            .get(),
+        builder: (context, snapshot) {
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+              return LoadingIndicatorWidget();
+            default:
+              List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
+              docs.forEach(
+                (doc) {
                   names.add(doc["name"]);
                   descriptions.add(doc["description"]);
                   images.add(doc["image"]);
                   instagram.add(doc["instagram"]);
                   linkedin.add(doc["linkedin"]);
                   email.add("mailto:" + doc["email"]);
-                });
-                return Stack(
-                  children: [
-                    Positioned.fill(
-                      child: Align(
-                          alignment: Alignment.center,
-                          child: ListView.separated(
-                            physics: NeverScrollableScrollPhysics(),
-                            separatorBuilder: (context, index) {
-                              return SizedBox(
-                                height: 15,
-                              );
-                            },
-                            itemCount: docs.length,
-                            itemBuilder: (context, index) {
-                              return ProfileWidget(
-                                  color: primaryColor,
-                                  name: names[index],
-                                  description: descriptions[index],
-                                  instagram: instagram[index],
-                                  linkedin: linkedin[index],
-                                  email: email[index],
-                                  image: images[index]);
-                            },
-                          )),
+                },
+              );
+              return Stack(
+                children: [
+                  Positioned.fill(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: ListView.separated(
+                        physics: NeverScrollableScrollPhysics(),
+                        separatorBuilder: (_, __) => SizedBox(height: 15),
+                        itemCount: docs.length,
+                        itemBuilder: (context, index) {
+                          return ProfileWidget(
+                            color: primaryColor,
+                            name: names[index],
+                            description: descriptions[index],
+                            instagram: instagram[index],
+                            linkedin: linkedin[index],
+                            email: email[index],
+                            image: images[index],
+                          );
+                        },
+                      ),
                     ),
-                  ],
-                );
-            }
-          },
-        ));
+                  ),
+                ],
+              );
+          }
+        },
+      ),
+    );
   }
 }

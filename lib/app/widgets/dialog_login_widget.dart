@@ -26,7 +26,10 @@ class DialogLogin extends StatelessWidget {
                   heightFactor: .8,
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: Icon(Icons.close),
+                    icon: Icon(
+                      Icons.close,
+                      size: 18.0,
+                    ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
@@ -35,9 +38,10 @@ class DialogLogin extends StatelessWidget {
                   child: Text(
                     "Insira seus dados",
                     style: GoogleFonts.nunito(
-                        color: primaryColor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
+                      color: primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 ListView(
@@ -50,9 +54,7 @@ class DialogLogin extends StatelessWidget {
                     ),
                     SizedBox(height: 10),
                     TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Senha",
-                      ),
+                      decoration: InputDecoration(hintText: "Senha"),
                       obscureText: true,
                     ),
                     SizedBox(height: 10),

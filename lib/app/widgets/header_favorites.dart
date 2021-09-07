@@ -16,9 +16,7 @@ Widget headerFavorites(Color color) {
           child: ListView.separated(
             itemCount: 10,
             physics: BouncingScrollPhysics(),
-            separatorBuilder: (context, index) {
-              return SizedBox(width: 10);
-            },
+            separatorBuilder: (_, __) => SizedBox(width: 10),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return Container(
