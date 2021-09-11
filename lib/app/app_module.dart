@@ -1,7 +1,7 @@
-import 'package:fisio_app/app/modules/home/pages/home_screen.dart';
-import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
+import 'package:fisio_app/app/modules/profile/profile_module.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import 'modules/home/home_module.dart';
 import 'modules/login_screen.dart';
 import 'modules/others/splash_screen.dart';
 
@@ -14,8 +14,19 @@ class AppModule extends Module {
   @override
   final List<ModularRoute> routes = [
     ChildRoute('/', child: (_, __) => SplashScreen()),
-    ChildRoute('/login', child: (_, __) => LoginScreen()),
-    ChildRoute('/home', child: (_, __) => HomeScreen()),
-    ChildRoute('/test', child: (_, args) => TestScreen(args.data)),
+    ModuleRoute(
+      '/profile',
+      module: ProfileModule(),
+      transition: TransitionType.fadeIn,
+    ),
+    ChildRoute(
+      '/login',
+      child: (_, __) => LoginScreen(),
+      transition: TransitionType.fadeIn,
+    ),
+    ModuleRoute(
+      '/home',
+      module: HomeModule(),
+    ),
   ];
 }

@@ -1,8 +1,10 @@
 import 'dart:ui';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/modules/home/pages/category_screen.dart';
 import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/widgets/loading_indicator_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CardInfo extends StatelessWidget {
   final DocumentSnapshot? data;
@@ -13,10 +15,7 @@ class CardInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).push(
-            MaterialPageRoute(builder: (context) => CategoryScreen(data)));
-      },
+      onTap: () => Modular.to.pushNamed('/home/category', arguments: data),
       child: Card(
         color: primaryColor,
         elevation: 0,
@@ -27,15 +26,21 @@ class CardInfo extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
-              child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: NetworkImage(data!['image']),
-                        fit: BoxFit.scaleDown),
-                    borderRadius: BorderRadius.circular(8)),
+              padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 8.0),
+              child: CachedNetworkImage(
                 width: 50,
                 height: 50,
+                fit: BoxFit.scaleDown,
+                imageUrl: data!['image'],
+                errorWidget: (context, url, error) =>
+                    Center(child: Icon(Icons.info)),
+                placeholder: (context, url) => Center(
+                  child: LoadingIndicatorWidget(
+                    color: Colors.white,
+                    size: 10.0,
+                    strokeWidth: 3.0,
+                  ),
+                ),
               ),
             ),
             Text(

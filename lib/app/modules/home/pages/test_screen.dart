@@ -7,7 +7,6 @@ import 'package:url_launcher/url_launcher.dart';
 
 class TestScreen extends StatefulWidget {
   final DocumentSnapshot? data;
-
   TestScreen(this.data);
 
   @override
@@ -18,16 +17,15 @@ class _TestScreenState extends State<TestScreen> {
   List<String> list = [];
 
   Future<void> _urlOpen(String url) async {
-    if (await canLaunch(url)) {
+    if (await canLaunch(url))
       await launch(
         url,
         forceSafariVC: true,
         forceWebView: true,
         enableJavaScript: true,
       );
-    } else {
-      throw 'Could not launch $url';
-    }
+    else
+      throw 'Url não encontrado $url';
   }
 
   @override
@@ -132,15 +130,14 @@ class _TestScreenState extends State<TestScreen> {
                       width: 300,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: primaryColor,
-                            shadowColor: Colors.black,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(30),
-                            )),
-                        child: Text(
-                          "Obter teste",
-                          style: TextStyles.ts4,
+                          primary: primaryColor,
+                          elevation: 0,
+                          shadowColor: Colors.black,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
                         ),
+                        child: Text("Obter teste", style: TextStyles.ts4),
                         onPressed: () => setState(() {
                           _urlOpen(widget.data!["test"]);
                         }),

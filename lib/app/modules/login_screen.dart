@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:fisio_app/app/text_styles/text_styles.dart';
-import 'package:fisio_app/app/widgets/contacts_login_widget.dart';
 import 'package:fisio_app/app/widgets/dialog_login_widget.dart';
 import 'package:fisio_app/app/widgets/dialog_signout.dart';
 import 'package:fisio_app/app/widgets/linear_gradient_widget.dart';
@@ -123,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       "Criar conta",
                       style: TextStyles.cardtitle1.copyWith(
                         color: primaryColor,
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         fontSize: 16,
                       ),
                       textAlign: TextAlign.center,

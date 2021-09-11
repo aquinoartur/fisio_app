@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
 import 'package:fisio_app/app/text_styles/text_styles.dart';
 import 'package:fisio_app/app/widgets/animation_rive_2_widget.dart';
 import 'package:fisio_app/app/widgets/card_test_widget.dart';
@@ -69,7 +68,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return LoadingIndicatorWidget();
+                    return Container();
                   default:
                     List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
                     return Container(
@@ -119,7 +118,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
                       case ConnectionState.waiting:
-                        return LoadingIndicatorWidget();
+                        return LoadingIndicatorWidget(
+                          color: primaryColor,
+                          size: 20.0,
+                        );
                       default:
                         List<DocumentSnapshot> docs =
                             snapshot.data!.docs.toList();
@@ -132,8 +134,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             itemCount: snapshot.data!.docs.length,
                             itemBuilder: (context, index) {
                               return GestureDetector(
-                                onTap: () => Modular.to
-                                    .pushNamed('/test', arguments: docs[index]),
+                                onTap: () => Modular.to.pushNamed('/home/test',
+                                    arguments: docs[index]),
                                 child: cardTestWidget(
                                     name: docs[index]["name"],
                                     description: docs[index]["description"],

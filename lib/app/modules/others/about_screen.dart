@@ -41,7 +41,10 @@ class _AboutScreenState extends State<AboutScreen> {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
-              return LoadingIndicatorWidget();
+              return LoadingIndicatorWidget(
+                color: primaryColor,
+                size: 20.0,
+              );
             default:
               List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
               docs.forEach(

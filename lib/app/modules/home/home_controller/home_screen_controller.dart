@@ -13,6 +13,7 @@ class HomeScreenController {
 
   var bottomBoxDecoration = BoxDecoration(
     color: Colors.white,
+    borderRadius: BorderRadius.circular(100),
     boxShadow: [
       BoxShadow(
         blurRadius: 3,
