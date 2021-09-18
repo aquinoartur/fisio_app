@@ -1,6 +1,8 @@
+import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
 import 'package:fisio_app/app/text_styles/text_styles.dart';
-import 'package:fisio_app/app/widgets/animation_rive_2_widget.dart';
+import 'package:fisio_app/app/widgets/animations_rive_widget.dart';
 import 'package:fisio_app/app/widgets/card_test_widget.dart';
 import 'package:fisio_app/app/widgets/card_tile_category_screen.dart';
 import 'package:fisio_app/app/widgets/customs_app_bar.dart';
@@ -9,7 +11,6 @@ import 'package:fisio_app/app/widgets/title_t1_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rive/rive.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -68,37 +69,39 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 switch (snapshot.connectionState) {
                   case ConnectionState.none:
                   case ConnectionState.waiting:
-                    return Container();
+                    return SizedBox(height: 80);
                   default:
                     List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-                    return Container(
-                      height: 40,
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: ListView.separated(
-                        itemCount: docs.length,
-                        shrinkWrap: true,
-                        physics: BouncingScrollPhysics(),
-                        separatorBuilder: (_, __) => SizedBox(width: 10),
-                        scrollDirection: Axis.horizontal,
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            onTap: () => setState(
-                              () {
-                                category = docs[index].id;
-                                _selectedIndex = index;
-                                toogle = true;
+                    return docs.isEmpty //* this is the header page
+                        ? SizedBox(height: 80)
+                        : Container(
+                            height: 40,
+                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            child: ListView.separated(
+                              itemCount: docs.length,
+                              shrinkWrap: true,
+                              physics: BouncingScrollPhysics(),
+                              separatorBuilder: (_, __) => SizedBox(width: 10),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                return GestureDetector(
+                                  onTap: () => setState(
+                                    () {
+                                      category = docs[index].id;
+                                      _selectedIndex = index;
+                                      toogle = true;
+                                    },
+                                  ),
+                                  child: cardTileCategoryScreen(
+                                    selectedIndex: _selectedIndex,
+                                    index: index,
+                                    color: primaryColor,
+                                    name: docs[index]["name"],
+                                  ),
+                                );
                               },
                             ),
-                            child: cardTileCategoryScreen(
-                              selectedIndex: _selectedIndex,
-                              index: index,
-                              color: primaryColor,
-                              name: docs[index]["name"],
-                            ),
                           );
-                        },
-                      ),
-                    );
                 }
               },
             ),
@@ -122,28 +125,43 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           color: primaryColor,
                           size: 20.0,
                         );
-                      default:
+                      default: //* this is the body page
                         List<DocumentSnapshot> docs =
                             snapshot.data!.docs.toList();
-                        return Expanded(
-                          child: ListView.separated(
-                            physics: BouncingScrollPhysics(),
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            shrinkWrap: true,
-                            separatorBuilder: (_, __) => SizedBox(height: 8),
-                            itemCount: snapshot.data!.docs.length,
-                            itemBuilder: (context, index) {
-                              return GestureDetector(
-                                onTap: () => Modular.to.pushNamed('/home/test',
-                                    arguments: docs[index]),
-                                child: cardTestWidget(
-                                    name: docs[index]["name"],
-                                    description: docs[index]["description"],
-                                    color: primaryColor),
+                        return docs.isEmpty
+                            ? Align(
+                                alignment: Alignment.center,
+                                child: animationRive3(_riveArtboard),
+                              )
+                            : Expanded(
+                                child: ListView.separated(
+                                  physics: BouncingScrollPhysics(),
+                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  shrinkWrap: true,
+                                  separatorBuilder: (_, __) =>
+                                      SizedBox(height: 8),
+                                  itemCount: snapshot.data!.docs.length,
+                                  itemBuilder: (context, index) =>
+                                      OpenContainer(
+                                    transitionType:
+                                        ContainerTransitionType.fade,
+                                    transitionDuration:
+                                        Duration(milliseconds: 1200),
+                                    closedBuilder:
+                                        (context, VoidCallback callback) =>
+                                            GestureDetector(
+                                      onTap: callback,
+                                      child: cardTestWidget(
+                                        name: docs[index]["name"],
+                                        description: docs[index]["description"],
+                                        color: primaryColor,
+                                      ),
+                                    ),
+                                    openBuilder: (context, _) =>
+                                        TestScreen(docs[index]),
+                                  ),
+                                ),
                               );
-                            },
-                          ),
-                        );
                     }
                   },
                 )
