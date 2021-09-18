@@ -38,7 +38,7 @@ class CardInfo extends StatelessWidget {
                   child: LoadingIndicatorWidget(
                     color: Colors.white,
                     size: 10.0,
-                    strokeWidth: 3.0,
+                    strokeWidth: 1.0,
                   ),
                 ),
               ),

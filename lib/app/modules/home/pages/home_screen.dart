@@ -96,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen>
           : bloc.toListWidgets().elementAt(_selectedIndex),
       bottomNavigationBar: Container(
         decoration: _controller.bottomBoxDecoration,
-        margin: EdgeInsets.all(8.0),
+        margin: EdgeInsets.all(6.0),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen>
               gap: 8,
               activeColor: Colors.white,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
               duration: Duration(milliseconds: 400),
               tabBackgroundColor: primaryColor,
               color: Colors.black,

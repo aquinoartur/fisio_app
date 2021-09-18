@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'loading_indicator_widget.dart';
+
 Widget buttonLoginGoogle(BuildContext context, String text) {
   return GestureDetector(
     onTap: () {
@@ -55,8 +57,11 @@ Widget buttonLogin(BuildContext context, String text) {
                 height: 55,
                 width: 200,
                 child: snapshot.data
-                    ? CircularProgressIndicator(
-                        valueColor: AlwaysStoppedAnimation<Color>(Colors.white))
+                    ? LoadingIndicatorWidget(
+                        color: Colors.white,
+                        size: 20.0,
+                        strokeWidth: 3.0,
+                      )
                     : Text(
                         text,
                         style: GoogleFonts.nunito(
