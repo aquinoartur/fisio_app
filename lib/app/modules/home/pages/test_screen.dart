@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/app/modules/home/home_controller/home_test_screen_controller.dart';
-import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';

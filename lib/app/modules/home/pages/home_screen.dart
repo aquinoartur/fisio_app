@@ -1,9 +1,9 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/ad_mob/ad_state.dart';
 import 'package:fisio_app/app/blocs/home_screen_bloc.dart';
-import 'package:fisio_app/app/models/ad_state.dart';
 import 'package:fisio_app/app/modules/home/home_controller/home_screen_controller.dart';
-import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:fisio_app/app/widgets/card_info_widget.dart';
 import 'package:fisio_app/app/widgets/custom_shimmer_home.dart';
 import 'package:fisio_app/app/widgets/customs_app_bar.dart';
@@ -13,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
+import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -46,6 +47,12 @@ class _HomeScreenState extends State<HomeScreen>
         );
       },
     );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    showToastSucess('Login realizado com sucesso');
   }
 
   @override

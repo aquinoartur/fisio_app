@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget cardTileCategoryScreen(

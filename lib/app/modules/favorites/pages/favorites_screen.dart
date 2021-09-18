@@ -1,12 +1,12 @@
 import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
 import 'package:flutter/material.dart';
 
-class ReferencesScreen extends StatefulWidget {
+class FavoritesScreen extends StatefulWidget {
   @override
-  State<ReferencesScreen> createState() => _ReferencesScreenState();
+  State<FavoritesScreen> createState() => _FavoritesScreenState();
 }
 
-class _ReferencesScreenState extends State<ReferencesScreen> {
+class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   void initState() {
     super.initState();
@@ -15,6 +15,8 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Center(child: Text("Referencias"));
+    return Scaffold(
+      body: Center(child: Text("Favoritos")),
+    );
   }
 }

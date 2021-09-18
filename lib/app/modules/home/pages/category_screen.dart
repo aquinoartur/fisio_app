@@ -1,7 +1,7 @@
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
-import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:fisio_app/app/widgets/animations_rive_widget.dart';
 import 'package:fisio_app/app/widgets/card_test_widget.dart';
 import 'package:fisio_app/app/widgets/card_tile_category_screen.dart';

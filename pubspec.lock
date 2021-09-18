@@ -8,6 +8,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
+  asuka:
+    dependency: "direct main"
+    description:
+      name: asuka
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0-nullsafety.3"
   async:
     dependency: transitive
     description:
@@ -29,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  bot_toast:
+    dependency: "direct main"
+    description:
+      name: bot_toast
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.1"
   cached_network_image:
     dependency: "direct main"
     description:
@@ -229,7 +243,7 @@ packages:
       name: flutter_modular
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.4.1+1"
+    version: "4.0.0+6"
   flutter_modular_annotations:
     dependency: transitive
     description:
@@ -303,6 +317,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  hive:
+    dependency: "direct main"
+    description:
+      name: hive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.4"
   http:
     dependency: transitive
     description:
@@ -352,6 +373,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  modular_core:
+    dependency: transitive
+    description:
+      name: modular_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
+  modular_interfaces:
+    dependency: transitive
+    description:
+      name: modular_interfaces
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0+1"
   nested:
     dependency: transitive
     description:

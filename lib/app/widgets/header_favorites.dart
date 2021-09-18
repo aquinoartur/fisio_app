@@ -1,4 +1,5 @@
-import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
+import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget headerFavorites(Color color) {
@@ -19,18 +20,23 @@ Widget headerFavorites(Color color) {
             separatorBuilder: (_, __) => SizedBox(width: 10),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
-              return Container(
-                // todo componentizar
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(20),
-                  color: Colors.white,
-                  //border: Border.all(color: primaryColor, width: 2)
-                ),
-                width: 150,
-                child: Text(
-                  "Nome do teste",
-                  style: TextStyles.cardtitle3,
+              return GestureDetector(
+                onTap: () {
+                  showToastSucess('em breve');
+                },
+                child: Container(
+                  // todo componentizar
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.white,
+                    //border: Border.all(color: primaryColor, width: 2)
+                  ),
+                  width: 150,
+                  child: Text(
+                    "Nome do teste",
+                    style: TextStyles.cardtitle3,
+                  ),
                 ),
               );
             },

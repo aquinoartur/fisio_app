@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:fisio_app/app/text_styles/text_styles.dart';
+import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:fisio_app/app/widgets/dialog_login_widget.dart';
 import 'package:fisio_app/app/widgets/dialog_signout.dart';
 import 'package:fisio_app/app/widgets/linear_gradient_widget.dart';
