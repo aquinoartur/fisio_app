@@ -1,4 +1,6 @@
-import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
+import 'package:animations/animations.dart';
+import 'package:fisio_app/app/modules/favorites/pages/test_screen_favorites.dart';
+import 'package:fisio_app/app/widgets/card_test_widget.dart';
 import 'package:flutter/material.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -10,13 +12,49 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   void initState() {
     super.initState();
-    showToastSucess('em breve');
   }
 
+  final List items = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+  var text =
+      'In porttitor dolor quis nibh lobortis, vel scelerisque elit condimentum. Nullam arcu nisl, feugiat facilisis posuere luctus, maximus sed quam. Fusce nec mi fringilla, vulputate ex non, tempus arcu. Etiam mauris dolor, sodales a volutpat vel, semper a velit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse non ex vitae nisi faucibus iaculis. Nullam magna nisi, faucibus nec leo nec, ultricies viverra urna. Aliquam rhoncus augue id lorem iaculis, eu vehicula risus vestibulum.';
   @override
   Widget build(BuildContext context) {
+    final primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
-      body: Center(child: Text("Favoritos")),
+      body: ListView.separated(
+        physics: BouncingScrollPhysics(),
+        separatorBuilder: (_, __) => SizedBox(height: 8.0),
+        itemBuilder: (context, index) => OpenContainer(
+          openColor: Colors.transparent,
+          closedColor: Colors.transparent,
+          openElevation: 0,
+          closedElevation: 0,
+          transitionType: ContainerTransitionType.fade,
+          transitionDuration: Duration(milliseconds: 1200),
+          closedBuilder: (context, VoidCallback callback) => GestureDetector(
+            onTap: callback,
+            child: cardTestWidget(
+              //todo callback icon star
+              color: primaryColor,
+              name: 'teste',
+              description: 'descrição',
+              category: 'categoria',
+              subcategory: 'subcategoria',
+            ),
+          ),
+          openBuilder: (context, _) => TestScreenFavorites(
+            texto: text,
+            name: 'Nome do teste',
+            images: [
+              'https://blog.estacio.br/wp-content/uploads/2020/03/original-c93e668eaa77559d1494507bdd5b117d-780x450.jpg',
+              'https://blog.estacio.br/wp-content/uploads/2020/03/original-c93e668eaa77559d1494507bdd5b117d-780x450.jpg',
+              'https://blog.estacio.br/wp-content/uploads/2020/03/original-c93e668eaa77559d1494507bdd5b117d-780x450.jpg',
+            ],
+          ),
+        ),
+        itemCount: items.length,
+      ),
     );
   }
 }

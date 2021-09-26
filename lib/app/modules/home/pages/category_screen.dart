@@ -143,6 +143,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) =>
                                       OpenContainer(
+                                    openColor: Colors.transparent,
+                                    closedColor: Colors.transparent,
+                                    openElevation: 0,
+                                    closedElevation: 0,
                                     transitionType:
                                         ContainerTransitionType.fade,
                                     transitionDuration:
