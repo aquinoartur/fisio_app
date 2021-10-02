@@ -1,6 +1,6 @@
-import 'package:fisio_app/app/modules/home/pages/category_screen.dart';
-import 'package:fisio_app/app/modules/home/pages/home_screen.dart';
-import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
+import 'pages/category_screen.dart';
+import 'pages/home_screen.dart';
+import 'pages/test_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeModule extends Module {
@@ -11,9 +11,9 @@ class HomeModule extends Module {
   final List<ModularRoute> routes = [
     ChildRoute(
       '/',
-      child: (_, __) => HomeScreen(),
+      child: (_, __) => const HomeScreen(),
       transition: TransitionType.fadeIn,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     ),
     ChildRoute(
       '/test',

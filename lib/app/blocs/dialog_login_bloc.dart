@@ -1,31 +1,36 @@
-import 'dart:async';
-import 'dart:ui';
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:rxdart/rxdart.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DialogLoginBloc implements BlocBase {
-
-  final  _loadController = BehaviorSubject<bool>();
-  Stream<bool> get output => _loadController.stream;
-  Sink<bool> get input => _loadController.sink;
-  bool isLoading = false;
-
-  void isLoad () async {
-    isLoading = true;
-    input.add(isLoading);
+class AuthBloc extends Bloc<AuthEvent, AuthState> {
+  AuthBloc(AuthState initialState) : super(EmptyState()) {
+    on<LoginEvent>(loginWithGoogle);
   }
 
+  Future<void> loginWithGoogle(
+      LoginEvent event, Emitter<AuthState> emit) async {}
+
   @override
-  void dispose() {
-    _loadController.close();
+  Future<void> close() {
+    return super.close();
   }
-  //todo settings
-  @override
-  bool get hasListeners => throw UnimplementedError();
-  @override
-  void notifyListeners() {}
-  @override
-  void removeListener(VoidCallback listener) {}
-  @override
-  void addListener(VoidCallback listener) {}
 }
+
+abstract class AuthState {}
+
+class EmptyState extends AuthState {}
+
+class LoginState extends AuthState {}
+
+class LogoutState extends AuthState {}
+
+class ErrorState extends AuthState {
+  final String message;
+  ErrorState({
+    required this.message,
+  });
+}
+
+abstract class AuthEvent {}
+
+class LoginEvent extends AuthEvent {}
+
+class LogouEvent extends AuthEvent {}

@@ -36,7 +36,7 @@ Widget cardTestWidget({
               ),
               if (category != null)
                 Container(
-                  padding: EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.all(1.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6.0),
@@ -55,10 +55,10 @@ Widget cardTestWidget({
                 )
               else
                 Container(),
-              SizedBox(width: 8.0),
+              const SizedBox(width: 8.0),
               if (subcategory != null)
                 Container(
-                  padding: EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.all(1.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(6.0),
@@ -79,7 +79,7 @@ Widget cardTestWidget({
                 Container(),
               IconButton(
                   padding: EdgeInsets.zero,
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.star,
                     size: 22,
                     color: Colors.yellow,
@@ -87,11 +87,11 @@ Widget cardTestWidget({
                   onPressed: () {})
             ],
           ),
-          Divider(
+          const Divider(
             height: 5,
             color: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             height: 5,
           ),
           Text(

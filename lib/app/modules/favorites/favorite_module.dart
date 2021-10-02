@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/modules/favorites/pages/favorites_screen.dart';
+import 'pages/favorites_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class FavoriteModule extends Module {

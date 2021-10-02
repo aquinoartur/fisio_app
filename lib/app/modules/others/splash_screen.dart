@@ -24,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       },
     );
 
-    Future.delayed(Duration(seconds: 4)).then(
+    Future.delayed(const Duration(seconds: 4)).then(
       (_) => Modular.to.navigate('/login'),
     );
   }
@@ -42,13 +42,14 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Center(
-              child: Container(
-            width: 125,
-            height: 125,
-            child: _riveArtboard == null
-                ? SizedBox()
-                : Rive(artboard: _riveArtboard!),
-          )),
+            child: SizedBox(
+              width: 125,
+              height: 125,
+              child: _riveArtboard == null
+                  ? const SizedBox()
+                  : Rive(artboard: _riveArtboard!),
+            ),
+          ),
         ],
       ),
     );

@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/widgets/loading_indicator_widget.dart';
-import 'package:fisio_app/app/widgets/porfile_widget.dart';
+import '../../widgets/loading_indicator_widget.dart';
+import '../../widgets/profile_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -24,7 +24,7 @@ class _AboutScreenState extends State<AboutScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Idealizadores",
+          'Idealizadores',
           style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
         ),
         centerTitle: true,
@@ -34,8 +34,8 @@ class _AboutScreenState extends State<AboutScreen> {
       ),
       body: FutureBuilder<QuerySnapshot>(
         future: FirebaseFirestore.instance
-            .collection("contributors")
-            .orderBy("pos")
+            .collection('contributors')
+            .orderBy('pos')
             .get(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
@@ -47,24 +47,22 @@ class _AboutScreenState extends State<AboutScreen> {
               );
             default:
               List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-              docs.forEach(
-                (doc) {
-                  names.add(doc["name"]);
-                  descriptions.add(doc["description"]);
-                  images.add(doc["image"]);
-                  instagram.add(doc["instagram"]);
-                  linkedin.add(doc["linkedin"]);
-                  email.add("mailto:" + doc["email"]);
-                },
-              );
+              for (var doc in docs) {
+                names.add(doc['name']);
+                descriptions.add(doc['description']);
+                images.add(doc['image']);
+                instagram.add(doc['instagram']);
+                linkedin.add(doc['linkedin']);
+                email.add('mailto:' + doc['email']);
+              }
               return Stack(
                 children: [
                   Positioned.fill(
                     child: Align(
                       alignment: Alignment.center,
                       child: ListView.separated(
-                        physics: NeverScrollableScrollPhysics(),
-                        separatorBuilder: (_, __) => SizedBox(height: 15),
+                        physics: const NeverScrollableScrollPhysics(),
+                        separatorBuilder: (_, __) => const SizedBox(height: 15),
                         itemCount: docs.length,
                         itemBuilder: (context, index) {
                           return ProfileWidget(

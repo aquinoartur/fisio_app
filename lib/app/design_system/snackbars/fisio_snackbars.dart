@@ -1,12 +1,12 @@
-import 'package:fisio_app/app/design_system/colors_palette/colors_palette.dart';
-import 'package:fisio_app/app/design_system/spacing/spacing.dart';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
+import '../colors_palette/colors_palette.dart';
+import '../spacing/spacing.dart';
+import '../text_styles/text_styles.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 void showToastSucess(String message, {String? subtitle}) =>
     BotToast.showCustomNotification(
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
       toastBuilder: (cancelFunc) => _ContainerFisioSnackbar(
         color: FisioColorsPalette.primaryColor,
         title: message,

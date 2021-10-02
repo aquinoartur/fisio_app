@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/modules/others/about_screen.dart';
+import '../modules/others/about_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +16,7 @@ class ContactsLoginWidget extends StatelessWidget {
           width: 100,
           height: 30,
           child: Text(
-            "Contatos",
+            'Contatos',
             style: GoogleFonts.nunito(
                 color: primaryColor, fontSize: 16, fontWeight: FontWeight.w700),
             textAlign: TextAlign.center,

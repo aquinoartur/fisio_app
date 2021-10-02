@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'text_title_appBar_widget.dart';
+import 'text_title_appbar_widget.dart';
 
 class DefaultAppBar extends StatelessWidget with PreferredSizeWidget {
   @override
   final Size preferredSize;
 
-  DefaultAppBar() : preferredSize = Size.fromHeight(60.0);
+  DefaultAppBar() : preferredSize = const Size.fromHeight(60.0);
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,8 @@ class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
   final Size preferredSize;
   final String title;
 
-  CustomAppBar({required this.title}) : preferredSize = Size.fromHeight(60.0);
+  CustomAppBar({required this.title})
+      : preferredSize = const Size.fromHeight(60.0);
 
   @override
   Widget build(BuildContext context) {

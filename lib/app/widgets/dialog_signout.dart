@@ -14,9 +14,9 @@ class DialogSignout extends StatelessWidget {
       child: Dialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
           shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             Column(
               mainAxisSize: MainAxisSize.min,
@@ -26,7 +26,7 @@ class DialogSignout extends StatelessWidget {
                   heightFactor: .8,
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.close,
                       size: 18.0,
                     ),
@@ -36,9 +36,10 @@ class DialogSignout extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                  padding:
+                      const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                   child: Text(
-                    "Criar conta",
+                    'Criar conta',
                     style: GoogleFonts.nunito(
                         color: primaryColor,
                         fontSize: 22,
@@ -47,40 +48,40 @@ class DialogSignout extends StatelessWidget {
                 ),
                 ListView(
                   shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
+                  physics: const NeverScrollableScrollPhysics(),
                   children: [
                     TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Email",
+                      decoration: const InputDecoration(
+                        hintText: 'Email',
                       ),
                       keyboardType: TextInputType.emailAddress,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Senha",
+                      decoration: const InputDecoration(
+                        hintText: 'Senha',
                       ),
                       obscureText: true,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(
-                        hintText: "Repetir senha",
+                      decoration: const InputDecoration(
+                        hintText: 'Repetir senha',
                       ),
                       obscureText: true,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    buttonLogin(context, "Cadastar"),
-                    SizedBox(
+                    buttonLogin(context, 'Cadastar'),
+                    const SizedBox(
                       height: 10,
                     ),
-                    buttonLoginGoogle(context, "Cadastrar com o Google")
+                    buttonLoginGoogle(context, 'Cadastrar com o Google')
                   ],
                 )
               ],

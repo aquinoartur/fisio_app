@@ -12,8 +12,14 @@ class ProfileWidget extends StatefulWidget {
   final String? linkedin;
   final String? email;
 
-  ProfileWidget(
-      {this.color, this.name, this.description, this.image, this.instagram, this.linkedin, this.email});
+  const ProfileWidget(
+      {this.color,
+      this.name,
+      this.description,
+      this.image,
+      this.instagram,
+      this.linkedin,
+      this.email});
 
   @override
   _ProfileWidgetState createState() => _ProfileWidgetState();
@@ -36,7 +42,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 16, right: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -52,9 +58,9 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               child: SizedBox(
                 width: 90,
                 height: 90,
-                child: widget.image! == ""
+                child: widget.image! == ''
                     ? Image.asset(
-                        "assets/images/person.png",
+                        'assets/images/person.png',
                         fit: BoxFit.cover,
                       )
                     : Image.network(
@@ -64,7 +70,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
               ),
             ),
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           ),
           Text(
@@ -87,7 +93,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               //instagram
-              widget.instagram! != ""
+              widget.instagram! != ''
                   ? GestureDetector(
                       onTap: () {
                         setState(() {
@@ -95,10 +101,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         });
                       },
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(
-                            "https://conteudo.imguol.com.br/c/noticias/23/2016/05/11/novo-logo-do-instagram-1462967759537_1023x1024.jpg",
+                            'https://conteudo.imguol.com.br/c/noticias/23/2016/05/11/novo-logo-do-instagram-1462967759537_1023x1024.jpg',
                           )),
                         ),
                         width: 50,
@@ -106,7 +112,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ))
                   : Container(),
               //linkedin
-              widget.linkedin! != ""
+              widget.linkedin! != ''
                   ? GestureDetector(
                       onTap: () {
                         setState(() {
@@ -114,10 +120,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         });
                       },
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(
-                            "https://img.flaticon.com/icons/png/512/174/174857.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF",
+                            'https://img.flaticon.com/icons/png/512/174/174857.png?size=1200x630f&pad=10,10,10,10&ext=png&bg=FFFFFFFF',
                           )),
                         ),
                         width: 50,
@@ -125,7 +131,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       ))
                   : Container(),
               //email
-              widget.email! != ""
+              widget.email! != ''
                   ? GestureDetector(
                       onTap: () {
                         setState(() {
@@ -133,10 +139,10 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                         });
                       },
                       child: Container(
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           image: DecorationImage(
                               image: NetworkImage(
-                            "https://neilpatel.com/wp-content/uploads/2017/09/8-Email-Personalization-Techniques-That-Work-Better-Than-The-Name-Game.jpg",
+                            'https://neilpatel.com/wp-content/uploads/2017/09/8-Email-Personalization-Techniques-That-Work-Better-Than-The-Name-Game.jpg',
                           )),
                         ),
                         width: 50,

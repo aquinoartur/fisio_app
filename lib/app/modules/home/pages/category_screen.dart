@@ -1,28 +1,31 @@
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/modules/home/pages/test_screen.dart';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
-import 'package:fisio_app/app/widgets/animations_rive_widget.dart';
-import 'package:fisio_app/app/widgets/card_test_widget.dart';
-import 'package:fisio_app/app/widgets/card_tile_category_screen.dart';
-import 'package:fisio_app/app/widgets/customs_app_bar.dart';
-import 'package:fisio_app/app/widgets/loading_indicator_widget.dart';
-import 'package:fisio_app/app/widgets/title_t1_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 
+import '../../../design_system/text_styles/text_styles.dart';
+import '../../../widgets/animations_rive_widget.dart';
+import '../../../widgets/card_test_widget.dart';
+import '../../../widgets/card_tile_category_screen.dart';
+import '../../../widgets/customs_app_bar.dart';
+import '../../../widgets/loading_indicator_widget.dart';
+import '../../../widgets/title_t1_widget.dart';
+import 'test_screen.dart';
+
 class CategoryScreen extends StatefulWidget {
   final DocumentSnapshot? data;
-  CategoryScreen(this.data);
+  const CategoryScreen(
+    this.data,
+  );
   @override
   _CategoryScreenState createState() => _CategoryScreenState();
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
   int _selectedIndex = 999;
-  String category = "";
+  String category = '';
   bool toogle = false;
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
   Artboard? _riveArtboard;
@@ -52,70 +55,69 @@ class _CategoryScreenState extends State<CategoryScreen> {
     final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: widget.data!["name"]),
+      appBar: CustomAppBar(title: widget.data!['name']),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 10),
-          titleT1Widget("Subcategorias", TextStyles.title1),
-          Container(
-            child: StreamBuilder<QuerySnapshot>(
-              stream: firebase
-                  .collection("categorias")
-                  .doc(widget.data!.id)
-                  .collection("subcategorias")
-                  .snapshots(),
-              builder: (context, snapshot) {
-                switch (snapshot.connectionState) {
-                  case ConnectionState.none:
-                  case ConnectionState.waiting:
-                    return SizedBox(height: 80);
-                  default:
-                    List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
-                    return docs.isEmpty //* this is the header page
-                        ? SizedBox(height: 80)
-                        : Container(
-                            height: 40,
-                            padding: EdgeInsets.symmetric(horizontal: 10),
-                            child: ListView.separated(
-                              itemCount: docs.length,
-                              shrinkWrap: true,
-                              physics: BouncingScrollPhysics(),
-                              separatorBuilder: (_, __) => SizedBox(width: 10),
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                return GestureDetector(
-                                  onTap: () => setState(
-                                    () {
-                                      category = docs[index].id;
-                                      _selectedIndex = index;
-                                      toogle = true;
-                                    },
-                                  ),
-                                  child: cardTileCategoryScreen(
-                                    selectedIndex: _selectedIndex,
-                                    index: index,
-                                    color: primaryColor,
-                                    name: docs[index]["name"],
-                                  ),
-                                );
-                              },
-                            ),
-                          );
-                }
-              },
-            ),
+          const SizedBox(height: 10),
+          titleT1Widget('Subcategorias', TextStyles.title1),
+          StreamBuilder<QuerySnapshot>(
+            stream: firebase
+                .collection('categorias')
+                .doc(widget.data!.id)
+                .collection('subcategorias')
+                .snapshots(),
+            builder: (context, snapshot) {
+              switch (snapshot.connectionState) {
+                case ConnectionState.none:
+                case ConnectionState.waiting:
+                  return const SizedBox(height: 80);
+                default:
+                  List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
+                  return docs.isEmpty //* this is the header page
+                      ? const SizedBox(height: 80)
+                      : Container(
+                          height: 40,
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: ListView.separated(
+                            itemCount: docs.length,
+                            shrinkWrap: true,
+                            physics: const BouncingScrollPhysics(),
+                            separatorBuilder: (_, __) =>
+                                const SizedBox(width: 10),
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return GestureDetector(
+                                onTap: () => setState(
+                                  () {
+                                    category = docs[index].id;
+                                    _selectedIndex = index;
+                                    toogle = true;
+                                  },
+                                ),
+                                child: cardTileCategoryScreen(
+                                  selectedIndex: _selectedIndex,
+                                  index: index,
+                                  color: primaryColor,
+                                  name: docs[index]['name'],
+                                ),
+                              );
+                            },
+                          ),
+                        );
+              }
+            },
           ),
-          SizedBox(height: 15),
-          toogle ? titleT1Widget("Testes", TextStyles.title1) : Container(),
+          const SizedBox(height: 15),
+          toogle ? titleT1Widget('Testes', TextStyles.title1) : Container(),
           toogle
               ? FutureBuilder<QuerySnapshot>(
                   future: firebase
-                      .collection("categorias")
+                      .collection('categorias')
                       .doc(widget.data!.id)
-                      .collection("subcategorias")
+                      .collection('subcategorias')
                       .doc(category)
-                      .collection("tests")
+                      .collection('tests')
                       .get(),
                   builder: (context, snapshot) {
                     switch (snapshot.connectionState) {
@@ -135,11 +137,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                               )
                             : Expanded(
                                 child: ListView.separated(
-                                  physics: BouncingScrollPhysics(),
-                                  padding: EdgeInsets.symmetric(horizontal: 10),
+                                  physics: const BouncingScrollPhysics(),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
                                   shrinkWrap: true,
                                   separatorBuilder: (_, __) =>
-                                      SizedBox(height: 8),
+                                      const SizedBox(height: 8),
                                   itemCount: snapshot.data!.docs.length,
                                   itemBuilder: (context, index) =>
                                       OpenContainer(
@@ -150,14 +153,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                     transitionType:
                                         ContainerTransitionType.fade,
                                     transitionDuration:
-                                        Duration(milliseconds: 1200),
+                                        const Duration(milliseconds: 1200),
                                     closedBuilder:
                                         (context, VoidCallback callback) =>
                                             GestureDetector(
                                       onTap: callback,
                                       child: cardTestWidget(
-                                        name: docs[index]["name"],
-                                        description: docs[index]["description"],
+                                        name: docs[index]['name'],
+                                        description: docs[index]['description'],
                                         color: primaryColor,
                                       ),
                                     ),

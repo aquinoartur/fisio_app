@@ -1,8 +1,10 @@
-import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
+import '../../design_system/snackbars/fisio_snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class MyDataScreen extends StatefulWidget {
+  const MyDataScreen({Key? key}) : super(key: key);
+
   @override
   State<MyDataScreen> createState() => _MyDataScreenState();
 }
@@ -23,9 +25,9 @@ class _MyDataScreenState extends State<MyDataScreen> {
         children: [
           IconButton(
             onPressed: () => Modular.to.pushNamed('/profile/favorites'),
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
           ),
-          Text('Aperte em + para testar a transição de tela')
+          const Text('Aperte em + para testar a transição de tela')
         ],
       )),
     );

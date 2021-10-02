@@ -4,7 +4,7 @@ import 'package:line_icons/line_icons.dart';
 
 class HomeScreenController {
   //**bottomNavBar
-  var gridDelegate = SliverGridDelegateWithFixedCrossAxisCount(
+  var gridDelegate = const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
     crossAxisSpacing: 1,
     mainAxisSpacing: 1,
@@ -22,7 +22,7 @@ class HomeScreenController {
     ],
   );
 
-  var tabs = [
+  var tabs = const [
     GButton(icon: LineIcons.home, text: 'Home'),
     GButton(icon: LineIcons.heart, text: 'Favoritos'),
     GButton(icon: LineIcons.book, text: 'Referências'),

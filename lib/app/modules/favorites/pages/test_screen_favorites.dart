@@ -1,5 +1,5 @@
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
-import 'package:fisio_app/app/modules/home/home_controller/home_test_screen_controller.dart';
+import '../../../design_system/text_styles/text_styles.dart';
+import '../../home/home_controller/home_test_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +8,7 @@ class TestScreenFavorites extends StatefulWidget {
   final String texto;
   final String name;
   final List<String> images;
-  TestScreenFavorites({
+  const TestScreenFavorites({
     required this.texto,
     required this.name,
     required this.images,
@@ -37,7 +37,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "Detalhes do teste",
+          'Detalhes do teste',
           style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
         ),
         iconTheme: IconThemeData(color: primaryColor),
@@ -55,7 +55,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                     itemCount: widget.images.length,
                     itemBuilder: (BuildContext context, int index) =>
                         Image.network(widget.images[index], fit: BoxFit.fill),
-                    pagination: SwiperPagination(),
+                    pagination: const SwiperPagination(),
                   ),
                 )
               : Container(),
@@ -63,8 +63,8 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
             child: Container(
               color: Colors.white,
               child: ListView(
-                physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.all(16),
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.all(16),
                 children: [
                   Row(
                     children: [
@@ -78,22 +78,22 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
-                    "Descrição:",
+                    'Descrição:',
                     style: TextStyles.ts2,
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
                     widget.texto,
                     style: TextStyles.ts3,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                 ],
               ),
             ),

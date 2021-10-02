@@ -8,15 +8,15 @@ class HomeCustomShimmer extends StatelessWidget {
         baseColor: Colors.grey[300]!,
         highlightColor: Colors.white,
         child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             crossAxisSpacing: 1,
             mainAxisSpacing: 1,
             childAspectRatio: 1.8,
           ),
-          padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+          padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
           shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           itemCount: 8,
           itemBuilder: (context, index) {
             return Card(
@@ -30,12 +30,12 @@ class HomeCustomShimmer extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
                     child: Container(
-                      decoration: BoxDecoration(color: Colors.grey),
+                      decoration: const BoxDecoration(color: Colors.grey),
                       width: 50,
                       height: 50,
                     ),
                   ),
-                  Text('text')
+                  const Text('text')
                 ],
               ),
             );

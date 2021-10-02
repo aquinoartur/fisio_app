@@ -1,15 +1,15 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
-import 'package:fisio_app/app/widgets/loading_indicator_widget.dart';
+import '../design_system/text_styles/text_styles.dart';
+import 'loading_indicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class CardInfo extends StatelessWidget {
   final DocumentSnapshot? data;
 
-  CardInfo(this.data);
+  const CardInfo(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -33,8 +33,8 @@ class CardInfo extends StatelessWidget {
                 fit: BoxFit.scaleDown,
                 imageUrl: data!['image'],
                 errorWidget: (context, url, error) =>
-                    Center(child: Icon(Icons.info)),
-                placeholder: (context, url) => Center(
+                    const Center(child: Icon(Icons.info)),
+                placeholder: (context, url) => const Center(
                   child: LoadingIndicatorWidget(
                     color: Colors.white,
                     size: 10.0,

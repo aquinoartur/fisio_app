@@ -14,7 +14,7 @@ class LoadingIndicatorWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
+      child: SizedBox(
         height: size,
         width: size,
         child: CircularProgressIndicator(

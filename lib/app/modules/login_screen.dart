@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
-import 'package:fisio_app/app/widgets/dialog_login_widget.dart';
-import 'package:fisio_app/app/widgets/dialog_signout.dart';
-import 'package:fisio_app/app/widgets/linear_gradient_widget.dart';
+import '../design_system/text_styles/text_styles.dart';
+import '../widgets/dialog_login_widget.dart';
+import '../widgets/dialog_signout.dart';
+import '../widgets/linear_gradient_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -34,20 +34,20 @@ class _LoginScreenState extends State<LoginScreen> {
           children: [
             Positioned.fill(
               child: Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("assets/images/login.jpg"),
+                      image: AssetImage('assets/images/login.jpg'),
                       fit: BoxFit.fitHeight),
                 ),
               ),
             ),
             Positioned(
               bottom: MediaQuery.of(context).size.height / 1.1,
-              child: FirstLinearGradientWidget(),
+              child: const FirstLinearGradientWidget(),
             ),
             Positioned(
               top: MediaQuery.of(context).size.height / 2,
-              child: SecLinearGradientWidget(),
+              child: const SecLinearGradientWidget(),
             ),
             Positioned.fill(
               top: MediaQuery.of(context).size.height / 1.5,
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Bem-vindo",
+                        'Bem-vindo',
                         style: GoogleFonts.nunito(
                             color: primaryColor,
                             fontSize: 38,
@@ -65,14 +65,14 @@ class _LoginScreenState extends State<LoginScreen> {
                         textAlign: TextAlign.center,
                       ),
                       Text(
-                        "Acesse os melhores conteúdos de testes em Fisioterapia.",
+                        'Acesse os melhores conteúdos de testes em Fisioterapia.',
                         style: GoogleFonts.nunito(
                             color: Colors.black87,
                             fontSize: 14,
                             fontWeight: FontWeight.w700),
                         textAlign: TextAlign.center,
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       AnimatedOpacity(
                         duration: const Duration(seconds: 1),
                         opacity: isLoaded ? 1 : 0,
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 55,
                               width: 300,
                               child: Text(
-                                "Login",
+                                'Login',
                                 style: GoogleFonts.nunito(
                                     color: Colors.white,
                                     fontSize: 18,
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: 100,
                     height: 30,
                     child: Text(
-                      "Criar conta",
+                      'Criar conta',
                       style: TextStyles.cardtitle1.copyWith(
                         color: primaryColor,
                         fontWeight: FontWeight.w700,

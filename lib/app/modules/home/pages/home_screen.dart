@@ -1,21 +1,22 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/ad_mob/ad_state.dart';
-import 'package:fisio_app/app/blocs/home_screen_bloc.dart';
-import 'package:fisio_app/app/modules/home/home_controller/home_screen_controller.dart';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
-import 'package:fisio_app/app/widgets/card_info_widget.dart';
-import 'package:fisio_app/app/widgets/custom_shimmer_home.dart';
-import 'package:fisio_app/app/widgets/customs_app_bar.dart';
-import 'package:fisio_app/app/widgets/header_favorites.dart';
-import 'package:fisio_app/app/widgets/title_t1_widget.dart';
+import '../../../ad_mob/ad_state.dart';
+import '../../../blocs/home_screen_bloc.dart';
+import '../home_controller/home_screen_controller.dart';
+import '../../../design_system/text_styles/text_styles.dart';
+import '../../../widgets/card_info_widget.dart';
+import '../../../widgets/custom_shimmer_home.dart';
+import '../../../widgets/customs_app_bar.dart';
+import '../../../widgets/header_favorites.dart';
+import '../../../widgets/title_t1_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
-import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
+import '../../../design_system/snackbars/fisio_snackbars.dart';
 
 class HomeScreen extends StatefulWidget {
+  const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -40,7 +41,7 @@ class _HomeScreenState extends State<HomeScreen>
             bannerAd = BannerAd(
                 adUnitId: adState.bannerAdUnitId,
                 size: AdSize.banner,
-                request: AdRequest(),
+                request: const AdRequest(),
                 listener: adState.adListener)
               ..load();
           },
@@ -66,44 +67,45 @@ class _HomeScreenState extends State<HomeScreen>
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                titleT1Widget("Meus favoritos", TextStyles.title1),
+                titleT1Widget('Meus favoritos', TextStyles.title1),
                 headerFavorites(primaryColor),
-                SizedBox(height: 5),
-                //bannerAd == null ? SizedBox(height: 5) : adMob(bannerAd!),
-                SizedBox(height: 5),
-                titleT1Widget("Categorias", TextStyles.title1),
+                const SizedBox(height: 5),
+                //bannerAd == null ? const SizedBox(height: 5) : adMob(bannerAd!),
+                const SizedBox(height: 5),
+                titleT1Widget('Categorias', TextStyles.title1),
                 Expanded(
                   child: ListView(
-                    physics: BouncingScrollPhysics(),
+                    physics: const BouncingScrollPhysics(),
                     children: [
                       StreamBuilder<List<DocumentSnapshot>>(
                         stream: bloc.outList,
                         builder: (context, snapshot) {
-                          if (!snapshot.hasData)
+                          if (!snapshot.hasData) {
                             return HomeCustomShimmer();
-                          else
+                          } else {
                             return GridView.builder(
                               gridDelegate: _controller.gridDelegate,
-                              padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
+                              padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
                               shrinkWrap: true,
-                              physics: BouncingScrollPhysics(),
+                              physics: const BouncingScrollPhysics(),
                               itemCount: snapshot.data!.length,
                               itemBuilder: (context, index) {
                                 return CardInfo(snapshot.data![index]);
                               },
                             );
+                          }
                         },
                       ),
                     ],
                   ),
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
               ],
             )
           : bloc.toListWidgets().elementAt(_selectedIndex),
       bottomNavigationBar: Container(
         decoration: _controller.bottomBoxDecoration,
-        margin: EdgeInsets.all(6.0),
+        margin: const EdgeInsets.all(6.0),
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
@@ -113,8 +115,8 @@ class _HomeScreenState extends State<HomeScreen>
               gap: 8,
               activeColor: Colors.white,
               iconSize: 24,
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-              duration: Duration(milliseconds: 400),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+              duration: const Duration(milliseconds: 400),
               tabBackgroundColor: primaryColor,
               color: Colors.black,
               tabs: _controller.tabs,

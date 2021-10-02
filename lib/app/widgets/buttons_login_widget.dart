@@ -1,5 +1,3 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:fisio_app/app/blocs/dialog_login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,9 +17,9 @@ Widget buttonLoginGoogle(BuildContext context, String text) {
         Container(
           width: 50,
           height: 50,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
-            image: AssetImage("assets/images/google.jpg"),
+            image: AssetImage('assets/images/google.jpg'),
           )),
         ),
         Text(
@@ -35,14 +33,14 @@ Widget buttonLoginGoogle(BuildContext context, String text) {
 
 Widget buttonLogin(BuildContext context, String text) {
   final primaryColor = Theme.of(context).primaryColor;
-  final bloc = BlocProvider.getBloc<DialogLoginBloc>();
+  //todo recuperar com o modular
   return Material(
     color: primaryColor,
     borderRadius: BorderRadius.circular(30),
     child: InkWell(
         onTap: () {
           bloc.isLoad(); //toggle
-          Future.delayed(Duration(seconds: 3)).then((_) {
+          Future.delayed(const Duration(seconds: 3)).then((_) {
             Navigator.of(context).popUntil((route) => route.isFirst);
             Modular.to.pushReplacementNamed('/home');
           });
@@ -57,7 +55,7 @@ Widget buttonLogin(BuildContext context, String text) {
                 height: 55,
                 width: 200,
                 child: snapshot.data
-                    ? LoadingIndicatorWidget(
+                    ? const LoadingIndicatorWidget(
                         color: Colors.white,
                         size: 20.0,
                         strokeWidth: 3.0,
@@ -80,7 +78,7 @@ Widget buttonForget(BuildContext context) {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          "Esqueceu a senha?  ",
+          'Esqueceu a senha?  ',
           style: GoogleFonts.nunito(color: Colors.black87, fontSize: 14),
         )
       ],

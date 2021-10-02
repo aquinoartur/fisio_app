@@ -1,13 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/modules/home/home_controller/home_test_screen_controller.dart';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../design_system/text_styles/text_styles.dart';
+import '../home_controller/home_test_screen_controller.dart';
+
 class TestScreen extends StatefulWidget {
   final DocumentSnapshot? data;
-  TestScreen(this.data);
+  const TestScreen(
+    this.data,
+  );
 
   @override
   _TestScreenState createState() => _TestScreenState();
@@ -22,7 +25,7 @@ class _TestScreenState extends State<TestScreen> {
   void initState() {
     super.initState();
     setState(() {
-      widget.data!["images"].map((url) {
+      widget.data!['images'].map((url) {
         return list.add(url);
       }).toList();
     });
@@ -39,7 +42,7 @@ class _TestScreenState extends State<TestScreen> {
         centerTitle: true,
         elevation: 0,
         title: Text(
-          "Detalhes do teste",
+          'Detalhes do teste',
           style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
         ),
         iconTheme: IconThemeData(color: primaryColor),
@@ -65,12 +68,12 @@ class _TestScreenState extends State<TestScreen> {
                   child: Swiper(
                     itemCount: list.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return new Image.network(
-                        widget.data!["images"][index],
+                      return Image.network(
+                        widget.data!['images'][index],
                         fit: BoxFit.fill,
                       );
                     },
-                    pagination: new SwiperPagination(),
+                    pagination: const SwiperPagination(),
                   ),
                 )
               : Container(),
@@ -78,14 +81,14 @@ class _TestScreenState extends State<TestScreen> {
             child: Container(
               color: Colors.white,
               child: ListView(
-                physics: BouncingScrollPhysics(),
-                padding: EdgeInsets.all(16),
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.all(16),
                 children: [
                   Row(
                     children: [
                       Expanded(
                         child: Text(
-                          widget.data!["name"],
+                          widget.data!['name'],
                           style: TextStyles.ts1,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
@@ -93,7 +96,7 @@ class _TestScreenState extends State<TestScreen> {
                       ),
                       IconButton(
                         padding: EdgeInsets.zero,
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.star,
                           size: 24,
                           color: Colors.yellow,
@@ -102,24 +105,24 @@ class _TestScreenState extends State<TestScreen> {
                       )
                     ],
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
-                    "Descrição:",
+                    'Descrição:',
                     style: TextStyles.ts2,
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Text(
-                    widget.data!["resume"],
+                    widget.data!['resume'],
                     style: TextStyles.ts3,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Container(
-                    padding: EdgeInsets.symmetric(horizontal: 60),
+                    padding: const EdgeInsets.symmetric(horizontal: 60),
                     height: 55,
                     width: 300,
                     child: ElevatedButton(
@@ -131,21 +134,21 @@ class _TestScreenState extends State<TestScreen> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: Text("Obter teste", style: TextStyles.ts4),
+                      child: Text('Obter teste', style: TextStyles.ts4),
                       onPressed: () => setState(
-                          () => controller.urlOpen(widget.data!["test"])),
+                          () => controller.urlOpen(widget.data!['test'])),
                     ),
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   GestureDetector(
                     onTap: () => setState(
-                        () => controller.urlOpen(widget.data!["other"])),
+                        () => controller.urlOpen(widget.data!['other'])),
                     child: Container(
                       height: 40,
                       width: 100,
                       alignment: Alignment.center,
                       child: Text(
-                        "Mais informações.",
+                        'Mais informações.',
                         style: GoogleFonts.nunito(
                             color: Colors.black87,
                             fontSize: 16,
@@ -154,7 +157,7 @@ class _TestScreenState extends State<TestScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                 ],
               ),
             ),

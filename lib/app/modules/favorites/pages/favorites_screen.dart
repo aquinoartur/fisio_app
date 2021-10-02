@@ -1,7 +1,8 @@
 import 'package:animations/animations.dart';
-import 'package:fisio_app/app/modules/favorites/pages/test_screen_favorites.dart';
-import 'package:fisio_app/app/widgets/card_test_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../../../widgets/card_test_widget.dart';
+import 'test_screen_favorites.dart';
 
 class FavoritesScreen extends StatefulWidget {
   @override
@@ -23,15 +24,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
     return Scaffold(
       body: ListView.separated(
-        physics: BouncingScrollPhysics(),
-        separatorBuilder: (_, __) => SizedBox(height: 8.0),
+        physics: const BouncingScrollPhysics(),
+        separatorBuilder: (_, __) => const SizedBox(height: 8.0),
         itemBuilder: (context, index) => OpenContainer(
           openColor: Colors.transparent,
           closedColor: Colors.transparent,
           openElevation: 0,
           closedElevation: 0,
           transitionType: ContainerTransitionType.fade,
-          transitionDuration: Duration(milliseconds: 1200),
+          transitionDuration: const Duration(milliseconds: 1200),
           closedBuilder: (context, VoidCallback callback) => GestureDetector(
             onTap: callback,
             child: cardTestWidget(
@@ -46,7 +47,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           openBuilder: (context, _) => TestScreenFavorites(
             texto: text,
             name: 'Nome do teste',
-            images: [
+            images: const [
               'https://blog.estacio.br/wp-content/uploads/2020/03/original-c93e668eaa77559d1494507bdd5b117d-780x450.jpg',
               'https://blog.estacio.br/wp-content/uploads/2020/03/original-c93e668eaa77559d1494507bdd5b117d-780x450.jpg',
               'https://blog.estacio.br/wp-content/uploads/2020/03/original-c93e668eaa77559d1494507bdd5b117d-780x450.jpg',

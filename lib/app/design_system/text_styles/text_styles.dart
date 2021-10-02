@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/design_system/colors_palette/colors_palette.dart';
+import '../colors_palette/colors_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -40,7 +40,7 @@ class TextStyles {
   );
 
   static final TextStyle ts1 = GoogleFonts.nunito(
-      color: Color.fromARGB(255, 74, 20, 140),
+      color: const Color.fromARGB(255, 74, 20, 140),
       fontWeight: FontWeight.w600,
       fontSize: 24);
 

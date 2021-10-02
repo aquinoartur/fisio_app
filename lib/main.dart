@@ -1,7 +1,6 @@
-import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:fisio_app/app/app_module.dart';
+import 'app/app_module.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,7 @@ import 'app/ad_mob/ad_state.dart';
 import 'main_theme_data.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:asuka/asuka.dart' as asuka;
+import 'package:bloc_pattern/bloc_pattern.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding
@@ -38,9 +38,9 @@ class AppWidget extends StatelessWidget {
     return BlocProvider(
       blocs: [
         Bloc((i) => HomeScreenBloc()),
-        Bloc((ii) => DialogLoginBloc()),
+        Bloc((ii) => AuthBloc(EmptyState())),
       ],
-      dependencies: [],
+      dependencies: const [],
       child: MaterialApp(
               builder: (context, child) {
                 child = asuka.builder(context, child);

@@ -1,23 +1,23 @@
-import 'package:fisio_app/app/design_system/snackbars/fisio_snackbars.dart';
-import 'package:fisio_app/app/design_system/text_styles/text_styles.dart';
+import '../design_system/snackbars/fisio_snackbars.dart';
+import '../design_system/text_styles/text_styles.dart';
 import 'package:flutter/material.dart';
 
 Widget headerFavorites(Color color) {
   return Container(
-    padding: EdgeInsets.all(10),
-    margin: EdgeInsets.symmetric(horizontal: 16),
+    padding: const EdgeInsets.all(10),
+    margin: const EdgeInsets.symmetric(horizontal: 16),
     alignment: Alignment.center,
     decoration:
         BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Container(
+        SizedBox(
           height: 40,
           child: ListView.separated(
             itemCount: 10,
-            physics: BouncingScrollPhysics(),
-            separatorBuilder: (_, __) => SizedBox(width: 10),
+            physics: const BouncingScrollPhysics(),
+            separatorBuilder: (_, __) => const SizedBox(width: 10),
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) {
               return GestureDetector(
@@ -34,7 +34,7 @@ Widget headerFavorites(Color color) {
                   ),
                   width: 150,
                   child: Text(
-                    "Nome do teste",
+                    'Nome do teste',
                     style: TextStyles.cardtitle3,
                   ),
                 ),
