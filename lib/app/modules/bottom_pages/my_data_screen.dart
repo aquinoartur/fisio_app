@@ -1,3 +1,6 @@
+import 'package:fisio_app/app/blocs/auth_bloc.dart';
+import 'package:fisio_app/app/modules/auth/bloc/auth_events.dart';
+
 import '../../design_system/snackbars/fisio_snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -10,6 +13,7 @@ class MyDataScreen extends StatefulWidget {
 }
 
 class _MyDataScreenState extends State<MyDataScreen> {
+  final bloc = Modular.get<AuthBloc>();
   @override
   void initState() {
     super.initState();
@@ -24,10 +28,9 @@ class _MyDataScreenState extends State<MyDataScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           IconButton(
-            onPressed: () => Modular.to.pushNamed('/profile/favorites'),
-            icon: const Icon(Icons.add),
+            onPressed: () => bloc.add(LogoutEvent()),
+            icon: const Icon(Icons.logout),
           ),
-          const Text('Aperte em + para testar a transição de tela')
         ],
       )),
     );

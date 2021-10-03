@@ -1,8 +1,8 @@
 import 'dart:ui';
-import '../design_system/text_styles/text_styles.dart';
-import '../widgets/dialog_login_widget.dart';
-import '../widgets/dialog_signout.dart';
-import '../widgets/linear_gradient_widget.dart';
+import 'package:fisio_app/app/modules/auth/widgets/dialog_login_widget.dart';
+import 'package:fisio_app/app/modules/auth/widgets/dialog_signout.dart';
+import '../../../design_system/text_styles/text_styles.dart';
+import '../../../widgets/linear_gradient_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';

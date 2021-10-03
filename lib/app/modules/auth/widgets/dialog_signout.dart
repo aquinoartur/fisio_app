@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import 'buttons_login_widget.dart';
 
 class DialogSignout extends StatelessWidget {
@@ -74,13 +73,9 @@ class DialogSignout extends StatelessWidget {
                       ),
                       obscureText: true,
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    buttonLogin(context, 'Cadastar'),
-                    const SizedBox(
-                      height: 10,
-                    ),
+                    const SizedBox(height: 10),
+                    //buttonLogin(context, 'Cadastar'),
+                    const SizedBox(height: 10),
                     buttonLoginGoogle(context, 'Cadastrar com o Google')
                   ],
                 )

@@ -14,6 +14,16 @@ void showToastSucess(String message, {String? subtitle}) =>
         icon: Icons.check_circle_outline,
       ),
     );
+void showToastError(String message, {String? subtitle}) =>
+    BotToast.showCustomNotification(
+      duration: const Duration(seconds: 2),
+      toastBuilder: (cancelFunc) => _ContainerFisioSnackbar(
+        color: FisioColorsPalette.red,
+        title: message,
+        subtitle: subtitle,
+        icon: Icons.check_circle_outline,
+      ),
+    );
 
 class _ContainerFisioSnackbar extends StatelessWidget {
   final String title;
