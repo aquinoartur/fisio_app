@@ -1,5 +1,4 @@
-import '../design_system/snackbars/fisio_snackbars.dart';
-import '../design_system/text_styles/text_styles.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 
 Widget headerFavorites(Color color) {
@@ -7,8 +6,7 @@ Widget headerFavorites(Color color) {
     padding: const EdgeInsets.all(10),
     margin: const EdgeInsets.symmetric(horizontal: 16),
     alignment: Alignment.center,
-    decoration:
-        BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
+    decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

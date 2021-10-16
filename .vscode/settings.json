@@ -1,0 +1,13 @@
+{
+    "dart.lineLength": 120,
+    "[dart]": {
+        "editor.rulers": [
+            120
+        ],
+    },
+    "dart.flutterSdkPath": "D:\\fvm\\images\\versions\\stable",
+    "editor.formatOnSave": true,
+    "cSpell.words": [
+        "anims"
+    ]
+}

@@ -1,18 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../ad_mob/ad_state.dart';
-import '../../../blocs/home_screen_bloc.dart';
+import '../../../core/ad_mob/ad_state.dart';
+import '../../../core/blocs/home_screen_bloc.dart';
+import '../../../core/core.dart';
 import '../home_controller/home_screen_controller.dart';
-import '../../../design_system/text_styles/text_styles.dart';
-import '../../../widgets/card_info_widget.dart';
-import '../../../widgets/custom_shimmer_home.dart';
-import '../../../widgets/customs_app_bar.dart';
-import '../../../widgets/header_favorites.dart';
-import '../../../widgets/title_t1_widget.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
-import '../../../design_system/snackbars/fisio_snackbars.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,8 +17,7 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with AutomaticKeepAliveClientMixin {
+class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin {
   int _selectedIndex = 0;
   BannerAd? bannerAd;
   final FirebaseFirestore firebase = FirebaseFirestore.instance;

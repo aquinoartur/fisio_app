@@ -1,7 +1,6 @@
 import 'dart:ui';
-import 'package:fisio_app/app/blocs/auth_bloc.dart';
-import 'package:fisio_app/app/modules/auth/bloc/auth_events.dart';
-import 'package:fisio_app/app/modules/auth/bloc/auth_states.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_events.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,8 +11,8 @@ import 'buttons_login_widget.dart';
 class DialogLogin extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
   final bloc = Modular.get<AuthBloc>();
+
   @override
   Widget build(BuildContext context) {
     final primaryColor = Theme.of(context).primaryColor;
@@ -39,8 +38,7 @@ class DialogLogin extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                  padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                   child: Text(
                     'Insira seus dados',
                     style: GoogleFonts.nunito(
@@ -76,13 +74,10 @@ class DialogLogin extends StatelessWidget {
                         child: buttonLogin(context: context, text: 'Entrar'),
                         onTap: () {
                           bloc.add(LoginEvent(
-                              email: emailController.text,
-                              password: passwordController.text));
-
-                          if (bloc.state is LoginState) {
-                            Navigator.of(context)
-                                .popUntil((route) => route.isFirst);
-                          }
+                            email: emailController.text,
+                            password: passwordController.text,
+                            context: context,
+                          ));
                         },
                       ),
                     ),

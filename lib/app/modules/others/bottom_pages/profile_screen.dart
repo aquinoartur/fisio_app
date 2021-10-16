@@ -1,23 +1,21 @@
-import 'package:fisio_app/app/blocs/auth_bloc.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import 'package:fisio_app/app/modules/auth/bloc/auth_bloc.dart';
 import 'package:fisio_app/app/modules/auth/bloc/auth_events.dart';
-
-import '../../design_system/snackbars/fisio_snackbars.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class MyDataScreen extends StatefulWidget {
-  const MyDataScreen({Key? key}) : super(key: key);
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
 
   @override
-  State<MyDataScreen> createState() => _MyDataScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class _MyDataScreenState extends State<MyDataScreen> {
+class _ProfileScreenState extends State<ProfileScreen> {
   final bloc = Modular.get<AuthBloc>();
   @override
   void initState() {
     super.initState();
-    showToastSucess('em breve');
   }
 
   @override
@@ -29,7 +27,7 @@ class _MyDataScreenState extends State<MyDataScreen> {
         children: [
           IconButton(
             onPressed: () => bloc.add(LogoutEvent()),
-            icon: const Icon(Icons.logout),
+            icon: Icon(Icons.logout, color: FisioColors.red),
           ),
         ],
       )),

@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../widgets/loading_indicator_widget.dart';
-import '../../widgets/profile_widget.dart';
+import '../../../core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,10 +32,7 @@ class _AboutScreenState extends State<AboutScreen> {
         elevation: 0,
       ),
       body: FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance
-            .collection('contributors')
-            .orderBy('pos')
-            .get(),
+        future: FirebaseFirestore.instance.collection('contributors').orderBy('pos').get(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.none:

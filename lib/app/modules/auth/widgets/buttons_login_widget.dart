@@ -1,10 +1,8 @@
-import 'package:fisio_app/app/blocs/auth_bloc.dart';
-import 'package:fisio_app/app/modules/auth/bloc/auth_events.dart';
+import '../bloc/auth_bloc.dart';
+import '../bloc/auth_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../widgets/loading_indicator_widget.dart';
 
 Widget buttonLoginGoogle(BuildContext context, String text) {
   final bloc = Modular.get<AuthBloc>();
@@ -61,12 +59,7 @@ Widget buttonForget(BuildContext context) {
     onTap: () {},
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Text(
-          'Esqueceu a senha?  ',
-          style: GoogleFonts.nunito(color: Colors.black87, fontSize: 14),
-        )
-      ],
+      children: [Text('Esqueceu a senha?  ', style: GoogleFonts.nunito(color: Colors.black87, fontSize: 14))],
     ),
   );
 }

@@ -1,7 +1,6 @@
 import 'package:animations/animations.dart';
+import '../../../core/core.dart';
 import 'package:flutter/material.dart';
-
-import '../../../widgets/card_test_widget.dart';
 import 'test_screen_favorites.dart';
 
 class FavoritesScreen extends StatefulWidget {

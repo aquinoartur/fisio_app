@@ -4,21 +4,19 @@ import '../text_styles/text_styles.dart';
 import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
-void showToastSucess(String message, {String? subtitle}) =>
-    BotToast.showCustomNotification(
+void showToastSucess(String message, {String? subtitle}) => BotToast.showCustomNotification(
       duration: const Duration(seconds: 2),
       toastBuilder: (cancelFunc) => _ContainerFisioSnackbar(
-        color: FisioColorsPalette.primaryColor,
+        color: FisioColors.primaryColor,
         title: message,
         subtitle: subtitle,
         icon: Icons.check_circle_outline,
       ),
     );
-void showToastError(String message, {String? subtitle}) =>
-    BotToast.showCustomNotification(
+void showToastError(String message, {String? subtitle}) => BotToast.showCustomNotification(
       duration: const Duration(seconds: 2),
       toastBuilder: (cancelFunc) => _ContainerFisioSnackbar(
-        color: FisioColorsPalette.red,
+        color: FisioColors.red,
         title: message,
         subtitle: subtitle,
         icon: Icons.check_circle_outline,
@@ -31,12 +29,7 @@ class _ContainerFisioSnackbar extends StatelessWidget {
   final IconData icon;
   final Color color;
 
-  const _ContainerFisioSnackbar(
-      {Key? key,
-      required this.title,
-      this.subtitle,
-      required this.icon,
-      required this.color})
+  const _ContainerFisioSnackbar({Key? key, required this.title, this.subtitle, required this.icon, required this.color})
       : super(key: key);
 
   @override

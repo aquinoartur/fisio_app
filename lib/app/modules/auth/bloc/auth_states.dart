@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthState {}
 
@@ -12,8 +11,15 @@ class LoginState extends AuthState {
   });
 }
 
+class PersistentLoginState extends AuthState {
+  final User user;
+  PersistentLoginState({
+    required this.user,
+  });
+}
+
 class GoogleLoginState extends AuthState {
-  final GoogleSignInAccount user;
+  final User user;
 
   GoogleLoginState(this.user);
 }

@@ -1,3 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import '../../auth/bloc/auth_bloc.dart';
+import '../../auth/bloc/auth_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -11,10 +14,27 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   Artboard? _riveArtboard;
   RiveAnimationController? _controller;
+  final bloc = Modular.get<AuthBloc>();
 
   @override
   void initState() {
     super.initState();
+
+    Future.delayed(const Duration(seconds: 4)).then(
+      (_) {
+        FirebaseAuth.instance.authStateChanges().listen(
+          (User? user) {
+            if (user == null) {
+              Modular.to.navigate('/login');
+            } else {
+              bloc.add(PersistentLoginEvent(user: user));
+              Modular.to.navigate('/home/');
+            }
+          },
+        );
+      },
+    );
+
     rootBundle.load('assets/anims/osso.riv').then(
       (data) async {
         final file = RiveFile.import(data);
@@ -22,10 +42,6 @@ class _SplashScreenState extends State<SplashScreen> {
         artboard.addController(_controller = SimpleAnimation('Animation 1'));
         setState(() => _riveArtboard = artboard);
       },
-    );
-
-    Future.delayed(const Duration(seconds: 4)).then(
-      (_) => Modular.to.navigate('/login'),
     );
   }
 
@@ -45,9 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
             child: SizedBox(
               width: 125,
               height: 125,
-              child: _riveArtboard == null
-                  ? const SizedBox()
-                  : Rive(artboard: _riveArtboard!),
+              child: _riveArtboard == null ? const SizedBox() : Rive(artboard: _riveArtboard!),
             ),
           ),
         ],

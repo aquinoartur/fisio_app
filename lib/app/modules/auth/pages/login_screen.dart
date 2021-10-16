@@ -1,8 +1,8 @@
 import 'dart:ui';
-import 'package:fisio_app/app/modules/auth/widgets/dialog_login_widget.dart';
-import 'package:fisio_app/app/modules/auth/widgets/dialog_signout.dart';
-import '../../../design_system/text_styles/text_styles.dart';
-import '../../../widgets/linear_gradient_widget.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../core/core.dart';
+import '../widgets/dialog_login_widget.dart';
+import '../widgets/dialog_signout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -35,9 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Positioned.fill(
               child: Container(
                 decoration: const BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage('assets/images/login.jpg'),
-                      fit: BoxFit.fitHeight),
+                  image: DecorationImage(image: AssetImage('assets/images/login.jpg'), fit: BoxFit.fitHeight),
                 ),
               ),
             ),
@@ -58,18 +56,12 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         'Bem-vindo',
-                        style: GoogleFonts.nunito(
-                            color: primaryColor,
-                            fontSize: 38,
-                            fontWeight: FontWeight.w800),
+                        style: GoogleFonts.nunito(color: primaryColor, fontSize: 38, fontWeight: FontWeight.w800),
                         textAlign: TextAlign.center,
                       ),
                       Text(
                         'Acesse os melhores conteúdos de testes em Fisioterapia.',
-                        style: GoogleFonts.nunito(
-                            color: Colors.black87,
-                            fontSize: 14,
-                            fontWeight: FontWeight.w700),
+                        style: GoogleFonts.nunito(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w700),
                         textAlign: TextAlign.center,
                       ),
                       const SizedBox(height: 15),
@@ -80,10 +72,8 @@ class _LoginScreenState extends State<LoginScreen> {
                           color: primaryColor,
                           borderRadius: BorderRadius.circular(30),
                           child: InkWell(
-                            onTap: () => showDialog(
-                                context: context,
-                                builder: (_) => DialogLogin(),
-                                barrierDismissible: false),
+                            onTap: () =>
+                                showDialog(context: context, builder: (_) => DialogLogin(), barrierDismissible: false),
                             borderRadius: BorderRadius.circular(30),
                             child: Container(
                               alignment: Alignment.center,
@@ -91,10 +81,8 @@ class _LoginScreenState extends State<LoginScreen> {
                               width: 300,
                               child: Text(
                                 'Login',
-                                style: GoogleFonts.nunito(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
+                                style:
+                                    GoogleFonts.nunito(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w400),
                                 textAlign: TextAlign.center,
                               ),
                             ),

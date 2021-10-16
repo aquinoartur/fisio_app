@@ -1,11 +1,8 @@
-import '../design_system/text_styles/text_styles.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 
 Widget cardTileCategoryScreen(
-    {required int selectedIndex,
-    required int index,
-    required Color color,
-    required String name}) {
+    {required int selectedIndex, required int index, required Color color, required String name}) {
   return Container(
     alignment: Alignment.center,
     decoration: BoxDecoration(

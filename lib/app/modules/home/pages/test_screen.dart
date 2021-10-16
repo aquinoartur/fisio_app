@@ -2,8 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../../design_system/text_styles/text_styles.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import '../home_controller/home_test_screen_controller.dart';
 
 class TestScreen extends StatefulWidget {
@@ -135,24 +134,19 @@ class _TestScreenState extends State<TestScreen> {
                         ),
                       ),
                       child: Text('Obter teste', style: TextStyles.ts4),
-                      onPressed: () => setState(
-                          () => controller.urlOpen(widget.data!['test'])),
+                      onPressed: () => setState(() => controller.urlOpen(widget.data!['test'])),
                     ),
                   ),
                   const SizedBox(height: 15),
                   GestureDetector(
-                    onTap: () => setState(
-                        () => controller.urlOpen(widget.data!['other'])),
+                    onTap: () => setState(() => controller.urlOpen(widget.data!['other'])),
                     child: Container(
                       height: 40,
                       width: 100,
                       alignment: Alignment.center,
                       child: Text(
                         'Mais informações.',
-                        style: GoogleFonts.nunito(
-                            color: Colors.black87,
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold),
+                        style: GoogleFonts.nunito(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.center,
                       ),
                     ),

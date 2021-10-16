@@ -1,4 +1,4 @@
-import '../modules/others/about_screen.dart';
+import '../../modules/others/about_the_app/about_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,14 +17,12 @@ class ContactsLoginWidget extends StatelessWidget {
           height: 30,
           child: Text(
             'Contatos',
-            style: GoogleFonts.nunito(
-                color: primaryColor, fontSize: 16, fontWeight: FontWeight.w700),
+            style: GoogleFonts.nunito(color: primaryColor, fontSize: 16, fontWeight: FontWeight.w700),
             textAlign: TextAlign.center,
           ),
         ),
         onTap: () {
-          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => AboutScreen()));
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutScreen()));
         },
       ),
     );

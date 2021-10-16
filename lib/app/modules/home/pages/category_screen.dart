@@ -1,17 +1,11 @@
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
-
-import '../../../design_system/text_styles/text_styles.dart';
-import '../../../widgets/animations_rive_widget.dart';
-import '../../../widgets/card_test_widget.dart';
-import '../../../widgets/card_tile_category_screen.dart';
-import '../../../widgets/customs_app_bar.dart';
-import '../../../widgets/loading_indicator_widget.dart';
-import '../../../widgets/title_t1_widget.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'test_screen.dart';
 
 class CategoryScreen extends StatefulWidget {
@@ -62,11 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           const SizedBox(height: 10),
           titleT1Widget('Subcategorias', TextStyles.title1),
           StreamBuilder<QuerySnapshot>(
-            stream: firebase
-                .collection('categorias')
-                .doc(widget.data!.id)
-                .collection('subcategorias')
-                .snapshots(),
+            stream: firebase.collection('categorias').doc(widget.data!.id).collection('subcategorias').snapshots(),
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.none:
@@ -83,8 +73,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             itemCount: docs.length,
                             shrinkWrap: true,
                             physics: const BouncingScrollPhysics(),
-                            separatorBuilder: (_, __) =>
-                                const SizedBox(width: 10),
+                            separatorBuilder: (_, __) => const SizedBox(width: 10),
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
                               return GestureDetector(
@@ -128,8 +117,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                           size: 20.0,
                         );
                       default: //* this is the body page
-                        List<DocumentSnapshot> docs =
-                            snapshot.data!.docs.toList();
+                        List<DocumentSnapshot> docs = snapshot.data!.docs.toList();
                         return docs.isEmpty
                             ? Align(
                                 alignment: Alignment.center,
@@ -138,25 +126,18 @@ class _CategoryScreenState extends State<CategoryScreen> {
                             : Expanded(
                                 child: ListView.separated(
                                   physics: const BouncingScrollPhysics(),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
+                                  padding: const EdgeInsets.symmetric(horizontal: 10),
                                   shrinkWrap: true,
-                                  separatorBuilder: (_, __) =>
-                                      const SizedBox(height: 8),
+                                  separatorBuilder: (_, __) => const SizedBox(height: 8),
                                   itemCount: snapshot.data!.docs.length,
-                                  itemBuilder: (context, index) =>
-                                      OpenContainer(
+                                  itemBuilder: (context, index) => OpenContainer(
                                     openColor: Colors.transparent,
                                     closedColor: Colors.transparent,
                                     openElevation: 0,
                                     closedElevation: 0,
-                                    transitionType:
-                                        ContainerTransitionType.fade,
-                                    transitionDuration:
-                                        const Duration(milliseconds: 1200),
-                                    closedBuilder:
-                                        (context, VoidCallback callback) =>
-                                            GestureDetector(
+                                    transitionType: ContainerTransitionType.fade,
+                                    transitionDuration: const Duration(milliseconds: 1200),
+                                    closedBuilder: (context, VoidCallback callback) => GestureDetector(
                                       onTap: callback,
                                       child: cardTestWidget(
                                         name: docs[index]['name'],
@@ -164,8 +145,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                         color: primaryColor,
                                       ),
                                     ),
-                                    openBuilder: (context, _) =>
-                                        TestScreen(docs[index]),
+                                    openBuilder: (context, _) => TestScreen(docs[index]),
                                   ),
                                 ),
                               );

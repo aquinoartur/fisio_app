@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../design_system/text_styles/text_styles.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'loading_indicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -32,8 +32,7 @@ class CardInfo extends StatelessWidget {
                 height: 50,
                 fit: BoxFit.scaleDown,
                 imageUrl: data!['image'],
-                errorWidget: (context, url, error) =>
-                    const Center(child: Icon(Icons.info)),
+                errorWidget: (context, url, error) => const Center(child: Icon(Icons.info)),
                 placeholder: (context, url) => const Center(
                   child: LoadingIndicatorWidget(
                     color: Colors.white,

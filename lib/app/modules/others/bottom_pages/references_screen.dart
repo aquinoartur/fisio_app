@@ -1,6 +1,5 @@
-import '../../design_system/colors_palette/colors_palette.dart';
-import '../../design_system/text_styles/text_styles.dart';
-import '../../widgets/title_t1_widget.dart';
+import 'package:fisio_app/app/core/core.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,16 +17,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
     super.initState();
   }
 
-  final List items = [
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-    1,
-  ];
+  final List items = [1, 1, 1, 1, 1, 1, 1, 1];
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -39,14 +29,13 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
             children: [
               Expanded(
                 child: titleT1Widget(
-                    'Saiba mais sobre os idealizadores do projeto',
-                    TextStyles.title1.copyWith(fontSize: 14)),
+                    'Saiba mais sobre os idealizadores do projeto', TextStyles.title1.copyWith(fontSize: 14)),
               ),
               IconButton(
                 onPressed: () => Modular.to.pushNamed('/about'),
                 icon: Icon(
                   Icons.chevron_right,
-                  color: FisioColorsPalette.darkGrey,
+                  color: FisioColors.darkGrey,
                 ),
               ),
             ],
@@ -73,8 +62,7 @@ class ReferencesCarWidget extends StatelessWidget {
     final color = Theme.of(context).primaryColor;
 
     return Card(
-      shape: OutlineInputBorder(
-          borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+      shape: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
       elevation: 0,
       color: color,
       child: Padding(
@@ -89,10 +77,7 @@ class ReferencesCarWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'AUTOR 1, A. A. | AUTOR 2, A. A.',
-                    style: GoogleFonts.nunito(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700),
+                    style: GoogleFonts.nunito(color: Colors.white, fontSize: 13, fontWeight: FontWeight.w700),
                     textAlign: TextAlign.start,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
@@ -116,10 +101,7 @@ class ReferencesCarWidget extends StatelessWidget {
                 Expanded(
                   child: Text(
                     'O título do livro ficará aqui',
-                    style: GoogleFonts.nunito(
-                        color: Colors.white,
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500),
+                    style: GoogleFonts.nunito(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
