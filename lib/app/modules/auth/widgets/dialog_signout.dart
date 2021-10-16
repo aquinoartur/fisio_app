@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -7,10 +8,10 @@ import 'buttons_login_widget.dart';
 class DialogSignout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
+        backgroundColor: Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
@@ -25,9 +26,10 @@ class DialogSignout extends StatelessWidget {
                   heightFactor: .8,
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: const Icon(
+                    icon: Icon(
                       Icons.close,
                       size: 18.0,
+                      color: FisioColors.lowBlack,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -35,14 +37,11 @@ class DialogSignout extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                  padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
                   child: Text(
                     'Criar conta',
-                    style: GoogleFonts.nunito(
-                        color: primaryColor,
-                        fontSize: 22,
-                        fontWeight: FontWeight.bold),
+                    style:
+                        GoogleFonts.nunito(color: FisioColors.primaryColor, fontSize: 22, fontWeight: FontWeight.bold),
                   ),
                 ),
                 ListView(
@@ -74,9 +73,17 @@ class DialogSignout extends StatelessWidget {
                       obscureText: true,
                     ),
                     const SizedBox(height: 10),
-                    //buttonLogin(context, 'Cadastar'),
+                    Material(
+                      color: FisioColors.primaryColor,
+                      borderRadius: BorderRadius.circular(30),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(30),
+                        child: buttonLogin(context: context, text: 'Cadastrar'),
+                        onTap: () {},
+                      ),
+                    ),
                     const SizedBox(height: 10),
-                    buttonLoginGoogle(context, 'Cadastrar com o Google')
+                    // buttonLoginGoogle(context, 'Cadastrar com o Google')
                   ],
                 )
               ],

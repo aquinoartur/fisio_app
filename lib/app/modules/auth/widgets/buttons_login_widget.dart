@@ -1,3 +1,5 @@
+import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
+
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_events.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +25,7 @@ Widget buttonLoginGoogle(BuildContext context, String text) {
             image: AssetImage('assets/images/google.jpg'),
           )),
         ),
-        Text(text, style: GoogleFonts.nunito())
+        Text(text, style: GoogleFonts.nunito(color: FisioColors.lowBlack))
       ],
     ),
   );
@@ -59,7 +61,7 @@ Widget buttonForget(BuildContext context) {
     onTap: () {},
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [Text('Esqueceu a senha?  ', style: GoogleFonts.nunito(color: Colors.black87, fontSize: 14))],
+      children: [Text('Esqueceu a senha?  ', style: GoogleFonts.nunito(color: FisioColors.lowBlack, fontSize: 14))],
     ),
   );
 }

@@ -28,22 +28,18 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
         title: Text(
           'Detalhes do teste',
-          style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
+          style: GoogleFonts.nunito(fontSize: 18, color: FisioColors.primaryColor),
         ),
-        iconTheme: IconThemeData(color: primaryColor),
+        iconTheme: const IconThemeData(color: FisioColors.primaryColor),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.close_rounded, color: primaryColor),
+          icon: const Icon(Icons.close_rounded, color: FisioColors.primaryColor),
         ),
       ),
       body: Column(

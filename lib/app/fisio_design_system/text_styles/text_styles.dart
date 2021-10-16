@@ -24,7 +24,7 @@ class TextStyles {
       GoogleFonts.nunito(color: const Color.fromARGB(255, 74, 20, 140), fontWeight: FontWeight.w600, fontSize: 24);
 
   static final TextStyle ts2 =
-      GoogleFonts.nunito(fontSize: 18, color: Colors.black.withOpacity(.7), fontWeight: FontWeight.w800);
+      GoogleFonts.nunito(fontSize: 18, color: Colors.black.withOpacity(.7), fontWeight: FontWeight.w700);
 
   static final TextStyle ts3 =
       GoogleFonts.nunito(fontSize: 16, color: Colors.black.withOpacity(.7), fontWeight: FontWeight.w600);

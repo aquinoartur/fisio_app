@@ -4,15 +4,16 @@ import 'package:google_fonts/google_fonts.dart';
 Widget cardTestWidget({
   required String name,
   required String description,
-  required Color color,
+  required Color card,
+  required Color miniCard,
+  required Color textColor,
   String? category,
   String? subcategory,
 }) {
   return Card(
-    shape: OutlineInputBorder(
-        borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
+    shape: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
     elevation: 0,
-    color: color,
+    color: card,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Column(
@@ -25,10 +26,7 @@ Widget cardTestWidget({
               Expanded(
                 child: Text(
                   name,
-                  style: GoogleFonts.nunito(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w700),
+                  style: GoogleFonts.nunito(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
                   textAlign: TextAlign.start,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -36,15 +34,15 @@ Widget cardTestWidget({
               ),
               if (category != null)
                 Container(
-                  padding: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: miniCard,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Text(
                     category,
                     style: GoogleFonts.nunito(
-                      color: color,
+                      color: textColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),
@@ -58,15 +56,15 @@ Widget cardTestWidget({
               const SizedBox(width: 8.0),
               if (subcategory != null)
                 Container(
-                  padding: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: miniCard,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Text(
                     subcategory,
                     style: GoogleFonts.nunito(
-                      color: color,
+                      color: textColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),
@@ -96,8 +94,7 @@ Widget cardTestWidget({
           ),
           Text(
             description,
-            style: GoogleFonts.nunito(
-                color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+            style: GoogleFonts.nunito(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
             textAlign: TextAlign.start,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,

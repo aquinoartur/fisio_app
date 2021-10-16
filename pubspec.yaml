@@ -39,6 +39,7 @@ dependencies:
   bot_toast: ^4.0.1
   google_sign_in: ^5.1.1
   hive: ^2.0.4
+  shared_preferences: ^2.0.8
 
 dev_dependencies:
 

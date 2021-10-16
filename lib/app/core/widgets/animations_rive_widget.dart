@@ -2,7 +2,7 @@ import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-Widget animationRive2(Artboard? artboard) {
+Widget animationRive2({required Artboard? artboard, required Color textColor}) {
   return Padding(
     padding: const EdgeInsets.only(top: 200),
     child: Column(
@@ -19,7 +19,7 @@ Widget animationRive2(Artboard? artboard) {
         ),
         Text(
           'Selecione uma subcategoria',
-          style: TextStyles.t4,
+          style: TextStyles.t4.copyWith(color: textColor),
           textAlign: TextAlign.center,
         )
       ],
@@ -27,7 +27,7 @@ Widget animationRive2(Artboard? artboard) {
   );
 }
 
-Widget animationRive3(Artboard? artboard) {
+Widget animationRive3({required Artboard? artboard, required Color textColor}) {
   return Padding(
     padding: const EdgeInsets.only(top: 200),
     child: Column(
@@ -44,7 +44,7 @@ Widget animationRive3(Artboard? artboard) {
         ),
         Text(
           'Não há testes disponíveis no momento',
-          style: TextStyles.t4,
+          style: TextStyles.t4.copyWith(color: textColor),
           textAlign: TextAlign.center,
         )
       ],

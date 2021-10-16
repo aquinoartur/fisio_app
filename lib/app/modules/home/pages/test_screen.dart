@@ -1,15 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import '../home_controller/home_test_screen_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class TestScreen extends StatefulWidget {
   final DocumentSnapshot? data;
-  const TestScreen(
-    this.data,
-  );
+  const TestScreen(this.data);
 
   @override
   _TestScreenState createState() => _TestScreenState();
@@ -19,6 +19,7 @@ class _TestScreenState extends State<TestScreen> {
   List<String> list = [];
 
   final HomeTestScreenController controller = HomeTestScreenController();
+  final themeController = Modular.get<FisioThemeController>();
 
   @override
   void initState() {
@@ -32,22 +33,23 @@ class _TestScreenState extends State<TestScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
         title: Text(
           'Detalhes do teste',
-          style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
+          style: GoogleFonts.nunito(
+            fontSize: 18,
+            color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+          ),
         ),
-        iconTheme: IconThemeData(color: primaryColor),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.close_rounded, color: primaryColor),
+          icon: Icon(
+            Icons.close_rounded,
+            color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+          ),
         ),
         actions: [
           IconButton(
@@ -55,7 +57,10 @@ class _TestScreenState extends State<TestScreen> {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
-            icon: Icon(Icons.home_outlined, color: primaryColor),
+            icon: Icon(
+              Icons.home_outlined,
+              color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+            ),
           )
         ],
       ),
@@ -78,7 +83,7 @@ class _TestScreenState extends State<TestScreen> {
               : Container(),
           Expanded(
             child: Container(
-              color: Colors.white,
+              color: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(16),
@@ -107,7 +112,7 @@ class _TestScreenState extends State<TestScreen> {
                   const SizedBox(height: 10),
                   Text(
                     'Descrição:',
-                    style: TextStyles.ts2,
+                    style: TextStyles.ts2.copyWith(color: themeController.isDark ? FisioColors.white : null),
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -115,7 +120,7 @@ class _TestScreenState extends State<TestScreen> {
                   const SizedBox(height: 5),
                   Text(
                     widget.data!['resume'],
-                    style: TextStyles.ts3,
+                    style: TextStyles.ts3.copyWith(color: themeController.isDark ? FisioColors.white : null),
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),
@@ -126,7 +131,7 @@ class _TestScreenState extends State<TestScreen> {
                     width: 300,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        primary: primaryColor,
+                        primary: FisioColors.primaryColor,
                         elevation: 0,
                         shadowColor: Colors.black,
                         shape: RoundedRectangleBorder(
@@ -146,7 +151,11 @@ class _TestScreenState extends State<TestScreen> {
                       alignment: Alignment.center,
                       child: Text(
                         'Mais informações.',
-                        style: GoogleFonts.nunito(color: Colors.black87, fontSize: 16, fontWeight: FontWeight.bold),
+                        style: GoogleFonts.nunito(
+                          color: themeController.isDark ? FisioColors.white : null,
+                          fontSize: 16,
+                          fontWeight: themeController.isDark ? FontWeight.w500 : FontWeight.bold,
+                        ),
                         textAlign: TextAlign.center,
                       ),
                     ),

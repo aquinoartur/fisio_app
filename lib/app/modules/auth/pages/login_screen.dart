@@ -27,7 +27,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       body: SafeArea(
         child: Stack(
@@ -56,7 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       Text(
                         'Bem-vindo',
-                        style: GoogleFonts.nunito(color: primaryColor, fontSize: 38, fontWeight: FontWeight.w800),
+                        style: GoogleFonts.nunito(
+                            color: FisioColors.primaryColor, fontSize: 38, fontWeight: FontWeight.w800),
                         textAlign: TextAlign.center,
                       ),
                       Text(
@@ -69,7 +69,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         duration: const Duration(seconds: 1),
                         opacity: isLoaded ? 1 : 0,
                         child: Material(
-                          color: primaryColor,
+                          color: FisioColors.primaryColor,
                           borderRadius: BorderRadius.circular(30),
                           child: InkWell(
                             onTap: () =>
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       'Criar conta',
                       style: TextStyles.cardtitle1.copyWith(
-                        color: primaryColor,
+                        color: FisioColors.primaryColor,
                         fontWeight: FontWeight.w700,
                         fontSize: 16,
                       ),

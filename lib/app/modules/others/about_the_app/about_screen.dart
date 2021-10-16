@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import '../../../core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,16 +20,14 @@ class _AboutScreenState extends State<AboutScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
       appBar: AppBar(
         title: Text(
           'Idealizadores',
-          style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
+          style: GoogleFonts.nunito(fontSize: 18, color: FisioColors.primaryColor),
         ),
         centerTitle: true,
-        iconTheme: IconThemeData(color: primaryColor),
-        backgroundColor: Colors.white,
+        iconTheme: const IconThemeData(color: FisioColors.primaryColor),
         elevation: 0,
       ),
       body: FutureBuilder<QuerySnapshot>(
@@ -37,8 +36,8 @@ class _AboutScreenState extends State<AboutScreen> {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
-              return LoadingIndicatorWidget(
-                color: primaryColor,
+              return const LoadingIndicatorWidget(
+                color: FisioColors.primaryColor,
                 size: 20.0,
               );
             default:
@@ -62,7 +61,7 @@ class _AboutScreenState extends State<AboutScreen> {
                         itemCount: docs.length,
                         itemBuilder: (context, index) {
                           return ProfileWidget(
-                            color: primaryColor,
+                            color: FisioColors.primaryColor,
                             name: names[index],
                             description: descriptions[index],
                             instagram: instagram[index],

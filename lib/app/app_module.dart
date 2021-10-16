@@ -1,5 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
-
+import 'core/core.dart';
 import 'modules/auth/bloc/auth_bloc.dart';
 import 'modules/auth/pages/login_screen.dart';
 import 'modules/home/home_module.dart';
@@ -12,6 +12,7 @@ class AppModule extends Module {
   @override
   final List<Bind> binds = [
     Bind.lazySingleton((i) => AuthBloc()),
+    Bind.lazySingleton((i) => FisioThemeController()),
   ];
 
   @override

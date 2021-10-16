@@ -9,6 +9,7 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:provider/provider.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   BannerAd? bannerAd;
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
   final bloc = BlocProvider.getBloc<HomeScreenBloc>();
-
+  final themeController = Modular.get<FisioThemeController>();
   final _controller = HomeScreenController();
 
   @override
@@ -54,20 +55,32 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    final primaryColor = Theme.of(context).primaryColor;
+
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: DefaultAppBar(),
       body: _selectedIndex == 0
           ? Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                titleT1Widget('Meus favoritos', TextStyles.title1),
-                headerFavorites(primaryColor),
+                titleT1Widget(
+                  'Meus favoritos',
+                  TextStyles.title1.copyWith(
+                    color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                  ),
+                ),
+                headerFavorites(
+                  cardColor: themeController.isDark ? FisioColors.highBlack : FisioColors.white,
+                  textColor: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                ),
                 const SizedBox(height: 5),
                 //bannerAd == null ? const SizedBox(height: 5) : adMob(bannerAd!),
                 const SizedBox(height: 5),
-                titleT1Widget('Categorias', TextStyles.title1),
+                titleT1Widget(
+                  'Categorias',
+                  TextStyles.title1.copyWith(
+                    color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                  ),
+                ),
                 Expanded(
                   child: ListView(
                     physics: const BouncingScrollPhysics(),
@@ -76,7 +89,9 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
                         stream: bloc.outList,
                         builder: (context, snapshot) {
                           if (!snapshot.hasData) {
-                            return HomeCustomShimmer();
+                            return HomeCustomShimmer(
+                              color: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
+                            );
                           } else {
                             return GridView.builder(
                               gridDelegate: _controller.gridDelegate,
@@ -98,31 +113,44 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
               ],
             )
           : bloc.toListWidgets().elementAt(_selectedIndex),
-      bottomNavigationBar: Container(
-        decoration: _controller.bottomBoxDecoration,
-        margin: const EdgeInsets.all(6.0),
-        child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-            child: GNav(
-              rippleColor: Colors.grey[300]!,
-              hoverColor: Colors.grey[100]!,
-              gap: 8,
-              activeColor: Colors.white,
-              iconSize: 24,
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-              duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: primaryColor,
-              color: Colors.black,
-              tabs: _controller.tabs,
-              selectedIndex: _selectedIndex,
-              onTabChange: (index) => setState(() {
-                _selectedIndex = index;
-              }),
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: AnimatedBuilder(
+          animation: themeController,
+          builder: (context, _) {
+            return Container(
+              decoration: BoxDecoration(
+                color: themeController.isDark ? FisioColors.highBlack : FisioColors.white,
+                borderRadius: BorderRadius.circular(100),
+                boxShadow: [
+                  BoxShadow(
+                    blurRadius: 3,
+                    color: Colors.black.withOpacity(.2),
+                  ),
+                ],
+              ),
+              margin: const EdgeInsets.all(6.0),
+              child: SafeArea(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
+                  child: GNav(
+                    rippleColor: Colors.grey[300]!,
+                    hoverColor: Colors.grey[100]!,
+                    gap: 8,
+                    activeColor: FisioColors.white,
+                    iconSize: 24,
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                    duration: const Duration(milliseconds: 400),
+                    tabBackgroundColor: FisioColors.primaryColor,
+                    color: themeController.isDark ? FisioColors.white : FisioColors.highBlack,
+                    tabs: _controller.tabs,
+                    selectedIndex: _selectedIndex,
+                    onTabChange: (index) => setState(() {
+                      _selectedIndex = index;
+                    }),
+                  ),
+                ),
+              ),
+            );
+          }),
     );
   }
 

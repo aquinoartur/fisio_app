@@ -13,11 +13,10 @@ class CardInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return GestureDetector(
       onTap: () => Modular.to.pushNamed('/home/category', arguments: data),
       child: Card(
-        color: primaryColor,
+        color: FisioColors.primaryColor,
         elevation: 0,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),

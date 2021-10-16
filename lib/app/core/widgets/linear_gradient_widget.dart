@@ -1,3 +1,4 @@
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 
 class FirstLinearGradientWidget extends StatelessWidget {
@@ -7,14 +8,11 @@ class FirstLinearGradientWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              end: Alignment.topCenter,
-              begin: Alignment.bottomCenter,
-              colors: [
-            Colors.white.withOpacity(0.0),
-            Colors.white.withOpacity(1),
-            Colors.white,
-          ])),
+          gradient: LinearGradient(end: Alignment.topCenter, begin: Alignment.bottomCenter, colors: [
+        Colors.white.withOpacity(0.0),
+        Colors.white.withOpacity(1),
+        Colors.white,
+      ])),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 6,
     );
@@ -26,18 +24,14 @@ class SecLinearGradientWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return Container(
       decoration: BoxDecoration(
-          gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-            Colors.white.withOpacity(0.0),
-            Colors.white.withOpacity(0.8),
-            Colors.white.withOpacity(0.999),
-            primaryColor
-          ])),
+          gradient: LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [
+        Colors.white.withOpacity(0.0),
+        Colors.white.withOpacity(0.8),
+        Colors.white.withOpacity(0.999),
+        FisioColors.primaryColor
+      ])),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 1.93,
     );
