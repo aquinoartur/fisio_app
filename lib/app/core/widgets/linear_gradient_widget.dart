@@ -1,5 +1,7 @@
+import 'package:fisio_app/app/core/theme_controller/fisio_theme_controller.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class FirstLinearGradientWidget extends StatelessWidget {
   const FirstLinearGradientWidget({Key? key}) : super(key: key);
@@ -20,7 +22,8 @@ class FirstLinearGradientWidget extends StatelessWidget {
 }
 
 class SecLinearGradientWidget extends StatelessWidget {
-  const SecLinearGradientWidget({Key? key}) : super(key: key);
+  final themeController = Modular.get<FisioThemeController>();
+  SecLinearGradientWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +33,7 @@ class SecLinearGradientWidget extends StatelessWidget {
         Colors.white.withOpacity(0.0),
         Colors.white.withOpacity(0.8),
         Colors.white.withOpacity(0.999),
-        FisioColors.primaryColor
+        themeController.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
       ])),
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height / 1.93,

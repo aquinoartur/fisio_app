@@ -7,12 +7,12 @@ Widget cardTileCategoryScreen(
     alignment: Alignment.center,
     decoration: BoxDecoration(
       borderRadius: BorderRadius.circular(10),
-      color: selectedIndex == index ? color.withOpacity(.7) : color,
+      color: selectedIndex == index ? color : FisioColors.lightBlack,
     ),
     width: 150,
     child: Text(
       name,
-      style: TextStyles.cardtitle2,
+      style: cardtitle2,
     ),
   );
 }

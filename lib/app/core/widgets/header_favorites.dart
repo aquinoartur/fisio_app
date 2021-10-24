@@ -33,7 +33,7 @@ Widget headerFavorites({required Color textColor, required Color cardColor}) {
                   width: 150,
                   child: Text(
                     'Nome do teste',
-                    style: TextStyles.cardtitle3.copyWith(color: textColor),
+                    style: cardtitle3.copyWith(color: textColor),
                   ),
                 ),
               );

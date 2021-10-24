@@ -1,20 +1,23 @@
 import 'dart:ui';
+import 'package:fisio_app/app/core/core.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'buttons_login_widget.dart';
 
 class DialogSignout extends StatelessWidget {
+  final themeController = Modular.get<FisioThemeController>();
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
-        backgroundColor: Colors.white,
+        backgroundColor: themeController.isDark ? FisioColors.lowBlack : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           children: [
@@ -29,7 +32,7 @@ class DialogSignout extends StatelessWidget {
                     icon: Icon(
                       Icons.close,
                       size: 18.0,
-                      color: FisioColors.lowBlack,
+                      color: themeController.isDark ? Colors.white : FisioColors.lowBlack,
                     ),
                     onPressed: () {
                       Navigator.of(context).pop();
@@ -37,11 +40,14 @@ class DialogSignout extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(left: 16, right: 16, bottom: 10),
+                  padding: const EdgeInsets.only(bottom: 10),
                   child: Text(
                     'Criar conta',
-                    style:
-                        GoogleFonts.nunito(color: FisioColors.primaryColor, fontSize: 22, fontWeight: FontWeight.bold),
+                    style: GoogleFonts.nunito(
+                      color: FisioColors.primaryColor,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
                 ListView(

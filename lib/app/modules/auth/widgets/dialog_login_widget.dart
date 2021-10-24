@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:fisio_app/app/core/core.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 
 import '../bloc/auth_bloc.dart';
@@ -14,16 +15,17 @@ class DialogLogin extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final bloc = Modular.get<AuthBloc>();
+  final themeController = Modular.get<FisioThemeController>();
 
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
-        backgroundColor: Colors.white,
+        backgroundColor: themeController.isDark ? FisioColors.lowBlack : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           children: [
@@ -38,7 +40,7 @@ class DialogLogin extends StatelessWidget {
                     icon: Icon(
                       Icons.close,
                       size: 18.0,
-                      color: FisioColors.lowBlack,
+                      color: themeController.isDark ? Colors.white : FisioColors.lowBlack,
                     ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
@@ -87,7 +89,7 @@ class DialogLogin extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 4),
                     buttonLoginGoogle(context, 'Entrar com o Google')
                   ],
                 )

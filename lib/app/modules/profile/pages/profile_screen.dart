@@ -40,7 +40,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         handleDynamicLink(deepLink);
       }
     }, onError: (OnLinkErrorException e) async {
-      print(e.message);
+      debugPrint(e.message);
     });
   }
 
@@ -77,7 +77,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 try {
                   url = await Utils.buildDynamicLink();
                 } catch (e) {
-                  print(e);
+                  debugPrint(e.toString());
                 }
                 setState(() {});
               },

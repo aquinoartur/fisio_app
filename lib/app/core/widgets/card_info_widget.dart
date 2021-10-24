@@ -1,7 +1,7 @@
-import 'dart:ui';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../core.dart';
 import 'loading_indicator_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -9,18 +9,26 @@ import 'package:flutter_modular/flutter_modular.dart';
 class CardInfo extends StatelessWidget {
   final DocumentSnapshot? data;
 
-  const CardInfo(this.data);
+  CardInfo(this.data);
+  final themeController = Modular.get<FisioThemeController>();
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Modular.to.pushNamed('/home/category', arguments: data),
-      child: Card(
-        color: FisioColors.primaryColor,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20.0),
+        gradient: const LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: [
+            FisioColors.primaryColor,
+            FisioColors.highPrimaryColor,
+          ],
         ),
+      ),
+      child: InkWell(
+        onTap: () => Modular.to.pushNamed('/home/category', arguments: data, forRoot: true),
+        borderRadius: BorderRadius.circular(15),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -43,7 +51,7 @@ class CardInfo extends StatelessWidget {
             ),
             Text(
               data!['name'],
-              style: TextStyles.cardtitle1,
+              style: cardtitle1,
               maxLines: 3,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,

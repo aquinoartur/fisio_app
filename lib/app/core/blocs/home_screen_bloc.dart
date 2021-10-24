@@ -5,7 +5,7 @@ import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fisio_app/app/modules/favorites/pages/favorites_screen.dart';
 import 'package:fisio_app/app/modules/profile/pages/profile_screen.dart';
-import 'package:fisio_app/app/modules/others/bottom_pages/references_screen.dart';
+import 'package:fisio_app/app/modules/others/references/references_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 

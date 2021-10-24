@@ -6,8 +6,8 @@ class HomeScreenController {
   //**bottomNavBar
   var gridDelegate = const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
-    crossAxisSpacing: 1,
-    mainAxisSpacing: 1,
+    crossAxisSpacing: 4,
+    mainAxisSpacing: 4,
     childAspectRatio: 1.8,
   );
 

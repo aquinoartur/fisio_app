@@ -27,7 +27,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
               Expanded(
                 child: titleT1Widget(
                   'Saiba mais sobre os idealizadores do projeto',
-                  TextStyles.title1.copyWith(
+                  title1.copyWith(
                     fontSize: 14,
                     color: themeController.isDark ? FisioColors.white : null,
                   ),

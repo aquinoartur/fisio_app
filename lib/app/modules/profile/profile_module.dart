@@ -7,6 +7,6 @@ class ProfileModule extends Module {
 
   @override
   final List<ModularRoute> routes = [
-    ChildRoute('/', child: (_, __) => const ProfileScreen(), transition: TransitionType.rotate),
+    ChildRoute('/', child: (_, __) => const ProfileScreen()),
   ];
 }

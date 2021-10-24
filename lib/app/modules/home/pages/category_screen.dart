@@ -56,7 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           const SizedBox(height: 10),
           titleT1Widget(
             'Subcategorias',
-            TextStyles.title1.copyWith(
+            title1.copyWith(
               color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
             ),
           ),
@@ -106,7 +106,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           toogle
               ? titleT1Widget(
                   'Testes',
-                  TextStyles.title1.copyWith(
+                  title1.copyWith(
                     color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
                   ),
                 )

@@ -13,8 +13,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-
   cupertino_icons: ^1.0.2
   bloc_pattern: ^3.0.0
   flutter_bloc: ^7.3.0
@@ -40,6 +38,7 @@ dependencies:
   google_sign_in: ^5.1.1
   shared_preferences: ^2.0.8
   firebase_dynamic_links: ^2.0.10
+  font_awesome_flutter: ^9.2.0
 
 dev_dependencies:
 

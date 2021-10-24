@@ -19,7 +19,7 @@ class HomeCustomShimmer extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
-          itemCount: 8,
+          itemCount: 12,
           itemBuilder: (context, index) {
             return Card(
               color: Colors.grey,

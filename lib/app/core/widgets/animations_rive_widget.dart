@@ -19,7 +19,7 @@ Widget animationRive2({required Artboard? artboard, required Color textColor}) {
         ),
         Text(
           'Selecione uma subcategoria',
-          style: TextStyles.t4.copyWith(color: textColor),
+          style: t4.copyWith(color: textColor),
           textAlign: TextAlign.center,
         )
       ],
@@ -44,7 +44,7 @@ Widget animationRive3({required Artboard? artboard, required Color textColor}) {
         ),
         Text(
           'Não há testes disponíveis no momento',
-          style: TextStyles.t4.copyWith(color: textColor),
+          style: t4.copyWith(color: textColor),
           textAlign: TextAlign.center,
         )
       ],

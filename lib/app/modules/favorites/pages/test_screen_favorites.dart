@@ -67,7 +67,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                       Expanded(
                         child: Text(
                           widget.name,
-                          style: TextStyles.ts1,
+                          style: ts1,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -77,7 +77,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                   const SizedBox(height: 10),
                   Text(
                     'Descrição:',
-                    style: TextStyles.ts2,
+                    style: ts2,
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -85,7 +85,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                   const SizedBox(height: 5),
                   Text(
                     widget.texto,
-                    style: TextStyles.ts3,
+                    style: ts3,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),

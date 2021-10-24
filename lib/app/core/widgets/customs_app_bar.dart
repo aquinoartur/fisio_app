@@ -21,7 +21,7 @@ class DefaultAppBar extends StatelessWidget with PreferredSizeWidget {
           return AppBar(
             toolbarHeight: 60,
             title: textTitleAppBar(
-              FisioColors.primaryLightColor,
+              themeController.isDark ? FisioColors.primaryLightColor : FisioColors.highPrimaryColor,
               themeController.isDark ? FisioColors.white : FisioColors.highBlack,
             ),
             centerTitle: true,

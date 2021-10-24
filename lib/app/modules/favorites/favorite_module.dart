@@ -10,7 +10,6 @@ class FavoriteModule extends Module {
     ChildRoute(
       '/',
       child: (_, __) => FavoritesScreen(),
-      transition: TransitionType.rotate,
     ),
   ];
 }

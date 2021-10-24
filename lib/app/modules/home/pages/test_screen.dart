@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import '../home_controller/home_test_screen_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TestScreen extends StatefulWidget {
   final DocumentSnapshot? data;
@@ -46,10 +47,7 @@ class _TestScreenState extends State<TestScreen> {
         ),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(
-            Icons.close_rounded,
-            color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
-          ),
+          icon: Icon(Icons.close_rounded, color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor),
         ),
         actions: [
           IconButton(
@@ -57,11 +55,12 @@ class _TestScreenState extends State<TestScreen> {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
-            icon: Icon(
-              Icons.home_outlined,
+            icon: FaIcon(
+              FontAwesomeIcons.home,
+              size: 18,
               color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
             ),
-          )
+          ),
         ],
       ),
       body: Column(
@@ -93,7 +92,7 @@ class _TestScreenState extends State<TestScreen> {
                       Expanded(
                         child: Text(
                           widget.data!['name'],
-                          style: TextStyles.ts1,
+                          style: ts1,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -112,7 +111,7 @@ class _TestScreenState extends State<TestScreen> {
                   const SizedBox(height: 10),
                   Text(
                     'Descrição:',
-                    style: TextStyles.ts2.copyWith(color: themeController.isDark ? FisioColors.white : null),
+                    style: ts2.copyWith(color: themeController.isDark ? FisioColors.white : null),
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -120,7 +119,7 @@ class _TestScreenState extends State<TestScreen> {
                   const SizedBox(height: 5),
                   Text(
                     widget.data!['resume'],
-                    style: TextStyles.ts3.copyWith(color: themeController.isDark ? FisioColors.white : null),
+                    style: ts3.copyWith(color: themeController.isDark ? FisioColors.white : null),
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),
@@ -138,7 +137,7 @@ class _TestScreenState extends State<TestScreen> {
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: Text('Obter teste', style: TextStyles.ts4),
+                      child: Text('Obter teste', style: ts4),
                       onPressed: () => setState(() => controller.urlOpen(widget.data!['test'])),
                     ),
                   ),

@@ -1,3 +1,4 @@
+import 'package:fisio_app/app/core/core.dart';
 import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
 
 import '../bloc/auth_bloc.dart';
@@ -8,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget buttonLoginGoogle(BuildContext context, String text) {
   final bloc = Modular.get<AuthBloc>();
+  final themeController = Modular.get<FisioThemeController>();
   return GestureDetector(
     onTap: () {
       Navigator.of(context).popUntil((route) => route.isFirst);
@@ -22,10 +24,10 @@ Widget buttonLoginGoogle(BuildContext context, String text) {
           height: 50,
           decoration: const BoxDecoration(
               image: DecorationImage(
-            image: AssetImage('assets/images/google.jpg'),
+            image: AssetImage('assets/images/google.png'),
           )),
         ),
-        Text(text, style: GoogleFonts.nunito(color: FisioColors.lowBlack))
+        Text(text, style: GoogleFonts.nunito(color: themeController.isDark ? Colors.white : FisioColors.lowBlack))
       ],
     ),
   );
@@ -57,11 +59,18 @@ Widget buttonLogin({
 }
 
 Widget buttonForget(BuildContext context) {
+  final themeController = Modular.get<FisioThemeController>();
   return GestureDetector(
     onTap: () {},
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
-      children: [Text('Esqueceu a senha?  ', style: GoogleFonts.nunito(color: FisioColors.lowBlack, fontSize: 14))],
+      children: [
+        Text('Esqueceu a senha?  ',
+            style: GoogleFonts.nunito(
+              color: themeController.isDark ? Colors.white : FisioColors.lowBlack,
+              fontSize: 14,
+            ))
+      ],
     ),
   );
 }
