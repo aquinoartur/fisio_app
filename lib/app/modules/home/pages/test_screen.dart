@@ -6,7 +6,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import '../home_controller/home_test_screen_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TestScreen extends StatefulWidget {
   final DocumentSnapshot? data;
@@ -55,8 +54,8 @@ class _TestScreenState extends State<TestScreen> {
               Navigator.of(context).pop();
               Navigator.of(context).pop();
             },
-            icon: FaIcon(
-              FontAwesomeIcons.home,
+            icon: Icon(
+              Icons.house_outlined,
               size: 18,
               color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
             ),

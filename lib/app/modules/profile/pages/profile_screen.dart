@@ -60,9 +60,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            IconButton(onPressed: () => bloc.add(LogoutEvent()), icon: Icon(Icons.logout, color: FisioColors.red)),
             IconButton(
-              onPressed: () => bloc.add(LogoutEvent()),
-              icon: Icon(Icons.logout, color: FisioColors.red),
+              onPressed: () {
+                Modular.to.pushNamed('/home/youtube-player', forRoot: true);
+              },
+              icon: const Icon(Icons.video_settings, color: FisioColors.primaryLightColor),
             ),
             Switch(
               activeColor: FisioColors.primaryLightColor,
@@ -81,10 +84,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 }
                 setState(() {});
               },
-              child: const Text(
-                'Gerar Dynamic Link',
-                style: TextStyle(fontSize: 20),
-              ),
+              child: const Text('Gerar Dynamic Link', style: TextStyle(fontSize: 20)),
             ),
             const SizedBox(height: 20),
             if (url.isNotEmpty)
