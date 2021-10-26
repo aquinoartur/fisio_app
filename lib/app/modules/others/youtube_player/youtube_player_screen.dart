@@ -1,4 +1,4 @@
-// ignore_for_file: unnecessary_string_escapes
+// ignore_for_file: unnecessary_string_escapes, unused_field
 
 import 'package:fisio_app/app/core/core.dart';
 import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
@@ -8,12 +8,14 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-class YoutubePlayerDemoApp extends StatefulWidget {
+import 'youtube_player_controller.dart';
+
+class YoutubePlayerScreen extends StatefulWidget {
   @override
-  State<YoutubePlayerDemoApp> createState() => _YoutubePlayerDemoAppState();
+  State<YoutubePlayerScreen> createState() => _YoutubePlayerScreenState();
 }
 
-class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
+class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
   late YoutubePlayerController _controller;
   late TextEditingController _idController;
   late TextEditingController _seekToController;
@@ -32,6 +34,7 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
     'Q0oIoR9mLwc',
   ];
 
+  final YoutubePlayerScreenController controller = YoutubePlayerScreenController();
   @override
   void initState() {
     super.initState();
@@ -39,7 +42,7 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
       initialVideoId: _ids.first,
       flags: const YoutubePlayerFlags(
         mute: false,
-        autoPlay: true,
+        autoPlay: false,
         disableDragSeek: false,
         loop: false,
         isLive: false,
@@ -111,7 +114,7 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
         onReady: () => _isPlayerReady = true,
         onEnded: (data) {
           _controller.load(_ids[(_ids.indexOf(data.videoId) + 1) % _ids.length]);
-          _showSnackBar('O vídeo seguinte foi iniciado!');
+          controller.showSnackBar('O vídeo seguinte foi iniciado!', context);
         },
       ),
       builder: (context, player) => Scaffold(
@@ -124,7 +127,6 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  _space,
                   _space,
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -156,7 +158,7 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
                               }
                             : null,
                       ),
-                      FullScreenButton(controller: _controller, color: FisioColors.primaryColor),
+                      FullScreenButton(controller: _controller, color: FisioColors.primaryLightColor),
                       IconButton(
                         icon: const Icon(Icons.skip_next),
                         onPressed: _isPlayerReady
@@ -189,29 +191,6 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
                       ),
                     ],
                   ),
-                  _space,
-                  _text('Title', _videoMetaData.title),
-                  ...[_space, _space, _space],
-                  TextField(
-                    enabled: _isPlayerReady,
-                    controller: _idController,
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      hintText: 'Youtube vídeo: \<video id\> ou \<link\>',
-                      fillColor: FisioColors.primaryColor.withAlpha(20),
-                      filled: true,
-                      hintStyle: const TextStyle(fontWeight: FontWeight.w300, color: FisioColors.primaryLightColor),
-                      suffixIcon: IconButton(icon: const Icon(Icons.clear), onPressed: () => _idController.clear()),
-                    ),
-                  ),
-                  ...[_space, _space, _space],
-                  Row(
-                    children: [
-                      _loadCueButton('Carregar'),
-                      const SizedBox(width: 10.0),
-                      _loadCueButton('CUE'),
-                    ],
-                  ),
                 ],
               ),
             ),
@@ -219,8 +198,31 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
         ),
       ),
     );
+    //* form_field
+    // ...[_space, _space, _space],
+    // TextField(
+    // enabled: _isPlayerReady,
+    // controller: _idController,
+    // decoration: InputDecoration(
+    // border: InputBorder.none,
+    // hintText: 'Youtube vídeo: \<video id\> ou \<link\>',
+    // fillColor: FisioColors.primaryColor.withAlpha(20),
+    // filled: true,
+    // hintStyle: const TextStyle(fontWeight: FontWeight.w300, color: FisioColors.primaryLightColor),
+    // suffixIcon: IconButton(icon: const Icon(Icons.clear), onPressed: () => _idController.clear()),
+    // ),
+    // ),
+    // ...[_space, _space, _space],
+    // Row(
+    // children: [
+    // _loadCueButton('Carregar'),
+    // const SizedBox(width: 10.0),
+    // _loadCueButton('CUE'),
+    // ],
+    // ),
   }
 
+  // ignore: unused_element
   Widget _text(String title, String value) {
     return RichText(
       text: TextSpan(
@@ -243,6 +245,7 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
 
   Widget get _space => const SizedBox(height: 10);
 
+  // ignore: unused_element
   Widget _loadCueButton(String action) {
     return Expanded(
       child: ClipRRect(
@@ -260,7 +263,7 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
                     if (action == 'CUE') _controller.cue(id);
                     FocusScope.of(context).requestFocus(FocusNode());
                   } else {
-                    _showSnackBar('Informação inválida');
+                    controller.showSnackBar('Informação inválida', context);
                   }
                 }
               : null,
@@ -275,83 +278,6 @@ class _YoutubePlayerDemoAppState extends State<YoutubePlayerDemoApp> {
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(
-          message,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontWeight: FontWeight.w300,
-            fontSize: 16.0,
-          ),
-        ),
-        backgroundColor: FisioColors.primaryLightColor,
-        behavior: SnackBarBehavior.floating,
-        elevation: 1.0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(50.0),
-        ),
-      ),
-    );
-  }
-}
-
-// Lista de videos
-class VideoList extends StatefulWidget {
-  @override
-  _VideoListState createState() => _VideoListState();
-}
-
-class _VideoListState extends State<VideoList> {
-  final List<YoutubePlayerController> _controllers = [
-    'gQDByCdjUXw',
-    'iLnmTe5Q2Qw',
-    '_WoCV4c6XOE',
-    'KmzdUe0RSJo',
-    '6jZDSSZZxjQ',
-    'p2lYr3vM_1w',
-    '7QUtEmBT_-w',
-    '34_PXCzGw1M',
-  ]
-      .map<YoutubePlayerController>(
-        (videoId) => YoutubePlayerController(
-          initialVideoId: videoId,
-          flags: const YoutubePlayerFlags(
-            autoPlay: false,
-          ),
-        ),
-      )
-      .toList();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Video List Demo'),
-      ),
-      body: ListView.separated(
-        itemBuilder: (context, index) {
-          return YoutubePlayer(
-            key: ObjectKey(_controllers[index]),
-            controller: _controllers[index],
-            actionsPadding: const EdgeInsets.only(left: 16.0),
-            bottomActions: [
-              CurrentPosition(),
-              const SizedBox(width: 10.0),
-              ProgressBar(isExpanded: true),
-              const SizedBox(width: 10.0),
-              RemainingDuration(),
-              FullScreenButton(),
-            ],
-          );
-        },
-        itemCount: _controllers.length,
-        separatorBuilder: (context, _) => const SizedBox(height: 10.0),
       ),
     );
   }

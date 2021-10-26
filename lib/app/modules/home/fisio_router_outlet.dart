@@ -75,8 +75,8 @@ class _FisioRouterOutletState extends State<FisioRouterOutlet> {
 
   void changeRoute(int index) {
     if (index == 0) Modular.to.navigate('/home/home-screen');
-    if (index == 1) Modular.to.navigate('/home/favorites');
+    if (index == 1) Modular.to.navigate('/home/favorites/');
     if (index == 2) Modular.to.navigate('/home/references');
-    if (index == 3) Modular.to.navigate('/home/profile');
+    if (index == 3) Modular.to.navigate('/home/profile/');
   }
 }

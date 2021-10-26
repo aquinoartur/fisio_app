@@ -67,6 +67,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               },
               icon: const Icon(Icons.video_settings, color: FisioColors.primaryLightColor),
             ),
+            IconButton(
+              onPressed: () {
+                Modular.to.pushNamed('/home/youtube-player-list', forRoot: true);
+              },
+              icon: const Icon(Icons.video_library_outlined, color: FisioColors.primaryLightColor),
+            ),
             Switch(
               activeColor: FisioColors.primaryLightColor,
               value: themeController.theme.value,

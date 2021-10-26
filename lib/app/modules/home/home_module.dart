@@ -1,7 +1,8 @@
 import 'package:fisio_app/app/modules/favorites/favorite_module.dart';
 import 'package:fisio_app/app/modules/home/fisio_router_outlet.dart';
 import 'package:fisio_app/app/modules/others/references/references_screen.dart';
-import 'package:fisio_app/app/modules/others/youtube_player/youtube_player_widget.dart';
+import 'package:fisio_app/app/modules/others/youtube_player/youtube_player_list.dart';
+import 'package:fisio_app/app/modules/others/youtube_player/youtube_player_screen.dart';
 import 'package:fisio_app/app/modules/profile/profile_module.dart';
 
 import 'pages/category_screen.dart';
@@ -24,7 +25,8 @@ class HomeModule extends Module {
         ChildRoute('/category', child: (_, args) => CategoryScreen(args.data), transition: TransitionType.leftToRight),
         ChildRoute('/test', child: (_, args) => TestScreen(args.data), transition: TransitionType.leftToRight),
         ModuleRoute('/favorites', module: FavoriteModule(), transition: TransitionType.fadeIn),
-        ChildRoute('/youtube-player', child: (_, __) => YoutubePlayerDemoApp(), transition: TransitionType.fadeIn),
+        ChildRoute('/youtube-player', child: (_, __) => YoutubePlayerScreen()),
+        ChildRoute('/youtube-player-list', child: (_, __) => YoutubePlayerVideoList()),
         //bottom-pages
         ChildRoute('/references', child: (_, args) => const ReferencesScreen(), transition: TransitionType.fadeIn),
         ModuleRoute('/profile', module: ProfileModule(), transition: TransitionType.fadeIn),
