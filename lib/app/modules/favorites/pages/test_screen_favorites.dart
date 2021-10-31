@@ -28,22 +28,18 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
-
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
         centerTitle: true,
         elevation: 0,
         title: Text(
           'Detalhes do teste',
-          style: GoogleFonts.nunito(fontSize: 18, color: primaryColor),
+          style: GoogleFonts.nunito(fontSize: 18, color: FisioColors.primaryColor),
         ),
-        iconTheme: IconThemeData(color: primaryColor),
+        iconTheme: const IconThemeData(color: FisioColors.primaryColor),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.close_rounded, color: primaryColor),
+          icon: const Icon(Icons.close_rounded, color: FisioColors.primaryColor),
         ),
       ),
       body: Column(
@@ -71,7 +67,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                       Expanded(
                         child: Text(
                           widget.name,
-                          style: TextStyles.ts1,
+                          style: ts1,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -81,7 +77,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                   const SizedBox(height: 10),
                   Text(
                     'Descrição:',
-                    style: TextStyles.ts2,
+                    style: ts2,
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -89,7 +85,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                   const SizedBox(height: 5),
                   Text(
                     widget.texto,
-                    style: TextStyles.ts3,
+                    style: ts3,
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),

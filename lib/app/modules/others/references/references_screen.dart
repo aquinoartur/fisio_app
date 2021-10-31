@@ -1,8 +1,9 @@
-import 'package:fisio_app/app/core/core.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:fisio_app/app/core/core.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 
 class ReferencesScreen extends StatefulWidget {
   const ReferencesScreen({Key? key}) : super(key: key);
@@ -12,10 +13,7 @@ class ReferencesScreen extends StatefulWidget {
 }
 
 class _ReferencesScreenState extends State<ReferencesScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+  final themeController = Modular.get<FisioThemeController>();
 
   final List items = [1, 1, 1, 1, 1, 1, 1, 1];
   @override
@@ -24,27 +22,35 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: Card(
-              child: Row(
+          child: Row(
             children: [
               Expanded(
                 child: titleT1Widget(
-                    'Saiba mais sobre os idealizadores do projeto', TextStyles.title1.copyWith(fontSize: 14)),
+                  'Saiba mais sobre os idealizadores do projeto',
+                  title1.copyWith(
+                    fontSize: 14,
+                    color: themeController.isDark ? FisioColors.white : null,
+                  ),
+                ),
               ),
               IconButton(
-                onPressed: () => Modular.to.pushNamed('/about'),
+                //onPressed: () => Modular.to.pushNamed('/about'),
+                onPressed: () {},
+                alignment: Alignment.topCenter,
                 icon: Icon(
                   Icons.chevron_right,
-                  color: FisioColors.darkGrey,
+                  color: themeController.isDark ? FisioColors.white : FisioColors.darkGrey,
                 ),
               ),
             ],
-          )),
+          ),
         ),
         Expanded(
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
-            itemBuilder: (context, index) => const ReferencesCarWidget(),
+            itemBuilder: (context, index) => ReferencesCarWidget(
+                textColor: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+                cardColor: themeController.isDark ? FisioColors.lowBlack : FisioColors.white),
             separatorBuilder: (_, __) => const SizedBox(height: 8.0),
             itemCount: items.length,
           ),
@@ -55,7 +61,13 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
 }
 
 class ReferencesCarWidget extends StatelessWidget {
-  const ReferencesCarWidget({Key? key}) : super(key: key);
+  final Color textColor;
+  final Color cardColor;
+  const ReferencesCarWidget({
+    Key? key,
+    required this.textColor,
+    required this.cardColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -108,15 +120,15 @@ class ReferencesCarWidget extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: cardColor,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Text(
                     'editora',
                     style: GoogleFonts.nunito(
-                      color: color,
+                      color: textColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),
@@ -127,15 +139,15 @@ class ReferencesCarWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 8.0),
                 Container(
-                  padding: const EdgeInsets.all(1.0),
+                  padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: cardColor,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Text(
                     'ano',
                     style: GoogleFonts.nunito(
-                      color: color,
+                      color: textColor,
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),

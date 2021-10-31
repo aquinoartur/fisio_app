@@ -1,12 +1,12 @@
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 
-Widget headerFavorites(Color color) {
+Widget headerFavorites({required Color textColor, required Color cardColor}) {
   return Container(
     padding: const EdgeInsets.all(10),
     margin: const EdgeInsets.symmetric(horizontal: 16),
     alignment: Alignment.center,
-    decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(30)),
+    decoration: BoxDecoration(color: FisioColors.primaryColor, borderRadius: BorderRadius.circular(30)),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -27,13 +27,13 @@ Widget headerFavorites(Color color) {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
+                    color: cardColor,
                     //border: Border.all(color: primaryColor, width: 2)
                   ),
                   width: 150,
                   child: Text(
                     'Nome do teste',
-                    style: TextStyles.cardtitle3,
+                    style: cardtitle3.copyWith(color: textColor),
                   ),
                 ),
               );

@@ -13,8 +13,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-
   cupertino_icons: ^1.0.2
   bloc_pattern: ^3.0.0
   flutter_bloc: ^7.3.0
@@ -38,7 +36,9 @@ dependencies:
   asuka: ^2.0.0-nullsafety.3
   bot_toast: ^4.0.1
   google_sign_in: ^5.1.1
-  hive: ^2.0.4
+  shared_preferences: ^2.0.8
+  firebase_dynamic_links: ^2.0.10
+  youtube_player_flutter: ^8.0.0
 
 dev_dependencies:
 

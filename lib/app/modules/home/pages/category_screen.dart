@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'test_screen.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class CategoryScreen extends StatefulWidget {
   final DocumentSnapshot? data;
@@ -24,6 +25,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
   Artboard? _riveArtboard;
   RiveAnimationController? _controller;
+  final themeController = Modular.get<FisioThemeController>();
 
   @override
   void initState() {
@@ -46,15 +48,18 @@ class _CategoryScreenState extends State<CategoryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return Scaffold(
-      backgroundColor: Colors.white,
       appBar: CustomAppBar(title: widget.data!['name']),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
-          titleT1Widget('Subcategorias', TextStyles.title1),
+          titleT1Widget(
+            'Subcategorias',
+            title1.copyWith(
+              color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+            ),
+          ),
           StreamBuilder<QuerySnapshot>(
             stream: firebase.collection('categorias').doc(widget.data!.id).collection('subcategorias').snapshots(),
             builder: (context, snapshot) {
@@ -87,7 +92,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                 child: cardTileCategoryScreen(
                                   selectedIndex: _selectedIndex,
                                   index: index,
-                                  color: primaryColor,
+                                  color: FisioColors.primaryColor,
                                   name: docs[index]['name'],
                                 ),
                               );
@@ -98,7 +103,14 @@ class _CategoryScreenState extends State<CategoryScreen> {
             },
           ),
           const SizedBox(height: 15),
-          toogle ? titleT1Widget('Testes', TextStyles.title1) : Container(),
+          toogle
+              ? titleT1Widget(
+                  'Testes',
+                  title1.copyWith(
+                    color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                  ),
+                )
+              : Container(),
           toogle
               ? FutureBuilder<QuerySnapshot>(
                   future: firebase
@@ -112,8 +124,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
                       case ConnectionState.waiting:
-                        return LoadingIndicatorWidget(
-                          color: primaryColor,
+                        return const LoadingIndicatorWidget(
+                          color: FisioColors.primaryColor,
                           size: 20.0,
                         );
                       default: //* this is the body page
@@ -121,7 +133,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         return docs.isEmpty
                             ? Align(
                                 alignment: Alignment.center,
-                                child: animationRive3(_riveArtboard),
+                                child: animationRive3(
+                                  artboard: _riveArtboard,
+                                  textColor: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                                ),
                               )
                             : Expanded(
                                 child: ListView.separated(
@@ -142,7 +157,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                       child: cardTestWidget(
                                         name: docs[index]['name'],
                                         description: docs[index]['description'],
-                                        color: primaryColor,
+                                        card: FisioColors.primaryColor,
+                                        miniCard: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
+                                        textColor:
+                                            themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
                                       ),
                                     ),
                                     openBuilder: (context, _) => TestScreen(docs[index]),
@@ -154,7 +172,10 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 )
               : Align(
                   alignment: Alignment.center,
-                  child: animationRive2(_riveArtboard),
+                  child: animationRive2(
+                    artboard: _riveArtboard,
+                    textColor: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                  ),
                 ),
         ],
       ),

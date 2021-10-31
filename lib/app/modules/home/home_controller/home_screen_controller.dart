@@ -6,26 +6,15 @@ class HomeScreenController {
   //**bottomNavBar
   var gridDelegate = const SliverGridDelegateWithFixedCrossAxisCount(
     crossAxisCount: 2,
-    crossAxisSpacing: 1,
-    mainAxisSpacing: 1,
+    crossAxisSpacing: 4,
+    mainAxisSpacing: 4,
     childAspectRatio: 1.8,
   );
 
-  var bottomBoxDecoration = BoxDecoration(
-    color: Colors.white,
-    borderRadius: BorderRadius.circular(100),
-    boxShadow: [
-      BoxShadow(
-        blurRadius: 3,
-        color: Colors.black.withOpacity(.2),
-      ),
-    ],
-  );
-
-  var tabs = const [
-    GButton(icon: LineIcons.home, text: 'Home'),
-    GButton(icon: LineIcons.heart, text: 'Favoritos'),
-    GButton(icon: LineIcons.book, text: 'Referências'),
-    GButton(icon: LineIcons.user, text: 'Perfil'),
+  var tabs = [
+    const GButton(icon: LineIcons.home, text: 'Home'),
+    const GButton(icon: LineIcons.heart, text: 'Favoritos'),
+    const GButton(icon: LineIcons.book, text: 'Referências'),
+    const GButton(icon: LineIcons.user, text: 'Perfil'),
   ];
 }

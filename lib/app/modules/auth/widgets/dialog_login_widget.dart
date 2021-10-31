@@ -1,4 +1,7 @@
 import 'dart:ui';
+import 'package:fisio_app/app/core/core.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_events.dart';
 import 'package:flutter/cupertino.dart';
@@ -12,16 +15,17 @@ class DialogLogin extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final bloc = Modular.get<AuthBloc>();
+  final themeController = Modular.get<FisioThemeController>();
 
   @override
   Widget build(BuildContext context) {
-    final primaryColor = Theme.of(context).primaryColor;
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
+        backgroundColor: themeController.isDark ? FisioColors.lowBlack : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           shrinkWrap: true,
           physics: const BouncingScrollPhysics(),
           children: [
@@ -33,7 +37,11 @@ class DialogLogin extends StatelessWidget {
                   heightFactor: .8,
                   alignment: Alignment.topRight,
                   child: IconButton(
-                    icon: const Icon(Icons.close, size: 18.0),
+                    icon: Icon(
+                      Icons.close,
+                      size: 18.0,
+                      color: themeController.isDark ? Colors.white : FisioColors.lowBlack,
+                    ),
                     onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
@@ -42,7 +50,7 @@ class DialogLogin extends StatelessWidget {
                   child: Text(
                     'Insira seus dados',
                     style: GoogleFonts.nunito(
-                      color: primaryColor,
+                      color: FisioColors.primaryColor,
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
                     ),
@@ -67,21 +75,21 @@ class DialogLogin extends StatelessWidget {
                     buttonForget(context),
                     const SizedBox(height: 10),
                     Material(
-                      color: primaryColor,
+                      color: FisioColors.primaryColor,
                       borderRadius: BorderRadius.circular(30),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(30),
                         child: buttonLogin(context: context, text: 'Entrar'),
-                        onTap: () {
-                          bloc.add(LoginEvent(
+                        onTap: () => bloc.add(
+                          LoginEvent(
                             email: emailController.text,
                             password: passwordController.text,
                             context: context,
-                          ));
-                        },
+                          ),
+                        ),
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 4),
                     buttonLoginGoogle(context, 'Entrar com o Google')
                   ],
                 )
