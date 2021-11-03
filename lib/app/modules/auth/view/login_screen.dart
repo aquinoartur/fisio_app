@@ -1,5 +1,5 @@
 import 'dart:ui';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/core.dart';
 import '../widgets/dialog_login_widget.dart';

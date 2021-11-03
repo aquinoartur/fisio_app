@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
+import 'app/fisio_design_system/colors_palette/colors_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';

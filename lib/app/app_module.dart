@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'core/core.dart';
+import 'core/theme/fisio_theme_controller.dart';
 import 'modules/auth/bloc/auth_bloc.dart';
-import 'modules/auth/pages/login_screen.dart';
+import 'modules/auth/view/login_screen.dart';
 import 'modules/home/home_module.dart';
 import 'modules/others/about_the_app/about_screen.dart';
 import 'modules/others/splash/splash_screen.dart';

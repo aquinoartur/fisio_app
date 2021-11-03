@@ -1,5 +1,5 @@
-import 'package:fisio_app/app/core/theme_controller/fisio_theme_controller.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../theme/fisio_theme_controller.dart';
+import '../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

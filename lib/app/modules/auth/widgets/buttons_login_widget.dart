@@ -1,5 +1,5 @@
-import 'package:fisio_app/app/core/core.dart';
-import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
+import '../../../core/core.dart';
+import '../../../fisio_design_system/colors_palette/colors_palette.dart';
 
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_events.dart';

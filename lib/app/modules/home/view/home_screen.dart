@@ -3,7 +3,7 @@ import '../../../core/ad_mob/ad_state.dart';
 import '../../../core/blocs/home_screen_bloc.dart';
 import '../../../core/core.dart';
 import '../home_controller/home_screen_controller.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
