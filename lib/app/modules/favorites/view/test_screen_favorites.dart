@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import '../../home/home_controller/home_test_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';

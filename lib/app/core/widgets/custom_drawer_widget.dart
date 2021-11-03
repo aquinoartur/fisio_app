@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../fisio_design_system/fisio_design_system.dart';
 
 import 'tile_drawer_widget.dart';
 import 'package:flutter/material.dart';

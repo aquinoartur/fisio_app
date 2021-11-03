@@ -1,5 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import '../../../core/core.dart';
 import 'package:flutter/material.dart';
 import 'test_screen_favorites.dart';

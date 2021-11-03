@@ -1,4 +1,4 @@
-import 'pages/favorites_screen.dart';
+import 'view/favorites_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class FavoriteModule extends Module {
