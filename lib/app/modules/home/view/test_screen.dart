@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/core/core.dart';
+import '../../../core/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import '../home_controller/home_test_screen_controller.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 

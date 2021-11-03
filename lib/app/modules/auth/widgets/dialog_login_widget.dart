@@ -1,6 +1,6 @@
 import 'dart:ui';
-import 'package:fisio_app/app/core/core.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../core/core.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_events.dart';

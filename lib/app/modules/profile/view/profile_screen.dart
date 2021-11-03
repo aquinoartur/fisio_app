@@ -1,8 +1,8 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:fisio_app/app/core/core.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
-import 'package:fisio_app/app/modules/auth/bloc/auth_bloc.dart';
-import 'package:fisio_app/app/modules/auth/bloc/auth_events.dart';
+import '../../../core/core.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
+import '../../auth/bloc/auth_bloc.dart';
+import '../../auth/bloc/auth_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -60,37 +60,56 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            IconButton(onPressed: () => bloc.add(LogoutEvent()), icon: Icon(Icons.logout, color: FisioColors.red)),
+            IconButton(
+              onPressed: () => bloc.add(LogoutEvent()),
+              icon: Icon(Icons.logout, color: FisioColors.red),
+              tooltip: 'Fazer Logout',
+            ),
             IconButton(
               onPressed: () {
                 Modular.to.pushNamed('/home/youtube-player', forRoot: true);
               },
               icon: const Icon(Icons.video_settings, color: FisioColors.primaryLightColor),
+              tooltip: 'Ir para o player de vídeo',
             ),
             IconButton(
               onPressed: () {
                 Modular.to.pushNamed('/home/youtube-player-list', forRoot: true);
               },
               icon: const Icon(Icons.video_library_outlined, color: FisioColors.primaryLightColor),
+              tooltip: 'Ver lista de vídeos',
             ),
-            Switch(
-              activeColor: FisioColors.primaryLightColor,
-              value: themeController.theme.value,
-              onChanged: (_) async {
-                await themeController.setThemeMode();
-                setState(() {});
+            IconButton(
+              onPressed: () {
+                Modular.to.pushNamed('/home/photo-gallery', forRoot: true);
               },
+              icon: const Icon(Icons.photo_camera_back, color: FisioColors.primaryLightColor),
+              tooltip: 'Ir para a galeria de fotos',
             ),
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  url = await Utils.buildDynamicLink();
-                } catch (e) {
-                  debugPrint(e.toString());
-                }
-                setState(() {});
-              },
-              child: const Text('Gerar Dynamic Link', style: TextStyle(fontSize: 20)),
+            Tooltip(
+              message: 'Mudar tema do app',
+              child: Switch(
+                activeColor: FisioColors.primaryLightColor,
+                value: themeController.theme.value,
+                onChanged: (_) async {
+                  await themeController.setThemeMode();
+                  setState(() {});
+                },
+              ),
+            ),
+            Tooltip(
+              message: 'Gerador de links dinamicos',
+              child: ElevatedButton(
+                onPressed: () async {
+                  try {
+                    url = await Utils.buildDynamicLink();
+                  } catch (e) {
+                    debugPrint(e.toString());
+                  }
+                  setState(() {});
+                },
+                child: const Text('Gerar Dynamic Link', style: TextStyle(fontSize: 20)),
+              ),
             ),
             const SizedBox(height: 20),
             if (url.isNotEmpty)

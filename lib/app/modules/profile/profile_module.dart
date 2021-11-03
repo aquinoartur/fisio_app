@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/modules/profile/pages/profile_screen.dart';
+import 'view/profile_screen.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class ProfileModule extends Module {

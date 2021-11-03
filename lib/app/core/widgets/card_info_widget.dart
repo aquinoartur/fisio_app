@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../fisio_design_system/fisio_design_system.dart';
 import '../core.dart';
 import 'loading_indicator_widget.dart';
 import 'package:flutter/material.dart';

@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import 'auth_events.dart';
 import 'auth_states.dart';
 import '../repository/google_signin_repository.dart';

@@ -1,6 +1,6 @@
-import 'package:fisio_app/app/core/theme_controller/fisio_theme_controller.dart';
-import 'package:fisio_app/app/core/widgets/customs_app_bar.dart';
-import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+import '../../core/theme/fisio_theme_controller.dart';
+import '../../core/widgets/customs_app_bar.dart';
+import '../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
@@ -18,11 +18,6 @@ class _FisioRouterOutletState extends State<FisioRouterOutlet> {
   final _controller = HomeScreenController();
   final themeController = Modular.get<FisioThemeController>();
   final int _selectedIndex = 0;
-
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +40,7 @@ class _FisioRouterOutletState extends State<FisioRouterOutlet> {
             ),
             margin: const EdgeInsets.all(6.0),
             child: NavigationListener(
-              builder: (context, __) {
+              builder: (_, __) {
                 return SafeArea(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
