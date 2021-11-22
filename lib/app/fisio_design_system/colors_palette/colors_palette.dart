@@ -1,10 +1,13 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
+import '../../flavors.dart';
+
 class FisioColors {
-  static const Color primaryColor = Color(0XFF4A148C);
-  static const Color highPrimaryColor = Color(0XFF36076F);
-  //static const Color primaryColor = Color(0XFF7C45BF);
-  static const Color primaryLightColor = Color(0XFF7C45BF);
+  static Color primaryColor = Flavor.isUser ? Color(0XFF4A148C) : Color(0XFF248490);
+  static Color highPrimaryColor = Flavor.isUser ? Color(0XFF36076F) : Color(0XFF2B8895);
+  static Color primaryLightColor = Flavor.isUser ? Color(0XFF7C45BF) : Color(0XFF3CB4C3);
   static Color darkGrey = Colors.black87.withOpacity(.7);
   static Color red = Colors.red;
   static Color white = Colors.white;

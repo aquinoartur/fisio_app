@@ -1,3 +1,6 @@
+import 'package:fisio_app/app/core/theme/fisio_theme_controller.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+
 import '../../../fisio_design_system/fisio_design_system.dart';
 import '../../home/home_controller/home_test_screen_controller.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +24,8 @@ class TestScreenFavorites extends StatefulWidget {
 class _TestScreenFavoritesState extends State<TestScreenFavorites> {
   final HomeTestScreenController controller = HomeTestScreenController();
 
+  final themeController = Modular.get<FisioThemeController>();
+
   @override
   void initState() {
     super.initState();
@@ -29,72 +34,99 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        title: Text(
-          'Detalhes do teste',
-          style: GoogleFonts.nunito(fontSize: 18, color: FisioColors.primaryColor),
-        ),
-        iconTheme: const IconThemeData(color: FisioColors.primaryColor),
-        leading: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: const Icon(Icons.close_rounded, color: FisioColors.primaryColor),
-        ),
-      ),
+      // appBar: AppBar(
+      //   centerTitle: true,
+      //   elevation: 0,
+      //   title: Text(
+      //     'Detalhes do teste',
+      //     style: GoogleFonts.nunito(fontSize: 18, color: FisioColors.primaryColor),
+      //   ),
+      //   iconTheme: IconThemeData(color: FisioColors.primaryColor),
+      //   leading: IconButton(
+      //     onPressed: () => Navigator.of(context).pop(),
+      //     icon: Icon(Icons.close_rounded, color: FisioColors.primaryColor),
+      //   ),
+      // ),
       body: Column(
         children: [
           widget.images.isNotEmpty
-              ? AspectRatio(
-                  aspectRatio: 16 / 9,
-                  child: Swiper(
-                    itemCount: widget.images.length,
-                    itemBuilder: (BuildContext context, int index) =>
-                        Image.network(widget.images[index], fit: BoxFit.fill),
-                    pagination: const SwiperPagination(),
-                  ),
-                )
-              : Container(),
-          Expanded(
-            child: Container(
-              color: Colors.white,
-              child: ListView(
-                physics: const BouncingScrollPhysics(),
-                padding: const EdgeInsets.all(16),
-                children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          widget.name,
-                          style: ts1,
-                          maxLines: 3,
-                          overflow: TextOverflow.ellipsis,
-                        ),
+              ? Stack(
+                  children: [
+                    AspectRatio(
+                      aspectRatio: 16 / 9,
+                      child: Swiper(
+                        itemCount: widget.images.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            Image.network(widget.images[index], fit: BoxFit.fill),
+                        pagination: const SwiperPagination(),
                       ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    'Descrição:',
-                    style: ts2,
-                    textAlign: TextAlign.start,
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 5),
-                  Text(
-                    widget.texto,
-                    style: ts3,
-                    textAlign: TextAlign.start,
-                    overflow: TextOverflow.fade,
-                  ),
-                  const SizedBox(height: 20),
-                ],
-              ),
+                    ),
+                    RoundedBackButton(),
+                  ],
+                )
+              : RoundedBackButton(),
+          Expanded(
+            child: ListView(
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.all(16),
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: Text(
+                        widget.name,
+                        style: ts1,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 10),
+                Text(
+                  'Descrição:',
+                  style: themeController.isDark ? ts2L : ts2,
+                  textAlign: TextAlign.start,
+                  maxLines: 3,
+                  overflow: TextOverflow.ellipsis,
+                ),
+                const SizedBox(height: 5),
+                Text(
+                  widget.texto,
+                  style: themeController.isDark ? ts3L : ts3,
+                  textAlign: TextAlign.start,
+                  overflow: TextOverflow.fade,
+                ),
+                const SizedBox(height: 20),
+              ],
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class RoundedBackButton extends StatelessWidget {
+  RoundedBackButton({Key? key}) : super(key: key);
+  final themeController = Modular.get<FisioThemeController>();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      alignment: Alignment.topRight,
+      padding: const EdgeInsets.all(16.0),
+      child: Material(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60.0)),
+        color: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(60.0),
+          onTap: () => Navigator.of(context).pop(),
+          child: Icon(
+            Icons.close_rounded,
+            color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+          ),
+        ),
       ),
     );
   }

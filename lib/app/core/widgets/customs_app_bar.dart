@@ -26,7 +26,7 @@ class DefaultAppBar extends StatelessWidget with PreferredSizeWidget {
             ),
             centerTitle: true,
             elevation: 0,
-            iconTheme: const IconThemeData(color: FisioColors.primaryColor),
+            iconTheme: IconThemeData(color: FisioColors.primaryColor),
           );
         });
   }

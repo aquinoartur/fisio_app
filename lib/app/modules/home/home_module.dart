@@ -23,6 +23,7 @@ class HomeModule extends Module {
       child: (_, __) => const FisioRouterOutlet(),
       transition: TransitionType.fadeIn,
       children: [
+        //home-childs-pages
         ChildRoute('/home-screen', child: (_, __) => const HomeScreen(), transition: TransitionType.fadeIn),
         ChildRoute('/category', child: (_, args) => CategoryScreen(args.data), transition: TransitionType.leftToRight),
         ChildRoute('/test', child: (_, args) => TestScreen(args.data), transition: TransitionType.leftToRight),

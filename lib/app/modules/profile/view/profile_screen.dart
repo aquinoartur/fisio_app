@@ -1,4 +1,5 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
+import 'package:fisio_app/app/flavors.dart';
 import '../../../core/core.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
 import '../../auth/bloc/auth_bloc.dart';
@@ -69,21 +70,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               onPressed: () {
                 Modular.to.pushNamed('/home/youtube-player', forRoot: true);
               },
-              icon: const Icon(Icons.video_settings, color: FisioColors.primaryLightColor),
+              icon: Icon(Icons.video_settings, color: FisioColors.primaryLightColor),
               tooltip: 'Ir para o player de vídeo',
             ),
             IconButton(
               onPressed: () {
                 Modular.to.pushNamed('/home/youtube-player-list', forRoot: true);
               },
-              icon: const Icon(Icons.video_library_outlined, color: FisioColors.primaryLightColor),
+              icon: Icon(Icons.video_library_outlined, color: FisioColors.primaryLightColor),
               tooltip: 'Ver lista de vídeos',
             ),
             IconButton(
               onPressed: () {
                 Modular.to.pushNamed('/home/photo-gallery', forRoot: true);
               },
-              icon: const Icon(Icons.photo_camera_back, color: FisioColors.primaryLightColor),
+              icon: Icon(Icons.photo_camera_back, color: FisioColors.primaryLightColor),
               tooltip: 'Ir para a galeria de fotos',
             ),
             Tooltip(

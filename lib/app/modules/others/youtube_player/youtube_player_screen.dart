@@ -227,13 +227,13 @@ class _YoutubePlayerScreenState extends State<YoutubePlayerScreen> {
     return RichText(
       text: TextSpan(
         text: '$title : ',
-        style: const TextStyle(
+        style: TextStyle(
           color: FisioColors.primaryLightColor,
         ),
         children: [
           TextSpan(
             text: value,
-            style: const TextStyle(
+            style: TextStyle(
               color: FisioColors.primaryLightColor,
               fontWeight: FontWeight.w300,
             ),

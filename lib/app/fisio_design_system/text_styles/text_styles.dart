@@ -18,13 +18,13 @@ TextStyle ts1 = GoogleFonts.nunito(color: FisioColors.primaryLightColor, fontWei
 
 TextStyle ts2 = GoogleFonts.nunito(fontSize: 18, color: Colors.black.withOpacity(.7), fontWeight: FontWeight.w700);
 
+TextStyle ts2L = GoogleFonts.nunito(fontSize: 18, color: FisioColors.white, fontWeight: FontWeight.w700);
+
 TextStyle ts3 = GoogleFonts.nunito(fontSize: 16, color: Colors.black.withOpacity(.7), fontWeight: FontWeight.w600);
+
+TextStyle ts3L = GoogleFonts.nunito(fontSize: 16, color: FisioColors.white, fontWeight: FontWeight.w600);
 
 TextStyle ts4 = GoogleFonts.nunito(color: Colors.white, fontSize: 20);
 
 // ignore: non_constant_identifier_names
 var RobotoStyle = GoogleFonts.roboto(color: Colors.black);
-
-///Font Roboto
-// ignore: non_constant_identifier_names
-var RobotoColoredStyle = GoogleFonts.roboto(color: FisioColors.primaryColor, fontSize: 14);

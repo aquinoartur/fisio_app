@@ -124,7 +124,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                     switch (snapshot.connectionState) {
                       case ConnectionState.none:
                       case ConnectionState.waiting:
-                        return const LoadingIndicatorWidget(
+                        return LoadingIndicatorWidget(
                           color: FisioColors.primaryColor,
                           size: 20.0,
                         );

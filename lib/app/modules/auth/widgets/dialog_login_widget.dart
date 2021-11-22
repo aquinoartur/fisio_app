@@ -1,7 +1,7 @@
 import 'dart:ui';
+
 import '../../../core/core.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
-
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_events.dart';
 import 'package:flutter/cupertino.dart';

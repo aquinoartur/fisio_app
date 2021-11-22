@@ -17,3 +17,4 @@ export 'widgets/text_title_appbar_widget.dart';
 export 'widgets/tile_drawer_widget.dart';
 export 'widgets/title_t1_widget.dart';
 export 'theme/fisio_theme_controller.dart';
+export 'theme/flavor_banner.dart';

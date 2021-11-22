@@ -4,7 +4,6 @@ import '../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
-
 import 'home_controller/home_screen_controller.dart';
 
 class FisioRouterOutlet extends StatefulWidget {
@@ -29,7 +28,7 @@ class _FisioRouterOutletState extends State<FisioRouterOutlet> {
         builder: (context, _) {
           return Container(
             decoration: BoxDecoration(
-              color: themeController.isDark ? FisioColors.highBlack : FisioColors.white,
+              color: themeController.isDark ? FisioColors.highBlack : Colors.white,
               borderRadius: BorderRadius.circular(100),
               boxShadow: [
                 BoxShadow(

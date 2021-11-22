@@ -27,7 +27,7 @@ class _AboutScreenState extends State<AboutScreen> {
           style: GoogleFonts.nunito(fontSize: 18, color: FisioColors.primaryColor),
         ),
         centerTitle: true,
-        iconTheme: const IconThemeData(color: FisioColors.primaryColor),
+        iconTheme: IconThemeData(color: FisioColors.primaryColor),
         elevation: 0,
       ),
       body: FutureBuilder<QuerySnapshot>(
@@ -36,7 +36,7 @@ class _AboutScreenState extends State<AboutScreen> {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
-              return const LoadingIndicatorWidget(
+              return LoadingIndicatorWidget(
                 color: FisioColors.primaryColor,
                 size: 20.0,
               );

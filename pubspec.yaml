@@ -39,8 +39,8 @@ dependencies:
   shared_preferences: ^2.0.8
   firebase_dynamic_links: ^2.0.10
   youtube_player_flutter: ^8.0.0
-  sqflite: ^2.0.0+4
   image_picker: ^0.8.4+4
+  sqflite: ^2.0.0+4
 
 dev_dependencies:
 
