@@ -1,15 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../fisio_design_system/fisio_design_system.dart';
-import 'auth_events.dart';
-import 'auth_states.dart';
-import '../repository/google_signin_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import '../../../fisio_design_system/fisio_design_system.dart';
+import '../repository/google_signin_repository.dart';
+import 'auth_events.dart';
+import 'auth_states.dart';
+
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
-  AuthBloc() : super(EmptyState()) {
+  final IGoogleSignInRepository repository;
+  AuthBloc(
+    this.repository,
+  ) : super(EmptyState()) {
     on<GoogleLoginEvent>(loginWithGoogle);
     on<LoginEvent>(loginWithFirebase);
     on<PersistentLoginEvent>(persistentLoginWithFirebase);
@@ -18,7 +22,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> loginWithGoogle(GoogleLoginEvent event, Emitter<AuthState> emit) async {
     try {
-      final user = await GoogleSignInRepository.login();
+      final user = await repository.login();
 
       if (user != null) {
         final GoogleSignInAuthentication googleSignInAuthentication = await user.authentication;
@@ -34,7 +38,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         showToastError('Falha ao realizar login');
       }
     } catch (e) {
-      showToastError('Falha');
+      showToastError('Erro inesperado');
     }
   }
 
@@ -66,7 +70,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   Future<void> logoutWithGoogle(LogoutEvent event, Emitter<AuthState> emit) async {
-    await GoogleSignInRepository.logout();
+    await repository.logout();
   }
 
   //dispose

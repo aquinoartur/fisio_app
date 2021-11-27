@@ -1,11 +1,8 @@
-import 'package:fisio_app/app/core/theme/fisio_theme_controller.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-
+import '../../../core/extensions/theme_controller_extension.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
 import '../../home/home_controller/home_test_screen_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class TestScreenFavorites extends StatefulWidget {
   final String texto;
@@ -23,8 +20,6 @@ class TestScreenFavorites extends StatefulWidget {
 
 class _TestScreenFavoritesState extends State<TestScreenFavorites> {
   final HomeTestScreenController controller = HomeTestScreenController();
-
-  final themeController = Modular.get<FisioThemeController>();
 
   @override
   void initState() {
@@ -61,10 +56,10 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                         pagination: const SwiperPagination(),
                       ),
                     ),
-                    RoundedBackButton(),
+                    const RoundedBackButton(),
                   ],
                 )
-              : RoundedBackButton(),
+              : const RoundedBackButton(),
           Expanded(
             child: ListView(
               physics: const BouncingScrollPhysics(),
@@ -85,7 +80,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                 const SizedBox(height: 10),
                 Text(
                   'Descrição:',
-                  style: themeController.isDark ? ts2L : ts2,
+                  style: context.theme.isDark ? ts2L : ts2,
                   textAlign: TextAlign.start,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -93,7 +88,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
                 const SizedBox(height: 5),
                 Text(
                   widget.texto,
-                  style: themeController.isDark ? ts3L : ts3,
+                  style: context.theme.isDark ? ts3L : ts3,
                   textAlign: TextAlign.start,
                   overflow: TextOverflow.fade,
                 ),
@@ -108,8 +103,7 @@ class _TestScreenFavoritesState extends State<TestScreenFavorites> {
 }
 
 class RoundedBackButton extends StatelessWidget {
-  RoundedBackButton({Key? key}) : super(key: key);
-  final themeController = Modular.get<FisioThemeController>();
+  const RoundedBackButton({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -118,13 +112,13 @@ class RoundedBackButton extends StatelessWidget {
       padding: const EdgeInsets.all(16.0),
       child: Material(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(60.0)),
-        color: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
+        color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white,
         child: InkWell(
           borderRadius: BorderRadius.circular(60.0),
           onTap: () => Navigator.of(context).pop(),
           child: Icon(
             Icons.close_rounded,
-            color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+            color: context.theme.isDark ? FisioColors.white : FisioColors.primaryColor,
           ),
         ),
       ),

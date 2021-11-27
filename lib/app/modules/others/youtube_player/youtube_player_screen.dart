@@ -1,7 +1,7 @@
 // ignore_for_file: unnecessary_string_escapes, unused_field
 
 import 'package:fisio_app/app/core/core.dart';
-import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
+import 'package:fisio_app/app/fisio_design_system/colors_palette/fisio_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';

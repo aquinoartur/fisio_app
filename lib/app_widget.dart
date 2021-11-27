@@ -1,12 +1,13 @@
 import 'package:bloc_pattern/bloc_pattern.dart';
 import 'package:bot_toast/bot_toast.dart';
-import 'package:fisio_app/app/core/blocs/home_screen_bloc.dart';
-import 'package:fisio_app/app/flavors.dart';
-import 'package:fisio_app/main_theme_data.dart';
+import 'package:fisio_app/app/modules/auth/repository/google_signin_repository.dart';
+import 'app/core/blocs/home_screen_bloc.dart';
+import 'app/core/extensions/theme_controller_extension.dart';
+import 'app/flavors.dart';
+import 'app/core/theme/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:asuka/asuka.dart' as asuka;
-import 'app/core/theme/fisio_theme_controller.dart';
 import 'app/core/theme/flavor_banner.dart';
 import 'app/modules/auth/bloc/auth_bloc.dart';
 
@@ -17,13 +18,10 @@ class AppWidget extends StatefulWidget {
 
 class _AppWidgetState extends State<AppWidget> {
   final botToastBuilder = BotToastInit();
-
-  final themeController = Modular.get<FisioThemeController>();
-
   @override
   void initState() {
     super.initState();
-    themeController.loadThemeMode().then((_) => setState);
+    context.theme.loadThemeMode().then((_) => setState);
   }
 
   @override
@@ -31,11 +29,11 @@ class _AppWidgetState extends State<AppWidget> {
     return BlocProvider(
       blocs: [
         Bloc((i) => HomeScreenBloc()),
-        Bloc((ii) => AuthBloc()),
+        Bloc((ii) => AuthBloc(Modular.get<IGoogleSignInRepository>())),
       ],
       dependencies: const [],
       child: AnimatedBuilder(
-        animation: themeController,
+        animation: context.theme,
         builder: (context, _) {
           return MaterialApp(
             builder: (context, child) {
@@ -52,7 +50,7 @@ class _AppWidgetState extends State<AppWidget> {
             ],
             debugShowCheckedModeBanner: false,
             initialRoute: '/',
-            theme: themeController.isDark ? darkMode() : lightMode(),
+            theme: context.theme.isDark ? darkMode() : lightMode(),
           ).modular();
         },
       ),

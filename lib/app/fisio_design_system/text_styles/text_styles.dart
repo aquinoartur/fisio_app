@@ -1,6 +1,7 @@
-import '../colors_palette/colors_palette.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../colors_palette/fisio_colors.dart';
 
 TextStyle title1 = GoogleFonts.nunito(color: Colors.black87.withOpacity(.7), fontSize: 18, fontWeight: FontWeight.bold);
 
@@ -8,7 +9,7 @@ TextStyle title2 = GoogleFonts.nunito(color: Colors.white, fontSize: 20, fontWei
 
 TextStyle cardtitle1 = GoogleFonts.nunito(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14);
 
-TextStyle cardtitle2 = GoogleFonts.nunito(color: Colors.white, fontWeight: FontWeight.w600, fontSize: 14);
+TextStyle cardtitle2 = GoogleFonts.nunito(color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14);
 
 TextStyle cardtitle3 = GoogleFonts.nunito(color: Colors.black87, fontWeight: FontWeight.w600, fontSize: 12);
 

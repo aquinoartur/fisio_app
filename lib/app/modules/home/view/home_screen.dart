@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../core/extensions/theme_controller_extension.dart';
 import '../../../core/ad_mob/ad_state.dart';
 import '../../../core/blocs/home_screen_bloc.dart';
 import '../../../core/core.dart';
@@ -8,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 import 'package:bloc_pattern/bloc_pattern.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
   BannerAd? bannerAd;
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
   final bloc = BlocProvider.getBloc<HomeScreenBloc>();
-  final themeController = Modular.get<FisioThemeController>();
+
   final _controller = HomeScreenController();
 
   @override
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
           const SizedBox(height: 5),
           titleT1Widget(
             'Categorias',
-            title1.copyWith(color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack),
+            title1.copyWith(color: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack),
           ),
           Expanded(
             child: ListView(
@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMi
                   builder: (context, snapshot) {
                     if (!snapshot.hasData) {
                       return HomeCustomShimmer(
-                        color: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
+                        color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white,
                       );
                     } else {
                       return GridView.builder(

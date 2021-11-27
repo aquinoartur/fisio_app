@@ -9,8 +9,7 @@ import 'package:flutter_modular/flutter_modular.dart';
 class CardInfo extends StatelessWidget {
   final DocumentSnapshot? data;
 
-  CardInfo(this.data);
-  final themeController = Modular.get<FisioThemeController>();
+  const CardInfo(this.data);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +21,7 @@ class CardInfo extends StatelessWidget {
           end: Alignment.centerRight,
           colors: [
             FisioColors.primaryColor,
-            FisioColors.highPrimaryColor,
+            FisioColors.primaryHighColor,
           ],
         ),
       ),

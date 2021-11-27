@@ -1,21 +1,29 @@
 import 'dart:ui';
-import '../../../fisio_design_system/fisio_design_system.dart';
-import 'package:flutter_modular/flutter_modular.dart';
-import '../../../core/core.dart';
-import '../widgets/dialog_login_widget.dart';
-import '../widgets/dialog_signout.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'package:fisio_app/app/modules/auth/bloc/auth_bloc.dart';
+
+import '../../../core/core.dart';
+import '../../../core/extensions/theme_controller_extension.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
+import '../widgets/dialog_login_widget.dart';
+import '../widgets/dialog_signout.dart';
+
 class LoginScreen extends StatefulWidget {
+  final AuthBloc authBloc;
+  const LoginScreen({
+    Key? key,
+    required this.authBloc,
+  }) : super(key: key);
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  final themeController = Modular.get<FisioThemeController>();
-  var isLoaded = false;
+  bool isLoaded = false;
 
   @override
   void initState() {
@@ -50,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             Positioned(
               top: MediaQuery.of(context).size.height / 2,
-              child: SecLinearGradientWidget(),
+              child: const SecLinearGradientWidget(),
             ),
             Positioned.fill(
               top: MediaQuery.of(context).size.height / 1.5,
@@ -62,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       Text(
                         'Bem-vindo',
                         style: GoogleFonts.nunito(
-                          color: themeController.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
+                          color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
                           fontSize: 38,
                           fontWeight: FontWeight.w800,
                         ),
@@ -82,12 +90,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         duration: const Duration(seconds: 1),
                         opacity: isLoaded ? 1 : 0,
                         child: Material(
-                          color: themeController.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
+                          color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
                           borderRadius: BorderRadius.circular(30),
                           child: InkWell(
                             onTap: () => showDialog(
                               context: context,
-                              builder: (_) => DialogLogin(),
+                              builder: (_) => DialogLogin(authBloc: widget.authBloc),
                               barrierDismissible: false,
                             ),
                             borderRadius: BorderRadius.circular(30),
@@ -111,19 +119,18 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   )),
             ),
-            //Positioned.fill(child: ContactsLoginWidget()),
             Positioned.fill(
               child: Align(
                 alignment: Alignment.topRight / 1.15,
                 child: GestureDetector(
                   onTap: () => showDialog(
                     context: context,
-                    builder: (_) => DialogSignout(),
+                    builder: (_) => DialogSignout(authBloc: widget.authBloc),
                     barrierDismissible: false,
                   ),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: themeController.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
+                      color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.primaryColor,
                       borderRadius: BorderRadius.circular(20),
                     ),
                     alignment: Alignment.center,

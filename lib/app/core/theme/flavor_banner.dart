@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/fisio_design_system/colors_palette/colors_palette.dart';
+import '../../fisio_design_system/colors_palette/fisio_colors.dart';
 import 'package:flutter/material.dart';
 
 class FlavorBannerWidget extends StatelessWidget {
@@ -9,21 +9,23 @@ class FlavorBannerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (isUser) return child;
-    return Stack(children: <Widget>[
-      child,
-      SizedBox(
-        width: 50,
-        height: 50,
-        child: CustomPaint(
-          painter: BannerPainter(
-            message: 'Adm Mode',
-            textDirection: Directionality.of(context),
-            layoutDirection: Directionality.of(context),
-            location: BannerLocation.topStart,
-            color: FisioColors.primaryColor,
+    return Stack(
+      children: <Widget>[
+        child,
+        SizedBox(
+          width: 50.0,
+          height: 50.0,
+          child: CustomPaint(
+            painter: BannerPainter(
+              message: 'Adm Mode',
+              textDirection: Directionality.of(context),
+              layoutDirection: Directionality.of(context),
+              location: BannerLocation.topStart,
+              color: FisioColors.primaryColor,
+            ),
           ),
         ),
-      ),
-    ]);
+      ],
+    );
   }
 }

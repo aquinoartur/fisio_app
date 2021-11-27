@@ -9,7 +9,7 @@ Widget cardTileCategoryScreen(
       borderRadius: BorderRadius.circular(10),
       color: selectedIndex == index ? color : FisioColors.lightBlack,
     ),
-    width: 150,
+    width: 152,
     child: Text(
       name,
       style: cardtitle2,

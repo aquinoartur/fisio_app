@@ -1,13 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import '../../../fisio_design_system/fisio_design_system.dart';
-import '../../auth/bloc/auth_bloc.dart';
-import '../../auth/bloc/auth_events.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rive/rive.dart';
 
+import '../../../fisio_design_system/fisio_design_system.dart';
+import '../../auth/bloc/auth_bloc.dart';
+import '../../auth/bloc/auth_events.dart';
+
 class SplashScreen extends StatefulWidget {
+  final AuthBloc authBloc;
+  const SplashScreen({
+    Key? key,
+    required this.authBloc,
+  }) : super(key: key);
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

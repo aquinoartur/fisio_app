@@ -1,6 +1,5 @@
 import 'package:firebase_dynamic_links/firebase_dynamic_links.dart';
-import 'package:fisio_app/app/flavors.dart';
-import '../../../core/core.dart';
+import '../../../core/extensions/theme_controller_extension.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
 import '../../auth/bloc/auth_bloc.dart';
 import '../../auth/bloc/auth_events.dart';
@@ -19,7 +18,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   final bloc = Modular.get<AuthBloc>();
-  final themeController = Modular.get<FisioThemeController>();
+
   String url = '';
   @override
   void initState() {
@@ -91,9 +90,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               message: 'Mudar tema do app',
               child: Switch(
                 activeColor: FisioColors.primaryLightColor,
-                value: themeController.theme.value,
+                value: context.theme.theme.value,
                 onChanged: (_) async {
-                  await themeController.setThemeMode();
+                  await context.theme.setThemeMode();
                   setState(() {});
                 },
               ),

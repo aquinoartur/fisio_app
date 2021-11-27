@@ -1,21 +1,26 @@
 import 'dart:ui';
 
-import '../../../core/core.dart';
-import '../../../fisio_design_system/fisio_design_system.dart';
+import 'package:fisio_app/app/modules/auth/bloc/auth_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import '../../../core/extensions/theme_controller_extension.dart';
+import '../../../fisio_design_system/fisio_design_system.dart';
 import 'buttons_login_widget.dart';
 
 class DialogSignout extends StatelessWidget {
-  final themeController = Modular.get<FisioThemeController>();
+  final AuthBloc authBloc;
+  const DialogSignout({
+    Key? key,
+    required this.authBloc,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return BackdropFilter(
       filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
       child: Dialog(
-        backgroundColor: themeController.isDark ? FisioColors.lowBlack : Colors.white,
+        backgroundColor: context.theme.isDark ? FisioColors.lowBlack : Colors.white,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 0),
@@ -33,11 +38,9 @@ class DialogSignout extends StatelessWidget {
                     icon: Icon(
                       Icons.close,
                       size: 18.0,
-                      color: themeController.isDark ? Colors.white : FisioColors.lowBlack,
+                      color: context.theme.isDark ? Colors.white : FisioColors.lowBlack,
                     ),
-                    onPressed: () {
-                      Navigator.of(context).pop();
-                    },
+                    onPressed: () => Navigator.of(context).pop(),
                   ),
                 ),
                 Padding(
@@ -90,7 +93,6 @@ class DialogSignout extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 10),
-                    // buttonLoginGoogle(context, 'Cadastrar com o Google')
                   ],
                 )
               ],

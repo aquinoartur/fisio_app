@@ -1,4 +1,4 @@
-import '../../core/theme/fisio_theme_controller.dart';
+import '../../core/extensions/theme_controller_extension.dart';
 import '../../core/widgets/customs_app_bar.dart';
 import '../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,7 @@ class FisioRouterOutlet extends StatefulWidget {
 
 class _FisioRouterOutletState extends State<FisioRouterOutlet> {
   final _controller = HomeScreenController();
-  final themeController = Modular.get<FisioThemeController>();
+
   final int _selectedIndex = 0;
 
   @override
@@ -24,11 +24,11 @@ class _FisioRouterOutletState extends State<FisioRouterOutlet> {
       appBar: DefaultAppBar(),
       body: RouterOutlet(),
       bottomNavigationBar: AnimatedBuilder(
-        animation: themeController,
+        animation: context.theme,
         builder: (context, _) {
           return Container(
             decoration: BoxDecoration(
-              color: themeController.isDark ? FisioColors.highBlack : Colors.white,
+              color: context.theme.isDark ? FisioColors.highBlack : Colors.white,
               borderRadius: BorderRadius.circular(100),
               boxShadow: [
                 BoxShadow(
@@ -52,7 +52,7 @@ class _FisioRouterOutletState extends State<FisioRouterOutlet> {
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
                       duration: const Duration(milliseconds: 400),
                       tabBackgroundColor: FisioColors.primaryColor,
-                      color: themeController.isDark ? FisioColors.white : FisioColors.highBlack,
+                      color: context.theme.isDark ? FisioColors.white : FisioColors.highBlack,
                       tabs: _controller.tabs,
                       selectedIndex: _selectedIndex,
                       onTabChange: (index) => changeRoute(index),

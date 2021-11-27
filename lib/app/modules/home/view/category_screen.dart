@@ -1,5 +1,6 @@
 import 'package:animations/animations.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import '../../../core/extensions/theme_controller_extension.dart';
 import '../../../core/core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:rive/rive.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
 import 'test_screen.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class CategoryScreen extends StatefulWidget {
   final DocumentSnapshot? data;
@@ -25,7 +25,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
   final FirebaseFirestore firebase = FirebaseFirestore.instance;
   Artboard? _riveArtboard;
   RiveAnimationController? _controller;
-  final themeController = Modular.get<FisioThemeController>();
 
   @override
   void initState() {
@@ -57,7 +56,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           titleT1Widget(
             'Subcategorias',
             title1.copyWith(
-              color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+              color: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack,
             ),
           ),
           StreamBuilder<QuerySnapshot>(
@@ -107,7 +106,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
               ? titleT1Widget(
                   'Testes',
                   title1.copyWith(
-                    color: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                    color: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack,
                   ),
                 )
               : Container(),
@@ -133,9 +132,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         return docs.isEmpty
                             ? Align(
                                 alignment: Alignment.center,
-                                child: animationRive3(
+                                child: animationRiveTertiary(
                                   artboard: _riveArtboard,
-                                  textColor: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                                  textColor: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack,
                                 ),
                               )
                             : Expanded(
@@ -157,10 +156,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                                       child: cardTestWidget(
                                         name: docs[index]['name'],
                                         description: docs[index]['description'],
-                                        card: FisioColors.primaryColor,
-                                        miniCard: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
-                                        textColor:
-                                            themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+                                        cardColor: FisioColors.primaryColor,
+                                        miniCardColor: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white,
+                                        textColor: context.theme.isDark ? FisioColors.white : FisioColors.primaryColor,
                                       ),
                                     ),
                                     openBuilder: (context, _) => TestScreen(docs[index]),
@@ -172,9 +170,9 @@ class _CategoryScreenState extends State<CategoryScreen> {
                 )
               : Align(
                   alignment: Alignment.center,
-                  child: animationRive2(
+                  child: animationRiveSecondary(
                     artboard: _riveArtboard,
-                    textColor: themeController.isDark ? FisioColors.white : FisioColors.lowBlack,
+                    textColor: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack,
                   ),
                 ),
         ],

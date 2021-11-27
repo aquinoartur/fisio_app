@@ -1,11 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../../core/core.dart';
+import '../../../core/extensions/theme_controller_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_card_swipper/flutter_card_swiper.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
 import '../home_controller/home_test_screen_controller.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class TestScreen extends StatefulWidget {
   final DocumentSnapshot? data;
@@ -19,7 +18,6 @@ class _TestScreenState extends State<TestScreen> {
   List<String> list = [];
 
   final HomeTestScreenController controller = HomeTestScreenController();
-  final themeController = Modular.get<FisioThemeController>();
 
   @override
   void initState() {
@@ -41,12 +39,12 @@ class _TestScreenState extends State<TestScreen> {
           'Detalhes do teste',
           style: GoogleFonts.nunito(
             fontSize: 18,
-            color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+            color: context.theme.isDark ? FisioColors.white : FisioColors.primaryColor,
           ),
         ),
         leading: IconButton(
           onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.close_rounded, color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor),
+          icon: Icon(Icons.close_rounded, color: context.theme.isDark ? FisioColors.white : FisioColors.primaryColor),
         ),
         actions: [
           IconButton(
@@ -57,7 +55,7 @@ class _TestScreenState extends State<TestScreen> {
             icon: Icon(
               Icons.house_outlined,
               size: 18,
-              color: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
+              color: context.theme.isDark ? FisioColors.white : FisioColors.primaryColor,
             ),
           ),
         ],
@@ -81,7 +79,7 @@ class _TestScreenState extends State<TestScreen> {
               : Container(),
           Expanded(
             child: Container(
-              color: themeController.isDark ? FisioColors.lowBlack : FisioColors.white,
+              color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white,
               child: ListView(
                 physics: const BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(16),
@@ -110,7 +108,7 @@ class _TestScreenState extends State<TestScreen> {
                   const SizedBox(height: 10),
                   Text(
                     'Descrição:',
-                    style: ts2.copyWith(color: themeController.isDark ? FisioColors.white : null),
+                    style: ts2.copyWith(color: context.theme.isDark ? FisioColors.white : null),
                     textAlign: TextAlign.start,
                     maxLines: 3,
                     overflow: TextOverflow.ellipsis,
@@ -118,7 +116,7 @@ class _TestScreenState extends State<TestScreen> {
                   const SizedBox(height: 5),
                   Text(
                     widget.data!['resume'],
-                    style: ts3.copyWith(color: themeController.isDark ? FisioColors.white : null),
+                    style: ts3.copyWith(color: context.theme.isDark ? FisioColors.white : null),
                     textAlign: TextAlign.start,
                     overflow: TextOverflow.fade,
                   ),
@@ -150,9 +148,9 @@ class _TestScreenState extends State<TestScreen> {
                       child: Text(
                         'Mais informações.',
                         style: GoogleFonts.nunito(
-                          color: themeController.isDark ? FisioColors.white : null,
+                          color: context.theme.isDark ? FisioColors.white : null,
                           fontSize: 16,
-                          fontWeight: themeController.isDark ? FontWeight.w500 : FontWeight.bold,
+                          fontWeight: context.theme.isDark ? FontWeight.w500 : FontWeight.bold,
                         ),
                         textAlign: TextAlign.center,
                       ),

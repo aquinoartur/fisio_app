@@ -1,5 +1,7 @@
-import '../../../core/core.dart';
-import '../../../fisio_design_system/colors_palette/colors_palette.dart';
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
+
+import '../../../core/extensions/theme_controller_extension.dart';
+import '../../../fisio_design_system/colors_palette/fisio_colors.dart';
 
 import '../bloc/auth_bloc.dart';
 import '../bloc/auth_events.dart';
@@ -9,7 +11,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 Widget buttonLoginGoogle(BuildContext context, String text) {
   final bloc = Modular.get<AuthBloc>();
-  final themeController = Modular.get<FisioThemeController>();
+
   return GestureDetector(
     onTap: () {
       Navigator.of(context).popUntil((route) => route.isFirst);
@@ -23,11 +25,17 @@ Widget buttonLoginGoogle(BuildContext context, String text) {
           width: 50,
           height: 50,
           decoration: const BoxDecoration(
-              image: DecorationImage(
-            image: AssetImage('assets/images/google.png'),
-          )),
+            image: DecorationImage(
+              image: AssetImage('assets/images/google.png'),
+            ),
+          ),
         ),
-        Text(text, style: GoogleFonts.nunito(color: themeController.isDark ? Colors.white : FisioColors.lowBlack))
+        Text(
+          text,
+          style: GoogleFonts.nunito(
+            color: context.theme.isDark ? Colors.white : FisioColors.lowBlack,
+          ),
+        ),
       ],
     ),
   );
@@ -44,7 +52,7 @@ Widget buttonLogin({
       color: Colors.transparent,
       child: Text(
         text,
-        style: GoogleFonts.nunito(color: Colors.white, fontSize: 18),
+        style: title1.copyWith(color: FisioColors.white),
         textAlign: TextAlign.center,
       )
 
@@ -59,17 +67,18 @@ Widget buttonLogin({
 }
 
 Widget buttonForget(BuildContext context) {
-  final themeController = Modular.get<FisioThemeController>();
   return GestureDetector(
     onTap: () {},
     child: Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text('Esqueceu a senha?  ',
-            style: GoogleFonts.nunito(
-              color: themeController.isDark ? Colors.white : FisioColors.lowBlack,
-              fontSize: 14,
-            ))
+        Text(
+          'Esqueceu a senha?  ',
+          style: cardtitle2.copyWith(
+            color: context.theme.isDark ? Colors.white : FisioColors.lowBlack,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
       ],
     ),
   );

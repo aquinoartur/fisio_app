@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-Widget titleT1Widget(String string, TextStyle textStyle) {
+Widget titleT1Widget(String label, TextStyle style) {
   return Container(
     alignment: Alignment.centerLeft,
     padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
     child: Text(
-      string,
+      label,
       textAlign: TextAlign.start,
-      style: textStyle,
+      style: style,
     ),
   );
 }

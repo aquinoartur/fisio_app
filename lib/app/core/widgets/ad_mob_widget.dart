@@ -5,7 +5,7 @@ Widget adMob(BannerAd bannerAd) {
   return Padding(
     padding: const EdgeInsets.all(8.0),
     child: SizedBox(
-      height: 50,
+      height: 50.0,
       child: AdWidget(
         ad: bannerAd,
       ),

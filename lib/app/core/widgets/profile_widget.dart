@@ -12,14 +12,15 @@ class ProfileWidget extends StatefulWidget {
   final String? linkedin;
   final String? email;
 
-  const ProfileWidget(
-      {this.color,
-      this.name,
-      this.description,
-      this.image,
-      this.instagram,
-      this.linkedin,
-      this.email});
+  const ProfileWidget({
+    this.color,
+    this.name,
+    this.description,
+    this.image,
+    this.instagram,
+    this.linkedin,
+    this.email,
+  });
 
   @override
   _ProfileWidgetState createState() => _ProfileWidgetState();
@@ -32,15 +33,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         url,
         forceSafariVC: false,
         forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
+        headers: <String, String>{},
       );
     } else {
-      throw 'Could not launch $url';
+      throw 'Não foi possível encontrar a url: $url';
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    //TODO componentizar e ajustar ícones de redes sociais
     return Padding(
       padding: const EdgeInsets.only(left: 16, right: 16),
       child: Column(
@@ -49,15 +51,16 @@ class _ProfileWidgetState extends State<ProfileWidget> {
         children: [
           Container(
             decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(
-                  width: 5,
-                  color: widget.color!,
-                )),
+              shape: BoxShape.circle,
+              border: Border.all(
+                width: 6,
+                color: widget.color!,
+              ),
+            ),
             child: ClipOval(
               child: SizedBox(
-                width: 90,
-                height: 90,
+                width: 92,
+                height: 92,
                 child: widget.image! == ''
                     ? Image.asset(
                         'assets/images/person.png',
@@ -75,18 +78,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
           ),
           Text(
             widget.name!,
-            style: GoogleFonts.nunito(
-                color: widget.color!,
-                fontSize: 18,
-                fontWeight: FontWeight.w600),
+            style: GoogleFonts.nunito(color: widget.color!, fontSize: 18, fontWeight: FontWeight.w600),
             textAlign: TextAlign.center,
           ),
           Text(
             widget.description!,
-            style: GoogleFonts.nunito(
-                color: Colors.black87,
-                fontSize: 14,
-                fontWeight: FontWeight.w500),
+            style: GoogleFonts.nunito(color: Colors.black87, fontSize: 14, fontWeight: FontWeight.w500),
             textAlign: TextAlign.center,
           ),
           Row(

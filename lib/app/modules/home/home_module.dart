@@ -1,4 +1,4 @@
-import 'package:fisio_app/app/modules/favorites/view/favorite_db_picker_screen.dart';
+import '../favorites/view/favorite_db_picker_screen.dart';
 
 import '../favorites/favorite_module.dart';
 import 'fisio_router_outlet.dart';

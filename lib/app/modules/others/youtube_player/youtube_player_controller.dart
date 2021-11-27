@@ -1,5 +1,6 @@
-import '../../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
+
+import '../../../fisio_design_system/fisio_design_system.dart';
 
 class YoutubePlayerScreenController {
   void showSnackBar(String message, BuildContext context) {

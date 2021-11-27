@@ -1,11 +1,11 @@
+import 'package:fisio_app/app/fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 Widget cardTestWidget({
   required String name,
   required String description,
-  required Color card,
-  required Color miniCard,
+  required Color cardColor,
+  required Color miniCardColor,
   required Color textColor,
   String? category,
   String? subcategory,
@@ -13,7 +13,7 @@ Widget cardTestWidget({
   return Card(
     shape: OutlineInputBorder(borderSide: BorderSide.none, borderRadius: BorderRadius.circular(10)),
     elevation: 0,
-    color: card,
+    color: cardColor,
     child: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Column(
@@ -26,7 +26,7 @@ Widget cardTestWidget({
               Expanded(
                 child: Text(
                   name,
-                  style: GoogleFonts.nunito(color: Colors.white, fontSize: 18, fontWeight: FontWeight.w700),
+                  style: title1.copyWith(color: Colors.white),
                   textAlign: TextAlign.start,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -36,14 +36,13 @@ Widget cardTestWidget({
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
                   decoration: BoxDecoration(
-                    color: miniCard,
+                    color: miniCardColor,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Text(
                     category,
-                    style: GoogleFonts.nunito(
+                    style: cardtitle3.copyWith(
                       color: textColor,
-                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.start,
@@ -58,14 +57,13 @@ Widget cardTestWidget({
                 Container(
                   padding: const EdgeInsets.symmetric(vertical: 1.0, horizontal: 2.0),
                   decoration: BoxDecoration(
-                    color: miniCard,
+                    color: miniCardColor,
                     borderRadius: BorderRadius.circular(6.0),
                   ),
                   child: Text(
                     subcategory,
-                    style: GoogleFonts.nunito(
+                    style: cardtitle3.copyWith(
                       color: textColor,
-                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                     ),
                     textAlign: TextAlign.start,
@@ -94,7 +92,7 @@ Widget cardTestWidget({
           ),
           Text(
             description,
-            style: GoogleFonts.nunito(color: Colors.white, fontSize: 14, fontWeight: FontWeight.w500),
+            style: cardtitle2,
             textAlign: TextAlign.start,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,

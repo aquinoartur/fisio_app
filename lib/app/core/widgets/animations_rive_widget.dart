@@ -2,9 +2,9 @@ import '../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:rive/rive.dart';
 
-Widget animationRive2({required Artboard? artboard, required Color textColor}) {
+Widget animationRiveSecondary({required Artboard? artboard, required Color textColor}) {
   return Padding(
-    padding: const EdgeInsets.only(top: 200),
+    padding: const EdgeInsets.only(top: 200.0),
     child: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -14,9 +14,7 @@ Widget animationRive2({required Artboard? artboard, required Color textColor}) {
           height: 100,
           child: artboard == null ? const SizedBox() : Rive(artboard: artboard),
         ),
-        const SizedBox(
-          height: 5,
-        ),
+        const SizedBox(height: 6.0),
         Text(
           'Selecione uma subcategoria',
           style: t4.copyWith(color: textColor),
@@ -27,7 +25,7 @@ Widget animationRive2({required Artboard? artboard, required Color textColor}) {
   );
 }
 
-Widget animationRive3({required Artboard? artboard, required Color textColor}) {
+Widget animationRiveTertiary({required Artboard? artboard, required Color textColor}) {
   return Padding(
     padding: const EdgeInsets.only(top: 200),
     child: Column(

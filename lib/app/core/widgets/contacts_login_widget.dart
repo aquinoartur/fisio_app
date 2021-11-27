@@ -1,8 +1,7 @@
-import '../../fisio_design_system/fisio_design_system.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
-import '../../modules/others/about_the_app/about_screen.dart';
+import '../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ContactsLoginWidget extends StatelessWidget {
   const ContactsLoginWidget({Key? key}) : super(key: key);
@@ -14,17 +13,15 @@ class ContactsLoginWidget extends StatelessWidget {
       child: GestureDetector(
         child: Container(
           alignment: Alignment.center,
-          width: 100,
-          height: 30,
+          width: 100.0,
+          height: 32.0,
           child: Text(
             'Contatos',
-            style: GoogleFonts.nunito(color: FisioColors.primaryColor, fontSize: 16, fontWeight: FontWeight.w700),
+            style: ts3.copyWith(color: FisioColors.primaryColor),
             textAlign: TextAlign.center,
           ),
         ),
-        onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) => AboutScreen()));
-        },
+        onTap: () => Modular.to.pushNamed('/about'),
       ),
     );
   }

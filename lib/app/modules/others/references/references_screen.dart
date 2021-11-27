@@ -1,5 +1,5 @@
+import '../../../core/extensions/theme_controller_extension.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../core/core.dart';
@@ -13,8 +13,6 @@ class ReferencesScreen extends StatefulWidget {
 }
 
 class _ReferencesScreenState extends State<ReferencesScreen> {
-  final themeController = Modular.get<FisioThemeController>();
-
   final List items = [1, 1, 1, 1, 1, 1, 1, 1];
   @override
   Widget build(BuildContext context) {
@@ -29,7 +27,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                   'Saiba mais sobre os idealizadores do projeto',
                   title1.copyWith(
                     fontSize: 14,
-                    color: themeController.isDark ? FisioColors.white : null,
+                    color: context.theme.isDark ? FisioColors.white : null,
                   ),
                 ),
               ),
@@ -39,7 +37,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                 alignment: Alignment.topCenter,
                 icon: Icon(
                   Icons.chevron_right,
-                  color: themeController.isDark ? FisioColors.white : FisioColors.darkGrey,
+                  color: context.theme.isDark ? FisioColors.white : FisioColors.darkGrey,
                 ),
               ),
             ],
@@ -49,8 +47,8 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
           child: ListView.separated(
             physics: const BouncingScrollPhysics(),
             itemBuilder: (context, index) => ReferencesCarWidget(
-                textColor: themeController.isDark ? FisioColors.white : FisioColors.primaryColor,
-                cardColor: themeController.isDark ? FisioColors.lowBlack : FisioColors.white),
+                textColor: context.theme.isDark ? FisioColors.white : FisioColors.primaryColor,
+                cardColor: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white),
             separatorBuilder: (_, __) => const SizedBox(height: 8.0),
             itemCount: items.length,
           ),
