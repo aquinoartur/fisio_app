@@ -5,9 +5,9 @@ import 'package:bot_toast/bot_toast.dart';
 import 'package:flutter/material.dart';
 
 void showToastSucess(String message, {String? subtitle}) => BotToast.showCustomNotification(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 4),
       toastBuilder: (cancelFunc) => ContentFisioSnackbar(
-        color: FisioColors.primaryColor,
+        color: FisioColors.green,
         title: message,
         subtitle: subtitle,
         icon: Icons.check_circle_outline,
@@ -15,12 +15,22 @@ void showToastSucess(String message, {String? subtitle}) => BotToast.showCustomN
     );
 
 void showToastError(String message, {String? subtitle}) => BotToast.showCustomNotification(
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 4),
       toastBuilder: (cancelFunc) => ContentFisioSnackbar(
         color: FisioColors.red,
         title: message,
         subtitle: subtitle,
-        icon: Icons.check_circle_outline,
+        icon: Icons.error_outline_rounded,
+      ),
+    );
+
+void showToastAlert(String message, {String? subtitle}) => BotToast.showCustomNotification(
+      duration: const Duration(seconds: 4),
+      toastBuilder: (cancelFunc) => ContentFisioSnackbar(
+        color: FisioColors.primaryColor,
+        title: message,
+        subtitle: subtitle,
+        icon: Icons.warning_rounded,
       ),
     );
 

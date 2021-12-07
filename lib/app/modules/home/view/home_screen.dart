@@ -1,14 +1,14 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/core/blocs/home_bloc_event.dart';
+import 'package:fisio_app/app/core/blocs/home_screen_state.dart';
+import 'package:fisio_app/app/modules/home/view/widgets/grid_view_widget.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import '../../../core/extensions/theme_controller_extension.dart';
-import '../../../core/ad_mob/ad_state.dart';
 import '../../../core/blocs/home_screen_bloc.dart';
 import '../../../core/core.dart';
-import '../home_controller/home_screen_controller.dart';
 import '../../../fisio_design_system/fisio_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:provider/provider.dart';
-import 'package:bloc_pattern/bloc_pattern.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,85 +17,81 @@ class HomeScreen extends StatefulWidget {
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> with AutomaticKeepAliveClientMixin {
+class _HomeScreenState extends State<HomeScreen> {
   BannerAd? bannerAd;
-  final FirebaseFirestore firebase = FirebaseFirestore.instance;
-  final bloc = BlocProvider.getBloc<HomeScreenBloc>();
+  final homeBloc = Modular.get<HomeScreenBloc>();
 
-  final _controller = HomeScreenController();
-
-  @override
-  void didChangeDependencies() {
-    super.didChangeDependencies();
-    final adState = Provider.of<AdState>(context);
-    adState.initialization.then(
-      (status) {
-        setState(
-          () {
-            bannerAd = BannerAd(
-                adUnitId: adState.bannerAdUnitId,
-                size: AdSize.banner,
-                request: const AdRequest(),
-                listener: adState.adListener)
-              ..load();
-          },
-        );
-      },
-    );
-  }
+  // @override
+  // void didChangeDependencies() {
+  //   super.didChangeDependencies();
+  //   final adState = Provider.of<AdState>(context);
+  //   adState.initialization.then(
+  //     (status) {
+  //       setState(
+  //         () {
+  //           bannerAd = BannerAd(
+  //               adUnitId: adState.bannerAdUnitId,
+  //               size: AdSize.banner,
+  //               request: const AdRequest(),
+  //               listener: adState.adListener)
+  //             ..load();
+  //         },
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   void initState() {
     super.initState();
+    homeBloc.add(GetHomeCategoriesEvent());
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
-
     return Scaffold(
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(height: 5),
-          titleT1Widget(
-            'Categorias',
-            title1.copyWith(color: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack),
-          ),
-          Expanded(
-            child: ListView(
-              physics: const BouncingScrollPhysics(),
-              children: [
-                StreamBuilder<List<DocumentSnapshot>>(
-                  stream: bloc.outList,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return HomeCustomShimmer(
-                        color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white,
-                      );
-                    } else {
-                      return GridView.builder(
-                        gridDelegate: _controller.gridDelegate,
-                        padding: const EdgeInsets.all(10),
-                        shrinkWrap: true,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) {
-                          return CardInfo(snapshot.data![index]);
-                        },
-                      );
-                    }
-                  },
-                ),
-              ],
+      body: BlocProvider<HomeScreenBloc>(
+        create: (context) => homeBloc,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 5),
+            titleT1Widget(
+              'Categorias',
+              title1.copyWith(color: context.theme.isDark ? FisioColors.white : FisioColors.lowBlack),
             ),
-          ),
-          const SizedBox(height: 10.0),
-        ],
+            Expanded(
+              child: ListView(
+                physics: const BouncingScrollPhysics(),
+                children: [
+                  BlocConsumer<HomeScreenBloc, HomeBlocSate>(
+                    listener: (context, state) {
+                      if (state is EmptyCategoriesState) {
+                        showToastAlert('Nenhuma categoria foi encontrada.');
+                      }
+                      if (state is ErrorHomeCategoriesState) {
+                        showToastError('Erro ao buscar categorias.');
+                      }
+                    },
+                    builder: (context, state) {
+                      if (state is LoadingHomeCategoriesState) {
+                        return HomeCustomShimmer(
+                          color: context.theme.isDark ? FisioColors.lowBlack : FisioColors.white,
+                        );
+                      }
+                      if (state is LoadedCategoriesState) {
+                        return const GridViewWidget();
+                      }
+                      return const SizedBox.shrink();
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10.0),
+          ],
+        ),
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

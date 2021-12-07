@@ -10,6 +10,8 @@ class FisioColors {
   static Color primaryHighColor = Flavor.isUser ? Color(0XFF36076F) : Color(0XFF2B8895);
   static Color primaryLightColor = Flavor.isUser ? Color(0XFF7C45BF) : Color(0XFF3CB4C3);
   static Color red = Colors.red;
+  static Color greenLight = Color(0XFF248490);
+  static Color green = Color(0XFF06904E);
   static Color white = Colors.white;
   static Color transparent = Colors.transparent;
 

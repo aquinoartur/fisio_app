@@ -14,8 +14,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
-  bloc_pattern: ^3.0.0
-  flutter_bloc: ^7.3.0
+  flutter_bloc: ^8.0.0
   rive: ^0.7.9
   google_fonts:
   firebase_auth: ^1.2.0
@@ -29,7 +28,6 @@ dependencies:
   flutter_modular: ^4.0.0+6
   google_nav_bar: ^5.0.5
   line_icons: ^2.0.1
-  rxdart: ^0.27.0
   shimmer: ^2.0.0
   cached_network_image: ^3.1.0
   animations: ^2.0.1
@@ -41,6 +39,7 @@ dependencies:
   youtube_player_flutter: ^8.0.0
   image_picker: ^0.8.4+4
   sqflite: ^2.0.0+4
+  equatable: ^2.0.3
 
 dev_dependencies:
 

@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fisio_app/app/core/blocs/home_screen_bloc.dart';
+
 import '../favorites/view/favorite_db_picker_screen.dart';
 
 import '../favorites/favorite_module.dart';
@@ -14,7 +17,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 
 class HomeModule extends Module {
   @override
-  final List<Bind> binds = [];
+  final List<Bind> binds = [
+    Bind.singleton((i) => FirebaseFirestore.instance),
+    Bind.factory((i) => HomeScreenBloc(firebase: i())),
+  ];
 
   @override
   final List<ModularRoute> routes = [
